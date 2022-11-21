@@ -10,27 +10,27 @@
 #                                                                              #
 # **************************************************************************** #
 
-RED 		=	\033[0;31m
-GREEN 		=	\033[0;32m
-YELLOW 		=	\033[0;33m
-BLUE 		=	\033[0;34m
-MAGENTA 	=	\033[0;35m
-MAGENTA_2	=	\033[0;95m
-CYAN 		=	\033[0;36m
-RE 			=	\033[0m
+RED 			=	\033[0;31m
+GREEN 			=	\033[0;32m
+YELLOW 			=	\033[0;33m
+BLUE 			=	\033[0;34m
+MAGENTA 		=	\033[0;35m
+MAGENTA_2		=	\033[0;95m
+CYAN 			=	\033[0;36m
+RE 				=	\033[0m
 
-NAME		=	cub3D
-HEADER		=	cub3D.h
+NAME			=	cub3D
+HEADER			=	cub3D.h
 
-INCLUDE		=	-I ./include
+INCLUDE			=	-I ./include
 
-CC			=	gcc -Wall -Wextra -Werror -g
-LIB			=	-lbsd -lmlx -lXext -lX11 -lm -lz
+CC				=	gcc -Wall -Wextra -Werror -g
+LIB				=	-lbsd -lmlx -lXext -lX11 -lm -lz
 
-SRC_PATH	=	./src/
-OBJ_PATH	=	./obj/
+SRC_PATH		=	./src/
+OBJ_PATH		=	./obj/
 
-SRC_FILES	=	main.c
+SRC_FILES		=	main.c
 
 SRC            	=    $(addprefix $(SRC_PATH),$(SRC_FILES))
 OBJ            	=    $(addprefix $(OBJ_PATH),$(subst .c,.o,$(SRC_FILES)))
