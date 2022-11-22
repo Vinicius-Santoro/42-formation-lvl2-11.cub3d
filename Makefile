@@ -40,7 +40,7 @@ CUB				= $(MAGENTA_2)cub$(BLUE)3$(RED)D$(RE)
 LIBFT			=	./libs/libft/libft.a
 
 $(LIBFT): 
-				make bonus --no-print-directory -C ./libs/libft
+				@ make bonus --no-print-directory -C ./libs/libft
 
 $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
 				@ mkdir -p $(OBJ_PATH)
@@ -49,12 +49,13 @@ $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
 all:            $(NAME)
 				
 
-$(NAME):        $(OBJ)
+$(NAME):        $(OBJ) $(LIBFT)
 				$(CC) -o $(NAME) $(OBJ)
 				@echo "$(CUB)$(RE): was $(GREEN)created$(RE)"
 
 clean:
-				@ $(RM) rm -rf  $(LIBFT) $(OBJ_PATH)
+				@ $(RM) rm -rf $(OBJ_PATH)
+				@ make clean --no-print-directory -C ./libs/libft
 				@echo "$(CUB): object files were $(RED)deleted$(RE)"
 
 fclean:         clean
