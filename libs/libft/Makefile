@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/01 10:39:53 by ldatilio          #+#    #+#              #
-#    Updated: 2021/09/20 14:02:48 by ldatilio         ###   ########.fr        #
+#    Updated: 2022/11/21 20:45:39 by vnazioze         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC 		:= 	clang
+CC 		:= 	gcc
 FLAGS 	:= 	-Wall -Wextra -Werror
 RM		:=	rm -f
 
@@ -35,19 +35,19 @@ BONUS_O :=	$(BONUS_S:.c=.o)
 all:		$(NAME)
 
 $(NAME):	$(OBJS) $(BONUS_O)
-			ar -rcs $(NAME) $(OBJS)
+			@ ar -rcs $(NAME) $(OBJS)
 
 bonus:		$(NAME) $(BONUS_O)
-			ar -rcs $(NAME) $(BONUS_O)
+			@ ar -rcs $(NAME) $(BONUS_O)
 
 .c.o:
-			$(CC) $(FLAGS) -c $< -o $(<:.c=.o)
+			@ $(CC) $(FLAGS) -c $< -o $(<:.c=.o)
 
 clean:
-			$(RM) $(OBJS) $(BONUS_O)
+			@ $(RM) $(OBJS) $(BONUS_O)
 
 fclean: 	clean
-			$(RM) $(NAME)
+			@ $(RM) $(NAME)
 
 re:			fclean all
 

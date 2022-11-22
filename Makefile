@@ -24,7 +24,7 @@ HEADER			=	cub3D.h
 
 INCLUDE			=	-I ./include
 
-CC				=	gcc -Wall -Wextra -Werror -g
+CC				=	@ gcc -Wall -Wextra -Werror -g
 LIB				=	-lbsd -lmlx -lXext -lX11 -lm -lz
 
 SRC_PATH		=	./src/
@@ -37,22 +37,28 @@ OBJ            	=    $(addprefix $(OBJ_PATH),$(subst .c,.o,$(SRC_FILES)))
 
 CUB				= $(MAGENTA_2)cub$(BLUE)3$(RED)D$(RE)
 
+LIBFT			=	./libs/libft/libft.a
+
+$(LIBFT): 
+				make bonus --no-print-directory -C ./libs/libft
+
 $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
-				mkdir -p $(OBJ_PATH)
-				$(CC) $(INCLUDE) -c $< -o $@
+				@ mkdir -p $(OBJ_PATH)
+				@ $(CC) $(INCLUDE) -c $< -o $@
 
 all:            $(NAME)
+				
 
 $(NAME):        $(OBJ)
 				$(CC) -o $(NAME) $(OBJ)
 				@echo "$(CUB)$(RE): was $(GREEN)created$(RE)"
-		
+
 clean:
-				$(RM) rm -rf $(OBJ_PATH)
+				@ $(RM) rm -rf  $(LIBFT) $(OBJ_PATH)
 				@echo "$(CUB): object files were $(RED)deleted$(RE)"
 
-fclean:            clean
-				$(RM) $(NAME) rm -rf $(OBJ_PATH)
+fclean:         clean
+				@ $(RM) $(NAME) rm -rf  $(LIBFT) $(OBJ_PATH)
 				@echo "$(CUB): was $(RED)deleted$(RE)"
 
 re:				fclean all
