@@ -22,5 +22,4 @@ jobs:
       
       - name: Run Test
         run: |
-          chmode +x test.sh
           ./test.sh
