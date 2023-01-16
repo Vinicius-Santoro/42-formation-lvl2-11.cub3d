@@ -6,7 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v3
 
       - name: Setup Python
@@ -14,11 +14,19 @@ jobs:
         with: 
           python-version: '3.10'
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: |
           sudo apt install valgrind &
           pip install norminette &
           wait
+      
+      - name: Install MLX
+        run: |
+          git clone https://github.com/42Paris/minilibx-linux
+          cd minilibx-linux
+          apt install libxext-dev libxrandr-dev libx11-dev libbsd-dev libssl-dev
+          mv minilibx-linux/libmlx.a /usr/local/lib/
+          mv minilibx-linux/mlx.h /usr/local/include/
       
       - name: Run Test
         run: |
