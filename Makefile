@@ -24,18 +24,20 @@ HEADER			=	cub3D.h
 
 INCLUDE			=	-I ./include
 
-CC				=	@ gcc -Wall -Wextra -Werror -g
+CC				=	gcc -g
+CFLAGS			=	-Wall -Wextra -Werror
 LIB				=	-lbsd -lmlx -lXext -lX11 -lm -lz
 
 SRC_PATH		=	./src/
 OBJ_PATH		=	./obj/
 
-SRC_FILES		=	main.c
+SRC_FILES		=	main.c			\
+					validate_map.c
 
-SRC            	=    $(addprefix $(SRC_PATH),$(SRC_FILES))
-OBJ            	=    $(addprefix $(OBJ_PATH),$(subst .c,.o,$(SRC_FILES)))
+SRC            	=	$(addprefix $(SRC_PATH),$(SRC_FILES))
+OBJ            	=	$(addprefix $(OBJ_PATH),$(subst .c,.o,$(SRC_FILES)))
 
-CUB				= $(MAGENTA_2)cub$(BLUE)3$(RED)D$(RE)
+CUB				=	$(MAGENTA_2)cub$(BLUE)3$(RED)D$(RE)
 
 LIBFT			=	./libs/libft/libft.a
 
@@ -50,17 +52,17 @@ all:            $(NAME)
 				
 
 $(NAME):        $(OBJ) $(LIBFT)
-				$(CC) -o $(NAME) $(OBJ)
-				@echo "$(CUB)$(RE): was $(GREEN)created$(RE)"
+				@ $(CC) -o $(NAME) $(OBJ)
+				@ echo "$(CUB)$(RE): was $(GREEN)created$(RE)"
 
 clean:
 				@ $(RM) rm -rf $(OBJ_PATH)
 				@ make clean --no-print-directory -C ./libs/libft
-				@echo "$(CUB): object files were $(RED)deleted$(RE)"
+				@ echo "$(CUB): object files were $(RED)deleted$(RE)"
 
 fclean:         clean
 				@ $(RM) $(NAME) rm -rf  $(LIBFT) $(OBJ_PATH)
-				@echo "$(CUB): was $(RED)deleted$(RE)"
+				@ echo "$(CUB): was $(RED)deleted$(RE)"
 
 re:				fclean all
 
