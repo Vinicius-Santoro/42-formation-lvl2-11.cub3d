@@ -6,8 +6,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -17,7 +15,8 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt install valgrind &
-          pip install norminette &
+          sudo pip install norminette &
+          sudo apt install libxext-dev libxrandr-dev libx11-dev libbsd-dev libssl-dev &
           wait
       
       - name: Checkout MLX
@@ -28,10 +27,12 @@ jobs:
           
       - name: Install MLX
         run: |
-          sudo apt install libxext-dev libxrandr-dev libx11-dev libbsd-dev libssl-dev
-          cd minilibx-linux && make
+          make
           mv libmlx.a /usr/local/lib/
           mv mlx.h /usr/local/include/
+      
+      - name: Checkout Code
+        uses: actions/checkout@v3
       
       - name: Run Test
         run: |
