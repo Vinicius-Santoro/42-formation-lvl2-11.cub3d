@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   validate_error.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 20:11:32 by vnazioze          #+#    #+#             */
-/*   Updated: 2022/11/21 20:11:32 by vnazioze         ###   ########.fr       */
+/*   Created: 2023/01/17 08:02:26 by vnazioze          #+#    #+#             */
+/*   Updated: 2023/01/17 08:02:26 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	main(int argc, char **argv)
+void	verify_arguments(int argc)
 {
-	(void) argc;
-	if (argc != 2)
-		verify_arguments(argc);
-	if (validate_map(argv[1]) == TRUE)
-		return (1);
-	return (0);
+	if (argc > 2)
+	{
+		printf(RED"Error: Too many arguments\n"RE);
+		exit (1);
+	}
+	if (argc < 2)
+	{
+		printf(RED"Error: Not enough arguments\n"RE);
+		exit (1);
+	}
 }
