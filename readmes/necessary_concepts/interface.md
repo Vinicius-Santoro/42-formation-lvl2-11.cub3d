@@ -2,7 +2,6 @@
 
 🏠 [home](https://github.com/Vinicius-Santoro/42-formation-lvl2-11.cub3d)<br>
 ⬅ [O Que é RayCasting?](https://github.com/Vinicius-Santoro/42-formation-lvl2-11.cub3d/blob/main/readmes/necessary_concepts/raycasting.md) | [Criando um Simples Raycasting](https://github.com/Vinicius-Santoro/42-formation-lvl2-11.cub3d/blob/main/readmes/necessary_concepts/raycasting-c.md) ➡
-<h1></h1>
 
 <h1></h1>
 
