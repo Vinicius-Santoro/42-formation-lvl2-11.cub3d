@@ -79,7 +79,7 @@ Map example:
 
 - The `'→'` and `'←'`  keys of the keyboard allow you to look left and
 right in the maze.
-- The `'W'`, `'A'`, `'S'`, and `'D'` keys allow you to move the point of view through
+- The `'W'`, `'A'`, `'S'` and `'D'` keys allow you to move the point of view through
 the maze.
 - You can run holding `'Shift'` key.
 - `'Esc'` key exits the game.
