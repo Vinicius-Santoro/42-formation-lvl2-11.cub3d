@@ -10,10 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<stdio.h>
+#include "cub3D.h"
 
-int main(void)
+int	main(int argc, char **argv)
 {
-    printf("Oi!");
-    return (0);
+	(void) argc;
+	if (validate_map(argv[1]) == TRUE)
+		return (1);
+	return (0);
 }

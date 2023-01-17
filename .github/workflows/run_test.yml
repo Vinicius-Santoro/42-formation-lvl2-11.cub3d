@@ -1,0 +1,39 @@
+name: Run Test.sh
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with: 
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: |
+          sudo apt install valgrind &
+          sudo pip install norminette &
+          sudo apt install libxext-dev libxrandr-dev libx11-dev libbsd-dev libssl-dev &
+          wait
+      
+      - name: Checkout MLX
+        uses: actions/checkout@v3
+        with:
+          repository: 42Paris/minilibx-linux
+          ref: master
+          
+      - name: Install MLX
+        run: |
+          make
+          sudo mv libmlx.a /usr/local/lib/
+          sudo mv mlx.h /usr/local/include/
+      
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      
+      - name: Run Test
+        run: |
+          ./test.sh
