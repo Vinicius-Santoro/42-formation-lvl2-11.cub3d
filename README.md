@@ -53,13 +53,10 @@ C 225,30,0
 
 The map construction is composed by the following characters:
 
-Walls: `'1'`
-
-Empty spaces inside: `'0'`
-
-Empty spaces outside: `' '`
-
-Initial player direction: `'N'`, `'S'`, `'W'` or `'E'`
+- Walls: `'1'`
+- Empty spaces inside: `'0'`
+- Empty spaces outside: `' '`
+- Initial player direction: `'N'`, `'S'`, `'W'` or `'E'`
 
 #### Map Rules
 
