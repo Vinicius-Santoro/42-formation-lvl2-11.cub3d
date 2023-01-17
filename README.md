@@ -4,10 +4,10 @@ Project 11: Cub3D - Eleventh project for the formation of software engineers at 
 
 - This project is about creat a RayCaster.
 
-## This project was like this:
+#### This project was like this:
 ![philo](https://user-images.githubusercontent.com/83036509/195736506-28f72fd7-3b88-48f3-8b93-01e2c5648938.gif)
 
-## __How to run__
+#### How to run
 
 - Clone the repository
 ````
@@ -19,12 +19,12 @@ git clone git@github.com:Vinicius-Santoro/42-formation-lvl2-11.cub3d.git
 - Recompile: `make re`
 - Run `./cub3D` or followed by map path e.g. `./maps/map_0.cub`
 
-## __File configuration__
+#### File configuration
 
 To run the game, you must pass as first argument a scene description file with the .cub
 extension.
 
-### __Identifiers__
+#### Identifiers
 
 The file must have 6 element identifiers:
 
@@ -49,11 +49,9 @@ F 220,100,0
 C 225,30,0
 ````
 
-### __Map configuration__
+#### Map configuration
 
 The map construction is composed by the following characters:
-
-#### _Common Part_
 
 Walls: `'1'`
 
@@ -63,7 +61,7 @@ Empty spaces outside: `' '`
 
 Initial player direction: `'N'`, `'S'`, `'W'` or `'E'`
 
-### __Map Rules__
+#### Map Rules
 
 - It must be completely surrounded by walls
 - It must have a player
@@ -80,9 +78,7 @@ Map example:
 111111111111111111111
 ````
 
-## __How to play__
-
-#### _Common part_
+#### How to play
 
 - The `'→'` and `'←'`  keys of the keyboard allow you to look left and
 right in the maze.
@@ -91,7 +87,7 @@ the maze.
 - You can run holding `'Shift'` key.
 - `'Esc'` key exits the game.
 
-## __Details of the entire project__
+#### Details of the entire project
 - [main.c](readmes/main.md)
 - [utils.c](readmes/utils.md)
 - [init_list.c](readmes/init_list.md)
