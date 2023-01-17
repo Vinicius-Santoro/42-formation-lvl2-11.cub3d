@@ -29,7 +29,7 @@ extension.
 The file must have 6 element identifiers:
 
 | Rede       |      Host     |
-|:----------:|:-------------:|
+|:----------:|-------------|
 |NO| Represents the texture of the wall in the north direction|
 |SO| Represents the wall texture in the south direction|
 |EA| Represents the wall texture in the east direction|
