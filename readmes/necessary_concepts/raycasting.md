@@ -1,7 +1,7 @@
 ### _Project 11: Cub3D - Eleventh project for the formation of software engineers at school 42 São Paulo._
 
-🏠 [home](https://github.com/Vinicius-Santoro/42-formation-lvl2-10.net_pratice) | 
-[como criar interface gráfica](https://github.com/Vinicius-Santoro/42-formation-lvl2-10.net_pratice/blob/main/readmes/level02.md) ➡
+🏠 [Home](https://github.com/Vinicius-Santoro/42-formation-lvl2-11.cub3d) | 
+[Como Criar Interface Gráfica Usando a MiniLibX](https://github.com/Vinicius-Santoro/42-formation-lvl2-11.cub3d/blob/main/readmes/necessary_concepts/interface.md) ➡
 
 <h1></h1>
 
