@@ -28,8 +28,8 @@ jobs:
       - name: Install MLX
         run: |
           make
-          mv libmlx.a /usr/local/lib/
-          mv mlx.h /usr/local/include/
+          sudo mv libmlx.a /usr/local/lib/
+          sudo mv mlx.h /usr/local/include/
       
       - name: Checkout Code
         uses: actions/checkout@v3
