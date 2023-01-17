@@ -5,7 +5,7 @@
 
 <h1></h1>
 
-- Este código cria uma janela com o título "Simple Raycasting" com o tamanho de 800x600 e um jogador no centro da tela. O jogador tem um ângulo de visão e uma direção inicial de 0 graus.
+- Este código cria uma janela com o título `Simple Raycasting` com o tamanho de 800x600 e um jogador no centro da tela. O jogador tem um ângulo de visão e uma direção inicial de 0 graus.
 
 ```c
 #include "mlx.h"
