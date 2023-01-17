@@ -29,8 +29,9 @@ jobs:
       - name: Install MLX
         run: |
           sudo apt install libxext-dev libxrandr-dev libx11-dev libbsd-dev libssl-dev
-          mv minilibx-linux/libmlx.a /usr/local/lib/
-          mv minilibx-linux/mlx.h /usr/local/include/
+          cd minilibx-linux && make
+          mv libmlx.a /usr/local/lib/
+          mv mlx.h /usr/local/include/
       
       - name: Run Test
         run: |
