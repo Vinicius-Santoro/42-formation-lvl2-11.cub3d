@@ -85,6 +85,14 @@ the maze.
 - `'Esc'` key exits the game.
 
 #### Details of the entire project
+
+- [O que é RayCasting?](readmes/necessary_concepts/raycasting.md)
+- [Interface gráfica utilizando a Linguagem C com MiniLibX](readmes/necessary_concepts/interface.md)
+- [RayCasting usando a Linguagem C](readmes/necessary_concepts/raycasting-c.md)
+
+#### Details of the entire project
+
+- [makefile](readmes/makefile.md)
 - [main.c](readmes/main.md)
 - [utils.c](readmes/utils.md)
 - [init_list.c](readmes/init_list.md)
