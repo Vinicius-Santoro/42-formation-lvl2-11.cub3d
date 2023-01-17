@@ -20,10 +20,14 @@ jobs:
           pip install norminette &
           wait
       
+      - name: Checkout MLX
+        uses: actions/checkout@v3
+        with:
+          repository: 42Paris/minilibx-linux
+          ref: master
+          
       - name: Install MLX
         run: |
-          git clone https://github.com/42Paris/minilibx-linux
-          cd minilibx-linux
           sudo apt install libxext-dev libxrandr-dev libx11-dev libbsd-dev libssl-dev
           mv minilibx-linux/libmlx.a /usr/local/lib/
           mv minilibx-linux/mlx.h /usr/local/include/
