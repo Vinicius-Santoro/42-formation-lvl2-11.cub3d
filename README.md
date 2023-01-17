@@ -2,7 +2,7 @@
 
 Project 11: Cub3D - Eleventh project for the formation of software engineers at school 42 São Paulo.
 
-- This project is about creat a RayCaster.
+- This project is inspired by the world-famous Wolfenstein 3D game. Our goal is to create a raycaster.
 
 #### This project was like this:
 ![philo](https://user-images.githubusercontent.com/83036509/195736506-28f72fd7-3b88-48f3-8b93-01e2c5648938.gif)
@@ -17,7 +17,7 @@ git clone git@github.com:Vinicius-Santoro/42-formation-lvl2-11.cub3d.git
 - To clean objects files execute: `make clean`
 - To clean executable file and objects: `make fclean`
 - Recompile: `make re`
-- Run `./cub3D` or followed by map path e.g. `./maps/map_0.cub`
+- Run `./cub3D` or followed by map path e.g. `./assets/maps/map.cub`
 
 #### File configuration
 
@@ -32,18 +32,18 @@ The file must have 6 element identifiers:
 |:----------:|-------------|
 |NO| Represents the texture of the wall in the north direction|
 |SO| Represents the wall texture in the south direction|
-|EA| Represents the wall texture in the east direction|
 |WE| Represents the wall texture in the west direction|
+|EA| Represents the wall texture in the east direction|
 |C| Represents the RGB color scale of the celling|
 |F| Represents the RGB color scale of the floor||
 
 Example in a .cub file:
 
 ````
-NO ./assets/xpm/walls/blue_wall_01.xpm
-SO ./assets/xpm/walls/blue_wall_02.xpm
-WE ./assets/xpm/walls/blue_wall_02.xpm
-EA ./assets/xpm/walls/blue_wall_01.xpm
+NO ./assets/images/texture_1.xpm
+SO ./assets/images/texture_2.xpm
+WE ./assets/images/texture_3.xpm
+EA ./assets/images/texture_4.xpm
 
 F 220,100,0
 C 225,30,0
