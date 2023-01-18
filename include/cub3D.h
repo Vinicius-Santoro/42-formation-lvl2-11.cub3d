@@ -22,8 +22,6 @@
 # include <fcntl.h>
 # include "../libs/libft/libft.h"
 
-# include<string.h>
-
 # define FALSE 0
 # define TRUE 1
 
@@ -38,6 +36,6 @@
 int	    is_ext_cub(const char *file);
 int     validate_map(const char *file_name);
 void    verify_arguments(int argc);
-void	error_message(void);
+void   error_message(int error_code, char *message_error);
 
 #endif

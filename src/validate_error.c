@@ -12,10 +12,11 @@
 
 #include "../include/cub3D.h"
 
-void	error_message(void)
+void	error_message(int error_code, char *message_error)
 {
 	printf("Error\n");
-	exit (1);
+	printf("%s\n", message_error);
+	exit(error_code);
 }
 
 void	verify_arguments(int argc)
