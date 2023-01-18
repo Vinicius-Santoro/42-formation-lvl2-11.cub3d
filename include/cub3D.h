@@ -22,6 +22,8 @@
 # include <fcntl.h>
 # include "../libs/libft/libft.h"
 
+# include<string.h>
+
 # define FALSE 0
 # define TRUE 1
 
@@ -32,18 +34,10 @@
 # define MAGENTA "\033[0;35m"
 # define CYAN "\033[0;36m"
 # define RE "\033[0m"
-# define INVALID_ARGV GREEN "\
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┓\n\
-┃" RED "ERROR:" RE " " GREEN "You must specify at least 4 or 5 arguments┃  Rules ┃\n\
-┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃━━━━━━━━┃\n\
-┃ - [1] number_of_philosophers                    ┃  >  0  ┃\n\
-┃ - [2] time_to_die                               ┃  >= 0  ┃\n\
-┃ - [3] time_to_eat                               ┃  >= 0  ┃\n\
-┃ - [4] time_to_sleep                             ┃  >= 0  ┃\n\
-┃ - [5] number_of_times_each_philosopher_must_eat ┃  >= 0  ┃\n\
-┃ - Obs: Argument 5 is optional.                  ┃   --   ┃\n\
-┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━┛\n" RE
-int     validate_map(char *file_name);
+
+int	    is_ext_cub(const char *file);
+int     validate_map(const char *file_name);
 void    verify_arguments(int argc);
+void	error_message(void);
 
 #endif

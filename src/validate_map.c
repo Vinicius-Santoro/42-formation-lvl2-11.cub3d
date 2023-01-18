@@ -3,28 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 17:01:31 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/01/14 18:14:57 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/01/17 23:24:21 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../include/cub3D.h"
 
-int	is_ext_cub(char *file)
+int	is_ext_cub(const char *file)
 {
-	while (*file)
-	{
-		if (*file == '.' && *(file + 4) == '\0' \
-		&& *(file + 1) == 'c' && *(file + 2) == 'u' && *(file + 3) == 'b')
-			return (1);
-		file++;
-	}
-	return (0);
+	size_t	len;
+
+	len = strlen(file);
+	if (file[len - 4] != '.' || file[len - 3] != 'c' || \
+		file[len - 2] != 'u' || file[len - 1] != 'b')
+		return (0);
+	return (1);
 }
 
-int	validate_map(char *file_name)
+int	validate_map(const char *file_name)
 {
 	int	fd;
 
@@ -32,7 +31,7 @@ int	validate_map(char *file_name)
 	if (fd < 0)
 		return (1);
 	if (is_ext_cub(file_name) == FALSE)
-		printf("\nThe file extension is NOT .cub");
+		error_message();
 	else
 		printf("\nThe file extension is '.cub'");
 	close(fd);

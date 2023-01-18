@@ -10,18 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../include/cub3D.h"
+
+void	error_message(void)
+{
+	printf("Error\n");
+	exit (1);
+}
 
 void	verify_arguments(int argc)
 {
 	if (argc > 2)
 	{
-		printf(RED"Error: Too many arguments\n"RE);
+		printf(RED"Error\nToo many arguments\n"RE);
 		exit (1);
 	}
 	if (argc < 2)
 	{
-		printf(RED"Error: Not enough arguments\n"RE);
+		printf(RED"Error\nNot enough arguments\n"RE);
 		exit (1);
 	}
 }
