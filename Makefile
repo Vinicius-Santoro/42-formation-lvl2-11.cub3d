@@ -53,7 +53,7 @@ all:            $(NAME)
 				
 
 $(NAME):        $(OBJ) $(LIBFT)
-				@ $(CC) -o $(NAME) $(OBJ)
+				@ $(CC) -o $(NAME) $(OBJ) $(LIBFT)
 				@ echo "$(CUB)$(RE): was $(GREEN)created$(RE)"
 
 clean:
