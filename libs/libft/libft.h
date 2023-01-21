@@ -6,7 +6,7 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 20:35:20 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/01/21 18:39:17 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/01/21 20:25:39 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }					t_list;
-
 
 # define BUFFER_SIZE 1
 # define OPEN_MAX 256

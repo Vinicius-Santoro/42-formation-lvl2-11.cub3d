@@ -6,7 +6,7 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 17:01:31 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/01/21 17:39:10 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/01/21 20:24:32 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,24 @@ int	is_ext_cub(const char *file)
 	return (1);
 }
 
-int	validate_map(const char *file_name)
+int	read_map(int fd, t_data *data)
+{
+	char	*new_line;
+	char	*temp;
+
+	data->map.line = ft_strdup("");
+	while (TRUE)
+	{
+		temp = get_next_line(fd);
+		if (temp == NULL)
+			break ;
+		data->map.line = ft_strjoin_free(data->map.line, temp);
+		free(temp);
+	}
+	free(data->map.line);
+}
+
+int	validate_map(const char *file_name, t_data *data)
 {
 	int	fd;
 
@@ -34,7 +51,7 @@ int	validate_map(const char *file_name)
 		error_message(1, "The file extension is not '.cub'");
 	else
 		printf("\nThe file extension is '.cub'");
-	read_map(fd);
+	read_map(fd, data);
 	close(fd);
 	return (0);
 }

@@ -33,7 +33,8 @@ OBJ_PATH		=	./obj/
 
 SRC_FILES		=	main.c			\
 					validate_map.c	\
-					validate_error.c
+					validate_error.c\
+					utils.c
 
 SRC            	=	$(addprefix $(SRC_PATH),$(SRC_FILES))
 OBJ            	=	$(addprefix $(OBJ_PATH),$(subst .c,.o,$(SRC_FILES)))

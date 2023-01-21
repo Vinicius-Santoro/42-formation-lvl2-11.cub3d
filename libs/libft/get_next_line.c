@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/31 01:14:55 by coder             #+#    #+#             */
-/*   Updated: 2023/01/21 18:37:51 by ldatilio         ###   ########.fr       */
+/*   Created: 2021/09/20 16:37:17 by ldatilio          #+#    #+#             */
+/*   Updated: 2023/01/21 20:25:07 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static char	*make_backup(int fd, char *backup, char	*buffer)
 			backup = ft_strdup("");
 		temp = backup;
 		backup = ft_strjoin(temp, buffer);
+		free(temp);
 		if (ft_strchr(backup, '\n'))
 			control = 1;
 	}

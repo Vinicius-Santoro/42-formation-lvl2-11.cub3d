@@ -14,10 +14,13 @@
 
 int	main(int argc, char **argv)
 {
-	(void) argc;
+	t_data	*data;
+
 	if (argc != 2)
 		verify_arguments(argc);
-	if (validate_map(argv[1]) == TRUE)
+	data = ft_calloc(sizeof(t_data), 1);
+	if (validate_map(argv[1], data) == TRUE)
 		return (1);
+	free(data);
 	return (0);
 }
