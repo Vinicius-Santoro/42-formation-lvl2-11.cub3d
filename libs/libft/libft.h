@@ -6,7 +6,7 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 20:35:20 by ldatilio          #+#    #+#             */
-/*   Updated: 2021/09/20 14:29:33 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/01/21 18:39:17 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,17 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }					t_list;
+
+
+# define BUFFER_SIZE 1
+# define OPEN_MAX 256
+
+/**	@brief	Description Write a function which returns a line read from a
+ *			file descriptor.
+ *	@param	fd	File descriptor to read from.
+ *	@return	Read line: correct behavior. NULL if there is nothing else to read
+ *			or an error occurred */
+char	*get_next_line(int fd);
 
 /* ********************************* Part 1 ********************************* */
 

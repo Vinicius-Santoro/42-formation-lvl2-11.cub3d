@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/01 10:39:53 by ldatilio          #+#    #+#              #
-#    Updated: 2022/11/21 20:45:39 by vnazioze         ###   ########.fr        #
+#    Updated: 2023/01/21 18:38:18 by ldatilio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRCS	:= 	ft_isascii.c ft_isprint.c ft_isalpha.c ft_isdigit.c ft_isalnum.c \
 			ft_memcmp.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c 	 \
 			ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c 	 \
 			ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c 	 \
-			ft_memccpy.c
+			ft_memccpy.c get_next_line.c
 
 BONUS_S	:=	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c 		\
 			ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c 	\
