@@ -13,7 +13,6 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-
 # include <mlx.h>
 # include <stdlib.h>
 # include <math.h>
@@ -33,9 +32,9 @@
 # define CYAN "\033[0;36m"
 # define RE "\033[0m"
 
-int	    is_ext_cub(const char *file);
-int     validate_map(const char *file_name);
-void    verify_arguments(int argc);
-void   error_message(int error_code, char *message_error);
+int		is_ext_cub(const char *file);
+int		validate_map(const char *file_name);
+void	verify_arguments(int argc);
+void	error_message(int error_code, char *message_error);
 
 #endif
