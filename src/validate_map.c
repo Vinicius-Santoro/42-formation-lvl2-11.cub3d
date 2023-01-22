@@ -6,11 +6,17 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 17:01:31 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/01/22 18:36:12 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/01/22 20:01:45 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+int	get_color_rgb(t_data *data, char *line, int color)
+{
+	if (color != NULL)
+		error_message(1, "Duplicated color rgb");
+}
 
 int	is_valid_ext(const char *file, const char *ext)
 {
@@ -31,6 +37,8 @@ char	*get_tex_file(char *line, char *tex, t_data *data)
 	char	*set;
 	char	*file_name;
 
+	if (tex != NULL)
+		error_message(1, "Duplicated texture position");
 	set = " \t\n\r";
 	file_name = ft_strtrim(line + 3, set);
 	if (is_valid_ext(file_name, ".xpm") == FALSE)

@@ -15,20 +15,14 @@
 void	error_message(int error_code, char *message_error)
 {
 	printf("Error\n");
-	printf("%s\n", message_error);
+	printf(RED"%s\n"RE, message_error);
 	exit(error_code);
 }
 
 void	verify_arguments(int argc)
 {
 	if (argc > 2)
-	{
-		printf(RED"Error\nToo many arguments\n"RE);
-		exit (1);
-	}
+		error_message(1, "Too many arguments\n");
 	if (argc < 2)
-	{
-		printf(RED"Error\nNot enough arguments\n"RE);
-		exit (1);
-	}
+		error_message(1, "Not enough arguments\n");
 }
