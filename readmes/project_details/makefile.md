@@ -6,7 +6,7 @@
 
 - O makefile é um arquivo de texto que contém instruções para o programa, que automatiza o processo de compilação de um projeto de software escrito em C. Ele especifica quais arquivos de código-fonte devem ser compilados, quais bibliotecas devem ser incluídas e quais opções de compilação devem ser usadas.
 
-```
+```Makefile
 # Definindo as cores para utilizar na printagem do terminal.
 RED 			=	\033[0;31m
 GREEN 			=	\033[0;32m
@@ -15,7 +15,7 @@ BLUE 			=	\033[0;34m
 MAGENTA 		=	\033[0;35m
 MAGENTA_2		=	\033[0;95m
 CYAN 			=	\033[0;36m
-RE 				=	\033[0m
+RE 			=	\033[0m
 
 # Nome do arquivo gerado que utilizaremos para a compilação.
 NAME			=	cub3D
@@ -25,7 +25,7 @@ HEADER			=	cub3D.h
 INCLUDE			=	-I ./include
 
 # Coleção de compiladores- GNU Compiler Collection
-CC				=	gcc
+CC			=	gcc
 
 # Flags especificadas pela 42
 CFLAGS			=	-Wall -Wextra -Werror
@@ -37,7 +37,7 @@ CFLAGS			=	-Wall -Wextra -Werror
 # -lm: utilizar a biblioteca "libm", que fornece funções matemáticas. Ela contém funções para realizar operações matemáticas como arredondamento, exponenciação, logaritmos, trigonometria e outras operações matemáticas básicas e avançadas. 
 # -lz: utilizar a biblioteca chamada "libz" que fornece funções para compactar e descompactar dados.
 
-LIB				=	-lbsd -lmlx -lXext -lX11 -lm -lz
+LIB			=	-lbsd -lmlx -lXext -lX11 -lm -lz
 
 # Organizando caminhos dos diretórios.
 SRC_PATH		=	./src/
@@ -45,44 +45,44 @@ OBJ_PATH		=	./obj/
 
 # Organizando arquivos abstratos
 SRC_FILES		=	main.c			\
-					validate_map.c	\
-					validate_error.c\
-					utils.c
+				validate_map.c	\
+				validate_error.c\
+				utils.c
 
 # Compilando os arquivos abstratos e transformando-os em arquivos objetos.
-SRC            	=	$(addprefix $(SRC_PATH),$(SRC_FILES))
-OBJ            	=	$(addprefix $(OBJ_PATH),$(subst .c,.o,$(SRC_FILES)))
+SRC            		=	$(addprefix $(SRC_PATH),$(SRC_FILES))
+OBJ            		=	$(addprefix $(OBJ_PATH),$(subst .c,.o,$(SRC_FILES)))
 
-CUB				=	$(MAGENTA_2)cub$(BLUE)3$(RED)D$(RE)
+CUB			=	$(MAGENTA_2)cub$(BLUE)3$(RED)D$(RE)
 
 LIBFT			=	./libs/libft/libft.a
 
 $(LIBFT): 
-				@ make bonus --no-print-directory -C ./libs/libft
+			@ make bonus --no-print-directory -C ./libs/libft
 
 $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
-				@ mkdir -p $(OBJ_PATH)
-				@ $(CC) $(INCLUDE) -c $< -o $@
+			@ mkdir -p $(OBJ_PATH)
+			@ $(CC) $(INCLUDE) -c $< -o $@
 
 # Quando executarmos 'make all', o programa irá criar o executável dos arquivos definidos.
 all:            $(NAME)
 				
 
 $(NAME):        $(OBJ) $(LIBFT)
-				@ $(CC) -o $(NAME) $(OBJ) $(LIBFT)
-				@ echo "$(CUB)$(RE): was $(GREEN)created$(RE)"
+		@ $(CC) -o $(NAME) $(OBJ) $(LIBFT)
+		@ echo "$(CUB)$(RE): was $(GREEN)created$(RE)"
 
 # Removendo arquivos objetos.
 clean:
-				@ $(RM) rm -rf $(OBJ_PATH)
-				@ make clean --no-print-directory -C ./libs/libft
-				@ echo "$(CUB): object files were $(RED)deleted$(RE)"
+		@ $(RM) rm -rf $(OBJ_PATH)
+		@ make clean --no-print-directory -C ./libs/libft
+		@ echo "$(CUB): object files were $(RED)deleted$(RE)"
 
 # Removendo arquivos objetos e o binário criado.
 fclean:         clean
-				@ $(RM) $(NAME) rm -rf  $(LIBFT) $(OBJ_PATH)
-				@ echo "$(CUB): was $(RED)deleted$(RE)"
+		@ $(RM) $(NAME) rm -rf  $(LIBFT) $(OBJ_PATH)
+		@ echo "$(CUB): was $(RED)deleted$(RE)"
 
 # Reconpilando o projeto.
-re:				fclean all
+re:		fclean all
 ```
