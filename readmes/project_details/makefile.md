@@ -30,12 +30,24 @@ CC			=	gcc
 # Flags especificadas pela 42
 CFLAGS			=	-Wall -Wextra -Werror
 
-# -lsbd: utilizar a biblioteca "libsbd", que contém funções e estruturas de dados a usadas pelo programa.
-# -lmlx: utilizar a biblioteca "libmlx", que é geralmente utilizada no desenvolvimento de programas gráficos com a biblioteca gráfica MinilibX. Ela fornece uma interface simplificada para a biblioteca gráfica X11, permitindo acesso a recursos gráficos como janelas, imagens e eventos de entrada.
-# -lXext: utilizar funções adicionais para acessar recursos como janelas transparentes, suporte a multi-tela e suporte ao protocolo X Shape
-# -lX11: uma das bibliotecas fundamentais para o desenvolvimento de programas gráficos no ambiente Unix.
-# -lm: utilizar a biblioteca "libm", que fornece funções matemáticas. Ela contém funções para realizar operações matemáticas como arredondamento, exponenciação, logaritmos, trigonometria e outras operações matemáticas básicas e avançadas. 
-# -lz: utilizar a biblioteca chamada "libz" que fornece funções para compactar e descompactar dados.
+# -lsbd:
+#        Utilizar a biblioteca "libsbd", que contém funções e estruturas de dados a usadas pelo programa.
+# -lmlx:
+#        Utilizar a biblioteca "libmlx", que é geralmente utilizada no desenvolvimento de programas gráficos
+#        com a biblioteca gráfica MinilibX.
+#        Ela fornece uma interface simplificada para a biblioteca gráfica X11, permitindo acesso a recursos
+#        gráficos como janelas, imagens e eventos de entrada.
+# -lXext:
+#        Utilizar funções adicionais para acessar recursos como janelas transparentes, suporte
+#        a multi-tela e suporte ao protocolo X Shape.
+# -lX11:
+#        Uma das bibliotecas fundamentais para o desenvolvimento de programas gráficos no ambiente Unix.
+# -lm:
+#        Utilizar a biblioteca "libm", que fornece funções matemáticas.
+#        Ela contém funções para realizar operações matemáticas como arredondamento,
+#	 exponenciação, logaritmos, trigonometria e outras operações matemáticas básicas e avançadas. 
+# -lz:
+#        Utilizar a biblioteca chamada "libz" que fornece funções para compactar e descompactar dados.
 LIB			=	-lbsd -lmlx -lXext -lX11 -lm -lz
 
 # Organizando caminhos dos diretórios.
