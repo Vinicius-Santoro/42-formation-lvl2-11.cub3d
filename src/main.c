@@ -12,6 +12,11 @@
 
 #include "../include/cub3D.h"
 
+void	exit_game(t_data *data)
+{
+	free(data);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	*data;
@@ -21,6 +26,6 @@ int	main(int argc, char **argv)
 	data = ft_calloc(sizeof(t_data), 1);
 	if (validate_map(argv[1], data) == TRUE)
 		return (1);
-	free(data);
+	exit_game(data);
 	return (0);
 }

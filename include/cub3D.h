@@ -36,13 +36,30 @@ typedef struct s_map
 {
 	char	*line;
 	char	**lines;
+	int		count_line;
 }	t_map;
+
+typedef struct s_tex
+{
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+}	t_tex;
+
+typedef struct s_color
+{
+	char	*ceil;
+	char	*floor;
+}	t_color;
 
 typedef struct s_data
 {
 	void	*mlx;
 	void	*win;
 	t_map	map;
+	t_tex	tex;
+	t_color	color;
 }	t_data;
 
 int		is_ext_cub(const char *file);
