@@ -36,7 +36,6 @@ CFLAGS			=	-Wall -Wextra -Werror
 # -lX11: uma das bibliotecas fundamentais para o desenvolvimento de programas gráficos no ambiente Unix.
 # -lm: utilizar a biblioteca "libm", que fornece funções matemáticas. Ela contém funções para realizar operações matemáticas como arredondamento, exponenciação, logaritmos, trigonometria e outras operações matemáticas básicas e avançadas. 
 # -lz: utilizar a biblioteca chamada "libz" que fornece funções para compactar e descompactar dados.
-
 LIB			=	-lbsd -lmlx -lXext -lX11 -lm -lz
 
 # Organizando caminhos dos diretórios.
