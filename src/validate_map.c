@@ -12,27 +12,30 @@
 
 #include "cub3D.h"
 
-int is_valid_ext(const char *file, const char *ext)
+int	is_valid_ext(const char *file, const char *ext)
 {
-    size_t	file_len;
+	size_t	file_len;
 	size_t	ext_len;
-	
-    file_len = ft_strlen(file);
-    ext_len = ft_strlen(ext);
-    if (file_len < ext_len)
-        return (0);
-    if (ft_strncmp(file + (file_len - ext_len), ext, ext_len) == 0)
-        return (1);
-    return (0);
+
+	file_len = ft_strlen(file);
+	ext_len = ft_strlen(ext);
+	if (file_len < ext_len)
+		return (0);
+	if (ft_strncmp(file + (file_len - ext_len), ext, ext_len) == 0)
+		return (1);
+	return (0);
 }
 
 char	*get_tex_file(char *line, char *tex, t_data *data)
 {
-	char set[] = " \t\n\r";
-    char *file_name = ft_strtrim(line + 3, set);
+	char	*set;
+	char	*file_name;
+
+	set = " \t\n\r";
+	file_name = ft_strtrim(line + 3, set);
 	if (is_valid_ext(file_name, ".xpm") == FALSE)
 		error_message(1, "The file extension is not '.xpm'");
-    return (file_name);
+	return (file_name);
 }
 
 void	check_line(char *line, t_data *data)
