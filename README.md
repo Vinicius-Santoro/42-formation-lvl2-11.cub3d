@@ -92,7 +92,7 @@ the maze.
 
 #### Details of the entire project
 
-- [makefile](readmes/makefile.md)
+- [makefile](readmes/project_details/makefile.md)
 - [main.c](readmes/main.md)
 - [utils.c](readmes/utils.md)
 - [init_list.c](readmes/init_list.md)
