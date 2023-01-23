@@ -6,7 +6,7 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:22:28 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/01/21 20:22:51 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/01/22 23:18:46 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,12 @@ char	*ft_strjoin_free(char *s1, char const *s2)
 	free(s1);
 	s1 = NULL;
 	return (nstring);
+}
+
+int	ft_strisdigit(char *str)
+{
+	while (*str)
+		if (ft_isdigit(*str++) == 0)
+			return (0);
+	return (1);
 }

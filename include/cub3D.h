@@ -32,13 +32,6 @@
 # define CYAN "\033[0;36m"
 # define RE "\033[0m"
 
-typedef struct s_map
-{
-	char	*line;
-	char	**lines;
-	int		count_line;
-}	t_map;
-
 typedef struct s_tex
 {
 	char	*no;
@@ -49,24 +42,32 @@ typedef struct s_tex
 
 typedef struct s_color
 {
-	char	*ceil;
-	char	*floor;
+	int	ceil;
+	int	floor;
 }	t_color;
+
+typedef struct s_map
+{
+	char	*line;
+	char	**lines;
+	int		count_line;
+	t_tex	tex;
+	t_color	color;
+}	t_map;
 
 typedef struct s_data
 {
 	void	*mlx;
 	void	*win;
 	t_map	map;
-	t_tex	tex;
-	t_color	color;
 }	t_data;
 
-int		is_ext_cub(const char *file);
+int		is_valid_ext(const char *file, const char *ext);
 int		validate_map(const char *file_name, t_data *data);
 void	verify_arguments(int argc);
 void	error_message(int error_code, char *message_error);
 
 char	*ft_strjoin_free(char *s1, char const *s2);
+int		ft_strisdigit(char *str);
 
 #endif
