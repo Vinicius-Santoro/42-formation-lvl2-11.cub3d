@@ -86,18 +86,18 @@ the maze.
 
 #### Details of the entire project
 
-- [O que é RayCasting?](readmes/necessary_concepts/raycasting.md)
-- [Interface gráfica utilizando a Linguagem C com MiniLibX](readmes/necessary_concepts/interface.md)
-- [RayCasting usando a Linguagem C](readmes/necessary_concepts/raycasting-c.md)
+- [O que é RayCasting?](docs/necessary_concepts/raycasting.md)
+- [Interface gráfica utilizando a Linguagem C com MiniLibX](docs/necessary_concepts/interface.md)
+- [RayCasting usando a Linguagem C](docs/necessary_concepts/raycasting-c.md)
 
 #### Details of the entire project
 
-- [makefile](readmes/project_details/makefile.md)
-- [main.c](readmes/main.md)
-- [utils.c](readmes/utils.md)
-- [init_list.c](readmes/init_list.md)
-- [thread.c](readmes/thread.md)
-- [philo_actions.c](readmes/philo_actions.md)
-- [mutex_check.c](readmes/thread.md)
-- [death_check.c](readmes/death_check.md)
-- [free.c](readmes/free.md)
+- [makefile](docs/project_details/makefile.md)
+- [main.c](docs/main.md)
+- [utils.c](docs/utils.md)
+- [init_list.c](docs/init_list.md)
+- [thread.c](docs/thread.md)
+- [philo_actions.c](docs/philo_actions.md)
+- [mutex_check.c](docs/thread.md)
+- [death_check.c](docs/death_check.md)
+- [free.c](docs/free.md)
