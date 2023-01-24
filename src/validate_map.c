@@ -6,7 +6,7 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 17:01:31 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/01/22 23:25:53 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/01/24 00:06:22 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,30 @@
 
 int	get_color(char *line, int color, t_data *data)
 {
-	char	**splited_line;
 	char	*trimmed_line;
 	int		rgb[3];
 	int		i;
 
 	i = -1;
 	if (color != -1)
-		error_message(1, "Duplicated color rgb");
+		error_message(1, "Duplicated color rgb", data);
 	trimmed_line = ft_strtrim(line + 2, " \n\t\r");
-	splited_line = ft_split(trimmed_line, ',');
-	free(trimmed_line);
-	while (splited_line[++i])
+	data->map.splited_line = ft_split(trimmed_line, ',');
+	if (trimmed_line != NULL)
+		free(trimmed_line);
+	while (data->map.splited_line[++i])
 	{
-		if (ft_strisdigit(splited_line[i]) == FALSE)
-			error_message(1, "Invalud RGB value, is not a digit");
-		rgb[i] = ft_atoi(splited_line[i]);
+		rgb[i] = ft_atoi(data->map.splited_line[i]);
+		if (ft_strisdigit(data->map.splited_line[i]) == FALSE)
+			error_message(1, "Invalud RGB value, is not a digit", data);
 		if (rgb[i] < 0 || rgb[i] > 255)
-			error_message(1, "Invalid RGB value, is not a 8bits");
+			error_message(1, "Invalid RGB value, is not a 8bits", data);
 	}
-	if (i > 3)
-		error_message(1, "Invalid RGB value, is not a rgb");
-	return (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
+	free_matrix(data->map.splited_line);
+	data->map.splited_line = NULL;
+	if (i != 3)
+		error_message(1, "Invalid RGB value, is not a rgb", data);
+	return ((rgb[0] * BYTE * BYTE) + (rgb[1] * BYTE) + rgb[2]);
 }
 
 int	is_valid_ext(const char *file, const char *ext)
@@ -57,10 +59,10 @@ char	*get_tex_file(char *line, char *tex, t_data *data)
 	char	*file_name;
 
 	if (tex != NULL)
-		error_message(1, "Duplicated texture position");
+		error_message(1, "Duplicated texture position", data);
 	file_name = ft_strtrim(line + 3, " \n");
 	if (is_valid_ext(file_name, ".xpm") == FALSE)
-		error_message(1, "The file extension is not '.xpm'");
+		error_message(1, "The file extension is not '.xpm'", data);
 	return (file_name);
 }
 
@@ -85,6 +87,7 @@ void	init_map(t_data *data)
 {
 	data->map.count_line = 0;
 	data->map.line = ft_strdup("");
+	data->map.splited_line = NULL;
 	data->map.tex.no = NULL;
 	data->map.tex.so = NULL;
 	data->map.tex.we = NULL;
@@ -119,9 +122,9 @@ int	validate_map(const char *file_name, t_data *data)
 
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
-		error_message(1, "File is not exist");
+		error_message(1, "File is not exist", data);
 	if (is_valid_ext(file_name, ".cub") == FALSE)
-		error_message(1, "The file extension is not '.cub'");
+		error_message(1, "The file extension is not '.cub'", data);
 	read_map(fd, data);
 	close(fd);
 	return (0);

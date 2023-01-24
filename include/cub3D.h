@@ -24,6 +24,8 @@
 # define FALSE 0
 # define TRUE 1
 
+# define BYTE 256
+
 # define RED "\033[0;31m"
 # define GREEN "\033[0;32m"
 # define YELLOW "\033[0;33m"
@@ -42,14 +44,15 @@ typedef struct s_tex
 
 typedef struct s_color
 {
-	int	ceil;
-	int	floor;
+	int		ceil;
+	int		floor;
 }	t_color;
 
 typedef struct s_map
 {
 	char	*line;
 	char	**lines;
+	char	**splited_line;
 	int		count_line;
 	t_tex	tex;
 	t_color	color;
@@ -64,10 +67,11 @@ typedef struct s_data
 
 int		is_valid_ext(const char *file, const char *ext);
 int		validate_map(const char *file_name, t_data *data);
-void	verify_arguments(int argc);
-void	error_message(int error_code, char *message_error);
+void	error_message(int error_code, char *message_error, t_data *data);
+void	exit_game(t_data *data);
 
 char	*ft_strjoin_free(char *s1, char const *s2);
 int		ft_strisdigit(char *str);
+void	free_matrix(char **matrix);
 
 #endif

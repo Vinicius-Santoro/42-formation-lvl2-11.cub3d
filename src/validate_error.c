@@ -12,17 +12,49 @@
 
 #include "cub3D.h"
 
-void	error_message(int error_code, char *message_error)
+void	free_matrix(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	if (matrix != NULL)
+	{
+		while (matrix[i])
+		{
+			free(matrix[i]);
+			i++;
+		}
+		free(matrix);
+	}
+}
+
+void	error_message(int error_code, char *message_error, t_data *data)
 {
 	printf("Error\n");
 	printf(RED"%s\n"RE, message_error);
+	exit_game(data);
 	exit(error_code);
 }
 
-void	verify_arguments(int argc)
+void	exit_game(t_data *data)
 {
-	if (argc > 2)
-		error_message(1, "Too many arguments\n");
-	if (argc < 2)
-		error_message(1, "Not enough arguments\n");
+	free(data->map.tex.no);
+	free(data->map.tex.so);
+	free(data->map.tex.we);
+	free(data->map.tex.ea);
+	free_matrix(data->map.splited_line);
+	free(data);
 }
+
+// void	error_message_free(int error, char *msg, void *ptr)
+// {
+// 	if (ptr == NULL)
+// 		return ;
+// 	if (ptr != NULL && (char **) ptr != NULL)
+// 		free_matrix((char **)ptr);
+// 	else if (ptr != NULL && (char *)ptr != NULL)
+// 		free(ptr);
+// 	else
+// 		free(ptr);
+// 	error_message(error, msg);
+// }

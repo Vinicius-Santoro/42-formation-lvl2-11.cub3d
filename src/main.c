@@ -12,18 +12,15 @@
 
 #include "cub3D.h"
 
-void	exit_game(t_data *data)
-{
-	free(data);
-}
-
 int	main(int argc, char **argv)
 {
 	t_data	*data;
 
-	if (argc != 2)
-		verify_arguments(argc);
-	data = ft_calloc(sizeof(t_data), 1);
+	if (argc > 2)
+		error_message(1, "Too many arguments\n", data);
+	if (argc < 2)
+		error_message(1, "Not enough arguments\n", data);
+	data = malloc(sizeof(t_data));
 	if (validate_map(argv[1], data) == TRUE)
 		return (1);
 	exit_game(data);
