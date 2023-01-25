@@ -65,6 +65,7 @@ typedef struct s_data
 	t_map	map;
 }	t_data;
 
+void	check_line(char *line, t_data *data);
 int		is_valid_ext(const char *file, const char *ext);
 int		validate_map(const char *file_name, t_data *data);
 void	error_message(int error_code, char *message_error, t_data *data);

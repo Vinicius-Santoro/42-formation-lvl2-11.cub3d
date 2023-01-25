@@ -6,7 +6,7 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:22:28 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/01/22 23:18:46 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/01/24 21:15:30 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,18 @@ int	ft_strisdigit(char *str)
 		if (ft_isdigit(*str++) == 0)
 			return (0);
 	return (1);
+}
+
+int	is_valid_ext(const char *file, const char *ext)
+{
+	size_t	file_len;
+	size_t	ext_len;
+
+	file_len = ft_strlen(file);
+	ext_len = ft_strlen(ext);
+	if (file_len < ext_len)
+		return (0);
+	if (ft_strncmp(file + (file_len - ext_len), ext, ext_len) == 0)
+		return (1);
+	return (0);
 }
