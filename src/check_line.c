@@ -6,29 +6,29 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 21:17:20 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/01/25 16:11:25 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/01/25 19:55:08 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int check_map_chars(char *line)
+int	check_map_chars(char *line)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if (line[i] == '\n')
-    {
-        printf("\noi");
-        return (0);
-    }
-    while (line[i] != '\0')
-    {
-        if (!ft_strchr(" 01NSWE\n", line[i]))
-            return (0);
-        i++;
-    }
-    return (1);
+	i = 0;
+	if (line[i] == '\n')
+	{
+		printf("\noi");
+		return (0);
+	}
+	while (line[i] != '\0')
+	{
+		if (!ft_strchr(" 01NSWE\n", line[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 int	get_color(char *line, int color, t_data *data)
@@ -86,11 +86,10 @@ void	check_line(char *line, t_data *data)
 		data->map.color.floor = get_color(line, data->map.color.floor, data);
 	else if (ft_strncmp("C ", line, 2) == 0)
 		data->map.color.ceil = get_color(line, data->map.color.ceil, data);
-    else if (check_map_chars(line) == TRUE && data->map.start_line == 0)
-        data->map.start_line = data->map.count_line;
-    else if (check_map_chars(line) == FALSE && data->map.start_line != 0)
-        error_message(11, "Invalid map", data);
-    printf("%d: %s      ", data->map.count_line, line);
-    printf("start: %d\n", data->map.start_line);
-
+	else if (check_map_chars(line) == TRUE && data->map.start_line == 0)
+		data->map.start_line = data->map.count_line;
+	else if (check_map_chars(line) == FALSE && data->map.start_line != 0)
+		error_message(11, "Invalid map", data);
+	printf("%d: %s      ", data->map.count_line, line);
+	printf("start: %d\n", data->map.start_line);
 }

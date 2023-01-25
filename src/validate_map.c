@@ -6,7 +6,7 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 17:01:31 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/01/25 16:13:47 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/01/25 20:11:26 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,14 @@ void	check_texture_color(t_data *data)
 		error_message(16, "Invalid RGB: floor", data);
 	if (data->map.color.ceil == -1)
 		error_message(17, "Invalid RGB: ceil", data);
-}    
+}
 
 void	init_map(t_data *data)
 {
 	data->map.count_line = 0;
 	data->map.line = ft_strdup("");
 	data->map.splited_line = NULL;
+	data->map.map = NULL;
 	data->map.tex.no = NULL;
 	data->map.tex.so = NULL;
 	data->map.tex.we = NULL;
@@ -65,6 +66,35 @@ int	read_map(int fd, t_data *data)
 	check_texture_color(data);
 }
 
+void	get_map(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	if (data->map.start_line == 0)
+		error_message(18, "Invalid map: Map is missing", data);
+	data->map.map = &(data->map.lines[data->map.start_line - 1]);
+	while (data->map.map[i] != NULL)
+	{
+		j = 0;
+		printf("i: %02d", i);
+		while (data->map.map[i][j] != '\0')
+		{
+			if (data->map.map[i][j] == '0' && (
+				data->map.map[i][j + 1] == '\0' ||
+				data->map.map[i][j - 1] == '\0' ||
+				data->map.map[i + 1][j] == '\0' ||
+				data->map.map[i - 1][j] == '\0'))
+				error_message(19, "Invalid map: Not surrounded by walls", data);
+			j++;
+		}
+		printf("j: %02d  ", j);
+		printf("line3: %s\n", data->map.map[i]);
+		i++;
+	}
+}
+
 int	validate_map(char *file_name, t_data *data)
 {
 	int	fd;
@@ -75,6 +105,7 @@ int	validate_map(char *file_name, t_data *data)
 	if (is_valid_ext(file_name, ".cub") == FALSE)
 		error_message(4, "The file extension is not '.cub'", data);
 	read_map(fd, data);
+	get_map(data);
 	close(fd);
 	return (0);
 }

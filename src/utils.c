@@ -6,7 +6,7 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:22:28 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/01/25 16:00:46 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/01/25 19:57:07 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ int	is_valid_ext(char *file, const char *ext)
 
 	file_len = ft_strlen(file);
 	ext_len = ft_strlen(ext);
-	if (file_len > ext_len &&
-	ft_strncmp(file + (file_len - ext_len), ext, ext_len) == 0)
+	if (file_len > ext_len && \
+		ft_strncmp(file + (file_len - ext_len), ext, ext_len) == 0)
 		return (1);
 	free(file);
 	file = NULL;

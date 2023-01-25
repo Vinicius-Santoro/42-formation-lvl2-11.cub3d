@@ -52,6 +52,7 @@ typedef struct s_map
 {
 	char	*line;
 	char	**lines;
+	char	**map;
 	char	**splited_line;
 	int		count_line;
 	int		start_line;
