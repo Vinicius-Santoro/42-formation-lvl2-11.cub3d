@@ -45,16 +45,3 @@ void	exit_game(t_data *data)
 	free_matrix(data->map.splited_line);
 	free(data);
 }
-
-// void	error_message_free(int error, char *msg, void *ptr)
-// {
-// 	if (ptr == NULL)
-// 		return ;
-// 	if (ptr != NULL && (char **) ptr != NULL)
-// 		free_matrix((char **)ptr);
-// 	else if (ptr != NULL && (char *)ptr != NULL)
-// 		free(ptr);
-// 	else
-// 		free(ptr);
-// 	error_message(error, msg);
-// }
