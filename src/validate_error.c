@@ -43,5 +43,6 @@ void	exit_game(t_data *data)
 	free(data->map.tex.we);
 	free(data->map.tex.ea);
 	free_matrix(data->map.splited_line);
+	free_matrix(data->map.lines);
 	free(data);
 }

@@ -6,7 +6,7 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 17:01:31 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/01/24 21:17:16 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/01/25 14:37:07 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	init_map(t_data *data)
 
 int	read_map(int fd, t_data *data)
 {
-	char	*new_line;
 	char	*temp;
+	int		i;
 
 	init_map(data);
 	while (TRUE)
@@ -36,16 +36,18 @@ int	read_map(int fd, t_data *data)
 		temp = get_next_line(fd);
 		if (temp == NULL)
 			break ;
-		check_line(temp, data);
 		data->map.line = ft_strjoin_free(data->map.line, temp);
 		printf("line: %s", temp);
 		free(temp);
 	}
-	// data->map.lines = ft_split(data->map.line, '\n');
+	data->map.lines = ft_split(data->map.line, '\n');
 	free(data->map.line);
+	i = -1;
+	while (data->map.lines[++i])
+		check_line(data->map.lines[i], data);
 }
 
-int	validate_map(const char *file_name, t_data *data)
+int	validate_map(char *file_name, t_data *data)
 {
 	int	fd;
 
