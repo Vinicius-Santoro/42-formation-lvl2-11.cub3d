@@ -54,6 +54,7 @@ typedef struct s_map
 	char	**lines;
 	char	**splited_line;
 	int		count_line;
+	int		start_line;
 	t_tex	tex;
 	t_color	color;
 }	t_map;

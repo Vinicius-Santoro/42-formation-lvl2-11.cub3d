@@ -1,7 +1,6 @@
 NO ./assets/img/bookshelf.xpm
 SO ./assets/img/bricks.xpm  
 WE   ./assets/img/gemov.xpm
-EA   xpm.xp
 
 F 220,100,0
 C 225,30,0

@@ -6,11 +6,27 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 17:01:31 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/01/25 14:37:07 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/01/25 16:13:47 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	check_texture_color(t_data *data)
+{
+	if (data->map.tex.no == NULL)
+		error_message(12, "Invalid texture: NO", data);
+	if (data->map.tex.so == NULL)
+		error_message(13, "Invalid texture: SO", data);
+	if (data->map.tex.we == NULL)
+		error_message(14, "Invalid texture: WE", data);
+	if (data->map.tex.ea == NULL)
+		error_message(15, "Invalid texture: EA", data);
+	if (data->map.color.floor == -1)
+		error_message(16, "Invalid RGB: floor", data);
+	if (data->map.color.ceil == -1)
+		error_message(17, "Invalid RGB: ceil", data);
+}    
 
 void	init_map(t_data *data)
 {
@@ -23,6 +39,7 @@ void	init_map(t_data *data)
 	data->map.tex.ea = NULL;
 	data->map.color.floor = -1;
 	data->map.color.ceil = -1;
+	data->map.start_line = 0;
 }
 
 int	read_map(int fd, t_data *data)
@@ -45,6 +62,7 @@ int	read_map(int fd, t_data *data)
 	i = -1;
 	while (data->map.lines[++i])
 		check_line(data->map.lines[i], data);
+	check_texture_color(data);
 }
 
 int	validate_map(char *file_name, t_data *data)
