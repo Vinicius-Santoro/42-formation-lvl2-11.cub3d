@@ -56,6 +56,7 @@ typedef struct s_map
 	char	**splited_line;
 	int		count_line;
 	int		start_line;
+	int		max_column;
 	t_tex	tex;
 	t_color	color;
 }	t_map;
@@ -76,5 +77,8 @@ void	exit_game(t_data *data);
 char	*ft_strjoin_free(char *s1, char const *s2);
 int		ft_strisdigit(char *str);
 void	free_matrix(char **matrix);
+
+void	get_map(t_data *data);
+int		validate_map_boundaries(char **map, int i, int j);
 
 #endif

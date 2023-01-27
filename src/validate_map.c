@@ -3,43 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 17:01:31 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/01/26 22:29:36 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/01/27 00:14:59 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-void	get_map(t_data *data)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	if (data->map.start_line == 0)
-		error_message(18, "Invalid map: missing map", data);
-	data->map.map = &(data->map.lines[data->map.start_line - 1]);
-	while (data->map.map[i] != NULL)
-	{
-		j = 0;
-		printf("i: %02d", i);
-		while (data->map.map[i][j] != '\0')
-		{
-			if (ft_strchr("0NSWE", data->map.map[i][j]) && (
-				data->map.map[i][j + 1] == '\0' ||
-				data->map.map[i][j - 1] == '\0' ||
-				data->map.map[i + 1][j] == '\0' ||
-				data->map.map[i - 1][j] == '\0'))
-				error_message(19, "Invalid map: not surrounded by walls", data);
-			j++;
-		}
-		printf("j: %02d  ", j);
-		printf("line3: %s\n", data->map.map[i]);
-		i++;
-	}
-}
 
 void	check_is_missing_header(t_data *data)
 {
@@ -70,6 +41,7 @@ void	init_map(t_data *data)
 	data->map.color.floor = -1;
 	data->map.color.ceil = -1;
 	data->map.start_line = 0;
+	data->map.max_column = 0;
 }
 
 int	read_map(int fd, t_data *data)
@@ -84,7 +56,6 @@ int	read_map(int fd, t_data *data)
 		if (temp == NULL)
 			break ;
 		data->map.line = ft_strjoin_free(data->map.line, temp);
-		printf("line: %s", temp);
 		free(temp);
 	}
 	data->map.lines = ft_split(data->map.line, '\n');

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 21:17:20 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/01/26 22:23:51 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/01/27 00:15:10 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,4 @@ void	check_line(char *line, t_data *data)
 		data->map.start_line = data->map.count_line;
 	else if (check_map_chars(line) == FALSE && data->map.start_line != 0)
 		error_message(11, "Invalid map: imposible characters", data);
-	printf("%d: %s      ", data->map.count_line, line);
-	printf("start: %d\n", data->map.start_line);
 }
