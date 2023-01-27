@@ -17,12 +17,13 @@ int	main(int argc, char **argv)
 	t_data	*data;
 
 	if (argc > 2)
-		error_message(1, "Too many arguments\n", data);
+		error_message(1, "Invalid arguments: too many", data);
 	if (argc < 2)
-		error_message(2, "Not enough arguments\n", data);
+		error_message(2, "Invalid arguments: not enough", data);
 	data = malloc(sizeof(t_data));
 	if (validate_map(argv[1], data) == TRUE)
 		return (1);
 	exit_game(data);
+	free(data);
 	return (0);
 }

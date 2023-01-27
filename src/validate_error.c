@@ -32,7 +32,9 @@ void	error_message(int error_code, char *message_error, t_data *data)
 {
 	printf("Error\n");
 	printf(RED"%s\n"RE, message_error);
-	exit_game(data);
+	if (error_code > 4)
+		exit_game(data);
+	free(data);
 	exit(error_code);
 }
 
@@ -44,5 +46,4 @@ void	exit_game(t_data *data)
 	free(data->map.tex.ea);
 	free_matrix(data->map.splited_line);
 	free_matrix(data->map.lines);
-	free(data);
 }

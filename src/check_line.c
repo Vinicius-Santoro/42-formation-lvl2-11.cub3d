@@ -6,7 +6,7 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 21:17:20 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/01/25 19:55:08 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/01/26 22:23:51 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	get_color(char *line, int color, t_data *data)
 
 	i = -1;
 	if (color != -1)
-		error_message(7, "Duplicated color rgb", data);
+		error_message(7, "Invalid color: duplicated color rgb", data);
 	trimmed_line = ft_strtrim(line + 2, " \n\t\r");
 	data->map.splited_line = ft_split(trimmed_line, ',');
 	if (trimmed_line != NULL)
@@ -47,15 +47,15 @@ int	get_color(char *line, int color, t_data *data)
 	while (data->map.splited_line[++i])
 	{
 		if (ft_strisdigit(data->map.splited_line[i]) == FALSE)
-			error_message(8, "Invalud RGB value, is not a digit", data);
+			error_message(8, "Invalud RGB value: is not a digit", data);
 		rgb[i] = ft_atoi(data->map.splited_line[i]);
 		if (rgb[i] < 0 || rgb[i] > 255)
-			error_message(9, "Invalid RGB value, is not a 8bits", data);
+			error_message(9, "Invalid RGB value: is not a 8bits", data);
 	}
 	free_matrix(data->map.splited_line);
 	data->map.splited_line = NULL;
 	if (i != 3)
-		error_message(10, "Invalid RGB value, is not a rgb", data);
+		error_message(10, "Invalid RGB value: is not a rgb", data);
 	return ((rgb[0] * BYTE * BYTE) + (rgb[1] * BYTE) + rgb[2]);
 }
 
@@ -64,10 +64,10 @@ char	*get_tex_file(char *line, char *tex, t_data *data)
 	char	*file_name;
 
 	if (tex != NULL)
-		error_message(5, "Duplicated texture position", data);
+		error_message(5, "Invalid texture: duplicated position", data);
 	file_name = ft_strtrim(line + 3, " \n");
 	if (is_valid_ext(file_name, ".xpm") == FALSE)
-		error_message(6, "The file extension is not '.xpm'", data);
+		error_message(6, "Invalid file extension: not .xpm", data);
 	return (file_name);
 }
 
@@ -89,7 +89,7 @@ void	check_line(char *line, t_data *data)
 	else if (check_map_chars(line) == TRUE && data->map.start_line == 0)
 		data->map.start_line = data->map.count_line;
 	else if (check_map_chars(line) == FALSE && data->map.start_line != 0)
-		error_message(11, "Invalid map", data);
+		error_message(11, "Invalid map: imposible characters", data);
 	printf("%d: %s      ", data->map.count_line, line);
 	printf("start: %d\n", data->map.start_line);
 }
