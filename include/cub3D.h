@@ -25,6 +25,7 @@
 # define TRUE 1
 
 # define BYTE 256
+# define PI 3.14
 
 # define RED "\033[0;31m"
 # define GREEN "\033[0;32m"
@@ -36,36 +37,46 @@
 
 typedef struct s_tex
 {
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
 }	t_tex;
 
 typedef struct s_color
 {
-	int		ceil;
-	int		floor;
+	int			ceil;
+	int			floor;
 }	t_color;
+
+typedef struct s_player
+{
+	int			count;
+	int			line;
+	int			column;
+	int			angle;
+}	t_player;
 
 typedef struct s_map
 {
-	char	*line;
-	char	**lines;
-	char	**map;
-	char	**splited_line;
-	int		count_line;
-	int		start_line;
-	int		max_column;
-	t_tex	tex;
-	t_color	color;
+	char		*line;
+	char		**lines;
+	char		**map;
+	char		**splited_line;
+	int			count_line;
+	int			start_line;
+	int			max_column;
+	int			max_line;
+	t_tex		tex;
+	t_color		color;
 }	t_map;
 
 typedef struct s_data
 {
-	void	*mlx;
-	void	*win;
-	t_map	map;
+	void		*mlx;
+	void		*win;
+	t_map		map;
+	t_player	player;
 }	t_data;
 
 void	check_line(char *line, t_data *data);
@@ -78,7 +89,6 @@ char	*ft_strjoin_free(char *s1, char const *s2);
 int		ft_strisdigit(char *str);
 void	free_matrix(char **matrix);
 
-void	get_map(t_data *data);
-int		validate_map_boundaries(char **map, int i, int j);
+void	parse_map(t_data *data);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 17:01:31 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/01/27 00:14:59 by vnazioze         ###   ########.fr       */
+/*   Updated: 2023/01/28 22:07:35 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	validate_map(char *file_name, t_data *data)
 	if (is_valid_ext(file_name, ".cub") == FALSE)
 		error_message(4, "Invalid file extension: not .cub", data);
 	read_map(fd, data);
-	get_map(data);
+	parse_map(data);
 	close(fd);
 	return (0);
 }
