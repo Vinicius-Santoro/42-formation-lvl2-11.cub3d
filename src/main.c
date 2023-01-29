@@ -23,6 +23,7 @@ int	main(int argc, char **argv)
 	data = malloc(sizeof(t_data));
 	if (validate_map(argv[1], data) == TRUE)
 		return (1);
+	make_image(data);
 	exit_game(data);
 	free(data);
 	return (0);

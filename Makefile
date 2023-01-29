@@ -36,7 +36,8 @@ SRC_FILES		=	main.c			\
 					validate_error.c\
 					utils.c			\
 					check_line.c    \
-					get_map.c
+					parse_map.c		\
+					make_image.c
 
 SRC            	=	$(addprefix $(SRC_PATH),$(SRC_FILES))
 OBJ            	=	$(addprefix $(OBJ_PATH),$(subst .c,.o,$(SRC_FILES)))
@@ -56,7 +57,7 @@ all:            $(NAME)
 				
 
 $(NAME):        $(OBJ) $(LIBFT)
-				@ $(CC) -o $(NAME) $(OBJ) $(LIBFT)
+				@ $(CC) $(CFLAGS) $(INCLUDE) -o $(NAME) $(OBJ) $(LIB) $(LIBFT)
 				@ echo "$(CUB)$(RE): was $(GREEN)created$(RE)"
 
 clean:

@@ -49,14 +49,6 @@ typedef struct s_color
 	int			floor;
 }	t_color;
 
-typedef struct s_player
-{
-	int			count;
-	int			line;
-	int			column;
-	int			angle;
-}	t_player;
-
 typedef struct s_map
 {
 	char		*line;
@@ -71,17 +63,32 @@ typedef struct s_map
 	t_color		color;
 }	t_map;
 
+typedef struct s_player
+{
+	int			count;
+	int			line;
+	int			column;
+	int			angle;
+}	t_player;
+
+typedef struct s_img
+{
+	void		*img;
+}	t_img;
+
 typedef struct s_data
 {
 	void		*mlx;
 	void		*win;
 	t_map		map;
 	t_player	player;
+	t_img		img;
 }	t_data;
 
 int		validate_map(char *file_name, t_data *data);
 void	check_line(char *line, t_data *data);
 void	parse_map(t_data *data);
+void	make_image(t_data *data);
 
 void	error_message(int error_code, char *message_error, t_data *data);
 void	exit_game(t_data *data);
