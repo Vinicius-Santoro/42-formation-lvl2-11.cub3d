@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 22:58:54 by vnazioze          #+#    #+#             */
-/*   Updated: 2023/01/28 22:45:21 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/01/29 11:48:49 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,19 @@
 
 static void	validate_map_boundaries(int line, int column, t_data *data)
 {
-	char **map;
-	
+	char	**map;
+
 	map = data->map.map;
 	if (ft_strchr("0NSWE", map[line][column]) && (
 		map[line][column + 1] == '\0' || map[line + 1][column + 1] == '\0' || \
 		map[line][column - 1] == '\0' || map[line + 1][column - 1] == '\0' || \
 		map[line + 1][column] == '\0' || map[line - 1][column + 1] == '\0' || \
 		map[line - 1][column] == '\0' || map[line - 1][column - 1] == '\0' || \
-		map[line + 1][column + 1] == ' ' || map[line][column + 1] == ' ' || \
-		map[line + 1][column - 1] == ' ' || map[line][column - 1] == ' ' || \
-		map[line - 1][column + 1] == ' ' || map[line + 1][column] == ' ' || \
-		map[line - 1][column - 1] == ' ' || map[line - 1][column] == ' '))
+		map[line][column + 1] == ' ' || map[line + 1][column + 1] == ' ' || \
+		map[line][column - 1] == ' ' || map[line + 1][column - 1] == ' ' || \
+		map[line + 1][column] == ' ' || map[line - 1][column + 1] == ' ' || \
+		map[line - 1][column] == ' ' || map[line - 1][column - 1] == ' ' )
+		)
 		error_message(19, "Invalid map: not surrounded by walls", data);
 }
 
@@ -34,18 +35,20 @@ static void	get_player_angle(int line, int column, t_data *data)
 	if (ft_strchr("NSWE", data->map.map[line][column]))
 	{
 		data->player.count++;
-		data->player.line = (line * 64) + 32;
-		data->player.column = (column * 64) + 32;
-		if (data->map.map[line][column] == 'N')
+		data->player.line = line * SPRITE_LEN + SPRITE_LEN / 2;
+		data->player.column = column * SPRITE_LEN + SPRITE_LEN / 2;
+		if (data->map.map[line][column] == 'E')
 			data->player.angle = (PI / 2) * 0;
-		if (data->map.map[line][column] == 'S')
+		if (data->map.map[line][column] == 'N')
 			data->player.angle = (PI / 2) * 1;
 		if (data->map.map[line][column] == 'W')
 			data->player.angle = (PI / 2) * 2;
-		if (data->map.map[line][column] == 'E')
+		if (data->map.map[line][column] == 'S')
 			data->player.angle = (PI / 2) * 3;
 		printf("player line (line): %02d\n", line);
-		printf("player column (column): %02d\n", column);		
+		printf("player column (column): %02d\n", column);
+		printf("- player.line: %02d\n", data->player.line);
+		printf("- player.column: %02d\n", data->player.column);
 	}
 }
 

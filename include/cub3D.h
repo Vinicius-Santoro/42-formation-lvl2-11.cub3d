@@ -26,6 +26,7 @@
 
 # define BYTE 256
 # define PI 3.14
+# define SPRITE_LEN 64
 
 # define RED "\033[0;31m"
 # define GREEN "\033[0;32m"
