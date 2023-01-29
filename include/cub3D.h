@@ -79,16 +79,17 @@ typedef struct s_data
 	t_player	player;
 }	t_data;
 
-void	check_line(char *line, t_data *data);
-int		is_valid_ext(char *file, const char *ext);
 int		validate_map(char *file_name, t_data *data);
+void	check_line(char *line, t_data *data);
+void	parse_map(t_data *data);
+
 void	error_message(int error_code, char *message_error, t_data *data);
 void	exit_game(t_data *data);
+void	free_matrix(char **matrix);
 
 char	*ft_strjoin_free(char *s1, char const *s2);
 int		ft_strisdigit(char *str);
-void	free_matrix(char **matrix);
+int		is_valid_ext(char *file, const char *ext);
 
-void	parse_map(t_data *data);
 
 #endif

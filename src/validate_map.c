@@ -6,13 +6,13 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 17:01:31 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/01/28 22:07:35 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/01/28 22:48:25 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	check_is_missing_header(t_data *data)
+static void	check_is_missing_header(t_data *data)
 {
 	if (data->map.tex.no == NULL)
 		error_message(12, "Invalid texture: missing NO", data);
@@ -28,7 +28,7 @@ void	check_is_missing_header(t_data *data)
 		error_message(17, "Invalid RGB: missing ceil", data);
 }
 
-void	init_map(t_data *data)
+static void	init_map(t_data *data)
 {
 	data->map.count_line = 0;
 	data->map.line = ft_strdup("");
@@ -44,7 +44,7 @@ void	init_map(t_data *data)
 	data->map.max_column = 0;
 }
 
-int	read_map(int fd, t_data *data)
+static int	read_map(int fd, t_data *data)
 {
 	char	*temp;
 	int		i;

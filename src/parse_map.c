@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_map.c                                          :+:      :+:    :+:   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 22:58:54 by vnazioze          #+#    #+#             */
-/*   Updated: 2023/01/28 22:07:11 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/01/28 22:45:21 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	validate_map_boundaries(int line, int column, t_data *data)
+static void	validate_map_boundaries(int line, int column, t_data *data)
 {
 	char **map;
 	
@@ -29,7 +29,7 @@ void	validate_map_boundaries(int line, int column, t_data *data)
 		error_message(19, "Invalid map: not surrounded by walls", data);
 }
 
-void	get_player_angle(int line, int column, t_data *data)
+static void	get_player_angle(int line, int column, t_data *data)
 {
 	if (ft_strchr("NSWE", data->map.map[line][column]))
 	{
@@ -49,7 +49,7 @@ void	get_player_angle(int line, int column, t_data *data)
 	}
 }
 
-void	get_map(t_data *data)
+static void	get_map(t_data *data)
 {
 	if (data->map.start_line == 0)
 		error_message(18, "Invalid map: missing map", data);

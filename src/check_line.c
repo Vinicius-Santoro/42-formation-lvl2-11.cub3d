@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 21:17:20 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/01/27 00:15:10 by vnazioze         ###   ########.fr       */
+/*   Updated: 2023/01/28 22:46:24 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	check_map_chars(char *line)
+static int	check_map_chars(char *line)
 {
 	int	i;
 
@@ -31,7 +31,7 @@ int	check_map_chars(char *line)
 	return (1);
 }
 
-int	get_color(char *line, int color, t_data *data)
+static int	get_color(char *line, int color, t_data *data)
 {
 	char	*trimmed_line;
 	int		rgb[3];
@@ -59,7 +59,7 @@ int	get_color(char *line, int color, t_data *data)
 	return ((rgb[0] * BYTE * BYTE) + (rgb[1] * BYTE) + rgb[2]);
 }
 
-char	*get_tex_file(char *line, char *tex, t_data *data)
+static char	*get_tex_file(char *line, char *tex, t_data *data)
 {
 	char	*file_name;
 
