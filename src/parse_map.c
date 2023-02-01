@@ -6,7 +6,7 @@
 /*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 22:58:54 by vnazioze          #+#    #+#             */
-/*   Updated: 2023/01/29 11:48:49 by vnazioze         ###   ########.fr       */
+/*   Updated: 2023/02/01 03:16:01 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	validate_map_boundaries(int line, int column, t_data *data)
 		error_message(19, "Invalid map: not surrounded by walls", data);
 }
 
-static void	get_player_angle(int line, int column, t_data *data)
+static void	get_pa(int line, int column, t_data *data)
 {
 	if (ft_strchr("NSWE", data->map.map[line][column]))
 	{
@@ -73,7 +73,7 @@ void	parse_map(t_data *data)
 		while (data->map.map[line][++column] != '\0')
 		{
 			validate_map_boundaries(line, column, data);
-			get_player_angle(line, column, data);
+			get_pa(line, column, data);
 		}
 		if (column > data->map.max_column)
 			data->map.max_column = column;

@@ -69,7 +69,7 @@ typedef struct s_player
 	int			count;
 	int			line;
 	int			column;
-	int			angle;
+	float		angle;
 }	t_player;
 
 // typedef struct s_img_data
@@ -99,6 +99,19 @@ typedef struct s_img
 	int		img_endian;
 }	t_img;
 
+typedef struct s_raycast
+{
+	int		x;
+	int		line_h;
+	int		line_o;
+	int		y_max;
+	int		y_ceil;
+	float	ty;
+	float	ty_step;
+	float	ty_off;
+	float	tx;
+}	t_raycast;
+
 typedef struct s_data
 {
 	void		*mlx;
@@ -111,6 +124,21 @@ typedef struct s_data
 	t_img		*s_img;
 	t_img		*w_img;
 	t_img		*e_img;
+	double		px;
+	double		py;
+	float		pa;
+	float		ra;
+	int			ray_num;
+	t_raycast	rc;
+	double		deltadist_x;
+	double		deltadist_y;
+	double		sidedist_x;
+	double		sidedist_y;
+	int			map_x;
+	int			map_y;
+	int			step_x;
+	int			step_y;
+	int			wall;
 }	t_data;
 
 int		validate_map(char *file_name, t_data *data);
@@ -126,5 +154,15 @@ char	*ft_strjoin_free(char *s1, char const *s2);
 int		ft_strisdigit(char *str);
 int		is_valid_ext(char *file, const char *ext);
 
+void	get_sidedist(t_data *data, double ra);
+void	get_deltadist(t_data *data, double ra);
+void	collision_loop(t_data *data);
+double	get_distance(t_data *data, double ra);
+void	raycast(t_data *data, double ra);
+
+void	put_vertical_line(t_data *data, t_img *img);
+void	make_vertical_line(t_data *data, int distance, double ix, t_img *img);
+void	my_img_pixel_put(t_img *img, int x, int y, int color);
+int		my_img_pixel_get(t_img *img, int x, int y);
 
 #endif

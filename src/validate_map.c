@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 17:01:31 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/01/29 12:14:01 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/01 03:08:43 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
