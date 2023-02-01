@@ -6,7 +6,7 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 21:17:20 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/01/28 22:46:24 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/01/31 22:36:19 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,15 @@ static int	get_color(char *line, int color, t_data *data)
 static char	*get_tex_file(char *line, char *tex, t_data *data)
 {
 	char	*file_name;
+	int		fd;
 
+	if (fd < 0)
+		error_message(5.0, "Invalid texture: file not exist", data);
+	close(fd);
 	if (tex != NULL)
-		error_message(5, "Invalid texture: duplicated position", data);
+		error_message(5.1, "Invalid texture: duplicated position", data);
 	file_name = ft_strtrim(line + 3, " \n");
+	fd = open(file_name, O_RDONLY);
 	if (is_valid_ext(file_name, ".xpm") == FALSE)
 		error_message(6, "Invalid file extension: not .xpm", data);
 	return (file_name);
