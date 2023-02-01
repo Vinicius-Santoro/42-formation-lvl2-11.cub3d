@@ -72,9 +72,31 @@ typedef struct s_player
 	int			angle;
 }	t_player;
 
+// typedef struct s_img_data
+// {
+// 	void		*new_img;
+// 	char		*address;
+// 	int			bits_per_pixel;
+// 	int			line_length;
+// 	int			endian;
+// }	t_img_data;
+
+// typedef struct s_img
+// {
+// 	t_img_data	*game;
+// 	t_img_data	*no;
+// 	t_img_data	*so;
+// 	t_img_data	*we;
+// 	t_img_data	*ea;
+// }	t_img;
+
 typedef struct s_img
 {
-	void		*img;
+	void	*img;
+	char	*img_addr;
+	int		img_bits_per_pixel;
+	int		img_line_length;
+	int		img_endian;
 }	t_img;
 
 typedef struct s_data
@@ -83,7 +105,12 @@ typedef struct s_data
 	void		*win;
 	t_map		map;
 	t_player	player;
-	t_img		img;
+	// t_img		img;
+	t_img		*game_img;
+	t_img		*n_img;
+	t_img		*s_img;
+	t_img		*w_img;
+	t_img		*e_img;
 }	t_data;
 
 int		validate_map(char *file_name, t_data *data);
