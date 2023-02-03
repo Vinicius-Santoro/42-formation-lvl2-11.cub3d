@@ -12,7 +12,17 @@
 
 #include "cub3D.h"
 
+#define KEYPRESSMASK 1
+#define KEYPRESS 2
+
+
 int	int_make_image(t_data *data)
+{
+	make_image(data);
+	return 0;
+}
+
+int	arrows_down(t_data *data)
 {
 	make_image(data);
 	return 0;
@@ -30,7 +40,8 @@ int	main(int argc, char **argv)
 	if (validate_map(argv[1], data) == TRUE)
 		return (1);
 	make_image(data);
-	mlx_loop_hook(data->mlx, int_make_image, data);
+	mlx_loop(data->mlx);
+	// mlx_hook(data->win, KEYPRESS, KEYPRESSMASK, arrows_down, data);
 	exit_game(data);
 	free(data);
 	return (0);

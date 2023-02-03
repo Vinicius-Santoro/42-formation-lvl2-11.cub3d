@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:56:12 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/01 03:33:59 by vnazioze         ###   ########.fr       */
+/*   Updated: 2023/02/01 23:59:01 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ void	make_image(t_data *data)
 	data->ray_num = 1;
 	while (data->ray_num < 64)
 	{
-		printf("aqui - sono\n");
 		raycast(data, data->ra);
 		data->ra -= PI / 180;
 		data->ray_num++;
