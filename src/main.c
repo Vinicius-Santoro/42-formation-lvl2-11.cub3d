@@ -40,7 +40,7 @@ int	main(int argc, char **argv)
 	if (validate_map(argv[1], data) == TRUE)
 		return (1);
 	make_image(data);
-	mlx_loop_hook(data->win, arrows_down, data);
+	mlx_loop_hook(data->win, int_make_image, data);
 	mlx_loop(data->mlx);
 	exit_game(data);
 	free(data);

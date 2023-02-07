@@ -132,8 +132,8 @@ typedef struct s_data
 	double		deltadist_y;
 	double		sidedist_x;
 	double		sidedist_y;
-	int			map_x;
-	int			map_y;
+	int			map_column;
+	int			map_line;
 	int			step_x;
 	int			step_y;
 	int			wall;

@@ -6,7 +6,7 @@
 /*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 03:09:58 by vnazioze          #+#    #+#             */
-/*   Updated: 2023/02/07 00:57:24 by vnazioze         ###   ########.fr       */
+/*   Updated: 2023/02/07 02:03:01 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,28 +51,28 @@ void	get_deltadist(t_data *data, double ra)
 void	collision_loop(t_data *data)
 {
 	printf("collision_loop START\n");
-	data->map_x = (int)(data->player.column) >> 6;
-	data->map_y = (int)(data->player.line) >> 6;
-	printf("data->map_x: %d\n", data->map_x);
-	printf("data->map_y: %d\n", data->map_y);
-	printf("while: %c\n", data->map.map[data->map_y][data->map_x]);
+	data->map_column = (int)(data->player.column) >> 6;
+	data->map_line = (int)(data->player.line) >> 6;
+	printf("data->map_column: %d\n", data->map_column);
+	printf("data->map_line: %d\n", data->map_line);
+	printf("while: %c\n", data->map.map[data->map_line][data->map_column]);
 	printf("collision_loop INIT LOOP\n");
-	while (data->map.map[data->map_y][data->map_x] != '1')
+	while (data->map.map[data->map_line][data->map_column] != '1')
 	{
 		printf("---\n");
-		printf("while: %c\n", data->map.map[data->map_y][data->map_x]);
+		printf("while: %c\n", data->map.map[data->map_line][data->map_column]);
 		printf("---\n");
 		if (data->sidedist_x < data->sidedist_y)
 		{
 			data->sidedist_x += data->deltadist_x;
-			data->map_x += data->step_x;
+			data->map_column += data->step_x;
 			data->wall = 0;
 			printf("collision_loop 5\n");
 		}
 		else
 		{
 			data->sidedist_y += data->deltadist_y;
-			data->map_y += data->step_y;
+			data->map_line += data->step_y;
 			data->wall = 1;
 			printf("collision_loop 6\n");
 		}
@@ -112,7 +112,7 @@ void	raycast(t_data *data, double ra)
 		ra += 2 * PI;
 	data->wall = 0;
 	dist = get_distance(data, ra);
-	ca = data->pa - data->ra;
+	ca = data->player.angle - data->ra;
 	dist = dist * cos(ca);
 	if (data->wall == 0 && (ra <= PI / 2 || ra >= 3 * PI / 2))
 		make_vertical_line(data, dist, data->player.column - dist * sin(ra), data->e_img);

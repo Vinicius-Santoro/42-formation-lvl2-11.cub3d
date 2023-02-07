@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:56:12 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/01 23:59:01 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/07 02:03:01 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,36 +75,28 @@ t_img	*init_texture( char *file, t_data *data)
 	return (ret);
 }
 
+// Inicialização das texturas.
 void	init_game(t_data *data)
 {
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, 512, 512, "Cub3d");
-	printf("aqui?\n");
-	data->n_img = init_texture(data->map.tex.no, data);
-	printf("aqui??\n");
 	data->n_img = init_texture(data->map.tex.no, data);
 	data->s_img = init_texture(data->map.tex.so, data);
 	data->w_img = init_texture(data->map.tex.we, data);
 	data->e_img = init_texture(data->map.tex.ea, data);
-	data->ray_num = 1;
-	// data->wall = 0;
 }
 
 void	make_image(t_data *data)
 {
 	init_game(data);
-	printf("aqui???\n");
 	data->game_img = malloc(sizeof(t_img));
-	printf("aqui????\n");
 	data->game_img->img = mlx_new_image(data->mlx, 512, 512);
 	data->game_img->img_addr = mlx_get_data_addr( \
 		data->game_img->img, &data->game_img->img_bits_per_pixel, \
 		&data->game_img->img_line_length, &data->game_img->img_endian \
 		);
-	printf("aqui - 5\n");
-	data->ra = data->pa + (PI / 180 * 32);
-	printf("aqui - 6\n");
-	data->ray_num = 1;
+	data->ra = data->player.angle + (PI / 180 * 32);
+	data->ray_num = 0;
 	while (data->ray_num < 64)
 	{
 		raycast(data, data->ra);
