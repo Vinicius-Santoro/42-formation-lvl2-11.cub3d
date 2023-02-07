@@ -72,32 +72,32 @@ typedef struct s_player
 	float		angle;
 }	t_player;
 
-// typedef struct s_img_data
-// {
-// 	void		*new_img;
-// 	char		*address;
-// 	int			bits_per_pixel;
-// 	int			line_length;
-// 	int			endian;
-// }	t_img_data;
-
-// typedef struct s_img
-// {
-// 	t_img_data	*game;
-// 	t_img_data	*no;
-// 	t_img_data	*so;
-// 	t_img_data	*we;
-// 	t_img_data	*ea;
-// }	t_img;
+typedef struct s_img_data
+{
+	void		*new_img;
+	char		*address;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}	t_img_data;
 
 typedef struct s_img
 {
-	void	*img;
-	char	*img_addr;
-	int		img_bits_per_pixel;
-	int		img_line_length;
-	int		img_endian;
+	t_img_data	*game;
+	t_img_data	*no;
+	t_img_data	*so;
+	t_img_data	*we;
+	t_img_data	*ea;
 }	t_img;
+
+// typedef struct s_img
+// {
+// 	void	*img;
+// 	char	*img_addr;
+// 	int		img_bits_per_pixel;
+// 	int		img_line_length;
+// 	int		img_endian;
+// }	t_img;
 
 typedef struct s_raycast
 {
@@ -118,13 +118,13 @@ typedef struct s_data
 	void		*win;
 	t_map		map;
 	t_player	player;
-	// t_img		img;
-	t_img		*game_img;
-	t_img		*n_img;
-	t_img		*s_img;
-	t_img		*w_img;
-	t_img		*e_img;
-	float		pa;
+	t_img		img;
+	// t_img		*game_img;
+	// t_img		*n_img;
+	// t_img		*s_img;
+	// t_img		*w_img;
+	// t_img		*e_img;
+	// float		pa;
 	float		ra;
 	int			ray_num;
 	t_raycast	rc;
@@ -158,9 +158,9 @@ void	collision_loop(t_data *data);
 double	get_distance(t_data *data, double ra);
 void	raycast(t_data *data, double ra);
 
-void	put_vertical_line(t_data *data, t_img *img);
-void	make_vertical_line(t_data *data, int distance, double ix, t_img *img);
-void	my_img_pixel_put(t_img *img, int x, int y, int color);
-int		my_img_pixel_get(t_img *img, int x, int y);
+void	put_vertical_line(t_data *data, t_img_data *img);
+void	make_vertical_line(t_data *data, int distance, double ix, t_img_data *img);
+void	my_img_pixel_put(t_img_data *img, int x, int y, int color);
+int		my_img_pixel_get(t_img_data *img, int x, int y);
 
 #endif
