@@ -40,8 +40,8 @@ int	main(int argc, char **argv)
 	if (validate_map(argv[1], data) == TRUE)
 		return (1);
 	make_image(data);
+	mlx_loop_hook(data->win, arrows_down, data);
 	mlx_loop(data->mlx);
-	// mlx_hook(data->win, KEYPRESS, KEYPRESSMASK, arrows_down, data);
 	exit_game(data);
 	free(data);
 	return (0);

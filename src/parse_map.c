@@ -6,7 +6,7 @@
 /*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 22:58:54 by vnazioze          #+#    #+#             */
-/*   Updated: 2023/02/01 03:16:01 by vnazioze         ###   ########.fr       */
+/*   Updated: 2023/02/07 00:43:15 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ static void	get_pa(int line, int column, t_data *data)
 			data->player.angle = (PI / 2) * 3;
 		printf("player line (line): %02d\n", line);
 		printf("player column (column): %02d\n", column);
-		printf("- player.line: %02d\n", data->player.line);
-		printf("- player.column: %02d\n", data->player.column);
+		printf("- player.line: %02f\n", data->player.line);
+		printf("- player.column: %02f\n", data->player.column);
 	}
 }
 

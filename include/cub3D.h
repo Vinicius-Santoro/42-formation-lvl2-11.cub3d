@@ -25,7 +25,7 @@
 # define TRUE 1
 
 # define BYTE 256
-# define PI 3.14
+# define PI 3.1415926535
 # define SPRITE_LEN 64
 
 # define RED "\033[0;31m"
@@ -67,8 +67,8 @@ typedef struct s_map
 typedef struct s_player
 {
 	int			count;
-	int			line;
-	int			column;
+	double		line;
+	double		column;
 	float		angle;
 }	t_player;
 
@@ -124,8 +124,6 @@ typedef struct s_data
 	t_img		*s_img;
 	t_img		*w_img;
 	t_img		*e_img;
-	double		px;
-	double		py;
 	float		pa;
 	float		ra;
 	int			ray_num;
