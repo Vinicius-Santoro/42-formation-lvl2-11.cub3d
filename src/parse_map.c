@@ -6,7 +6,7 @@
 /*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 22:58:54 by vnazioze          #+#    #+#             */
-/*   Updated: 2023/02/07 00:43:15 by vnazioze         ###   ########.fr       */
+/*   Updated: 2023/02/08 02:22:44 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ static void	validate_map_boundaries(int line, int column, t_data *data)
 		map[line + 1][column] == ' ' || map[line - 1][column + 1] == ' ' || \
 		map[line - 1][column] == ' ' || map[line - 1][column - 1] == ' ' )
 		)
-		error_message(19, "Invalid map: not surrounded by walls", data);
+		error_message(20, "Invalid map: not surrounded by walls", data);
 }
 
-static void	get_pa(int line, int column, t_data *data)
+static void	get_player_angle(int line, int column, t_data *data)
 {
 	if (ft_strchr("NSWE", data->map.map[line][column]))
 	{
@@ -55,7 +55,7 @@ static void	get_pa(int line, int column, t_data *data)
 static void	get_map(t_data *data)
 {
 	if (data->map.start_line == 0)
-		error_message(18, "Invalid map: missing map", data);
+		error_message(19, "Invalid map: missing map", data);
 	data->map.map = &(data->map.lines[data->map.start_line - 1]);
 }
 
@@ -73,17 +73,18 @@ void	parse_map(t_data *data)
 		while (data->map.map[line][++column] != '\0')
 		{
 			validate_map_boundaries(line, column, data);
-			get_pa(line, column, data);
+			get_player_angle(line, column, data);
 		}
-		if (column > data->map.max_column)
-			data->map.max_column = column;
+		// TALVEZ APAGUE PQ N HA UTILIZADE
+		// if (column > data->map.max_column)
+		// 	data->map.max_column = column;
 	}
 	if (data->player.count > 1)
-		error_message(20, "Invalid player: too many", data);
+		error_message(21, "Invalid player: too many", data);
 	if (data->player.count < 1)
-		error_message(21, "Invalid player: not enough", data);
-	data->map.max_line = line;
-	printf("quantity line (line): %02d\n", line);
-	printf("quantity column (column): %02d\n", column);
-	printf("max column: %02d\n", data->map.max_column);
+		error_message(22, "Invalid player: not enough", data);
+	// data->map.max_line = line;
+	// printf("quantity line (line): %02d\n", line);
+	// printf("quantity column (column): %02d\n", column);
+	// printf("max column: %02d\n", data->map.max_column);
 }

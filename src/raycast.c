@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 03:09:58 by vnazioze          #+#    #+#             */
-/*   Updated: 2023/02/06 22:57:34 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/08 02:54:19 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,13 @@ void	get_sidedist(t_data *data, double ra)
 
 void	get_deltadist(t_data *data, double ra)
 {
+	// validação horizontal
+	// o 10 milha é um valor arbitrário para não ocorrer divisão por 0
 	if (cos(ra) == 0)
 		data->deltadist_x = 10000000;
 	else
 		data->deltadist_x = fabs(64 / cos(ra));
+	// validação horizontal
 	if (sin(ra) == 0)
 		data->deltadist_y = 10000000;
 	else
@@ -82,10 +85,10 @@ void	collision_loop(t_data *data)
 
 double	get_distance(t_data *data, double ra)
 {
-	if (ra >= 2 * PI)
-		ra -= 2 * PI;
-	if (ra < 0)
-		ra += 2 * PI;
+	// if (ra >= 2 * PI)
+	// 	ra -= 2 * PI;
+	// if (ra < 0)
+	// 	ra += 2 * PI;
 		
 	// printf("get_distance 1\n");	
 	get_deltadist(data, ra);
@@ -106,6 +109,7 @@ void	raycast(t_data *data, double ra)
 	double		dist;
 
 	// printf("raycast START\n");
+	// Para garantir que o player está no range de 0 a 360 graus.
 	if (ra >= 2 * PI)
 		ra -= 2 * PI;
 	if (ra < 0)

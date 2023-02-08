@@ -6,7 +6,7 @@
 /*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 21:17:20 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/08 01:55:21 by vnazioze         ###   ########.fr       */
+/*   Updated: 2023/02/08 02:05:53 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,15 @@ static int	get_color(char *line, int color, t_data *data)
 	while (data->map.splited_line[++i])
 	{
 		if (ft_strisdigit(data->map.splited_line[i]) == FALSE)
-			error_message(8, "Invalud RGB value: is not a digit", data);
+			error_message(9, "Invalud RGB value: is not a digit", data);
 		rgb[i] = ft_atoi(data->map.splited_line[i]);
 		if (rgb[i] < 0 || rgb[i] > 255)
-			error_message(9, "Invalid RGB value: is not a 8bits", data);
+			error_message(10, "Invalid RGB value: is not a 8bits", data);
 	}
 	free_matrix(data->map.splited_line);
 	data->map.splited_line = NULL;
 	if (i != 3)
-		error_message(10, "Invalid RGB value: is not a rgb", data);
+		error_message(11, "Invalid RGB value: is not a rgb", data);
 	// formula de transformacao para rgb puro
 	// return ((rgb[0] * BYTE * BYTE) + (rgb[1] * BYTE) + rgb[2]);
 	return ((rgb[0] << 16) + (rgb[1] << 8) + (rgb[2] << 0));
@@ -69,15 +69,15 @@ static char	*get_tex_file(char *line, char *tex, t_data *data)
 	int		fd;
 
 	if (fd < 0)
-		error_message(5.0, "Invalid texture: file not exist", data);
+		error_message(5, "Invalid texture: file not exist", data);
 	close(fd);
 	if (tex != NULL)
-		error_message(5.1, "Invalid texture: duplicated position", data);
+		error_message(6, "Invalid texture: duplicated position", data);
 	// Apagando espaço tanto no começo quanto no fim
 	file_name = ft_strtrim(line + 3, " \n");
 	fd = open(file_name, O_RDONLY);
 	if (is_valid_ext(file_name, ".xpm") == FALSE)
-		error_message(6, "Invalid file extension: not .xpm", data);
+		error_message(7, "Invalid file extension: not .xpm", data);
 	return (file_name);
 }
 
@@ -99,5 +99,5 @@ void	check_line(char *line, t_data *data)
 	else if (check_map_chars(line) == TRUE && data->map.start_line == 0)
 		data->map.start_line = data->map.count_line;
 	else if (check_map_chars(line) == FALSE)
-		error_message(11, "Invalid map: imposible characters", data);
+		error_message(12, "Invalid map: imposible characters", data);
 }
