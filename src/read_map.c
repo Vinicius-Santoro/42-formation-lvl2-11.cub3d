@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_map.c                                     :+:      :+:    :+:   */
+/*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 17:01:31 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/01 03:08:43 by vnazioze         ###   ########.fr       */
+/*   Updated: 2023/02/08 00:17:53 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	init_map(t_data *data)
 	data->map.max_column = 0;
 }
 
-static int	read_map(int fd, t_data *data)
+int	read_map(int fd, t_data *data)
 {
 	char	*temp;
 	int		i;
@@ -64,19 +64,4 @@ static int	read_map(int fd, t_data *data)
 	while (data->map.lines[++i])
 		check_line(data->map.lines[i], data);
 	check_is_missing_header(data);
-}
-
-int	validate_map(char *file_name, t_data *data)
-{
-	int	fd;
-
-	fd = open(file_name, O_RDONLY);
-	if (fd < 0)
-		error_message(3, "Invalid file: not exist", data);
-	if (is_valid_ext(file_name, ".cub") == FALSE)
-		error_message(4, "Invalid file extension: not .cub", data);
-	read_map(fd, data);
-	parse_map(data);
-	close(fd);
-	return (0);
 }

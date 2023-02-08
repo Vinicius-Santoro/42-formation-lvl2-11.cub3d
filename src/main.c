@@ -28,6 +28,21 @@ int	arrows_down(t_data *data)
 	return 0;
 }
 
+int	validate_map(char *file_name, t_data *data)
+{
+	int	fd;
+
+	fd = open(file_name, O_RDONLY);
+	if (fd < 0)
+		error_message(3, "Invalid file: not exist", data);
+	if (is_valid_ext(file_name, ".cub") == FALSE)
+		error_message(4, "Invalid file extension: not .cub", data);
+	read_map(fd, data);
+	parse_map(data);
+	close(fd);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	*data;

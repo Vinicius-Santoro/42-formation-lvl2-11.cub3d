@@ -24,7 +24,6 @@
 # define FALSE 0
 # define TRUE 1
 
-# define BYTE 256
 # define PI 3.1415926535
 # define SPRITE_LEN 64
 
@@ -139,7 +138,7 @@ typedef struct s_data
 	int			wall;
 }	t_data;
 
-int		validate_map(char *file_name, t_data *data);
+int		read_map(int fd, t_data *data);
 void	check_line(char *line, t_data *data);
 void	parse_map(t_data *data);
 void	make_image(t_data *data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 21:17:20 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/01/31 22:36:19 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/08 01:55:21 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ static int	check_map_chars(char *line)
 
 	i = 0;
 	if (line[i] == '\n')
-	{
-		printf("\noi");
 		return (0);
-	}
 	while (line[i] != '\0')
 	{
 		if (!ft_strchr(" 01NSWE\n", line[i]))
@@ -33,13 +30,18 @@ static int	check_map_chars(char *line)
 
 static int	get_color(char *line, int color, t_data *data)
 {
+	// linha aparada
 	char	*trimmed_line;
 	int		rgb[3];
 	int		i;
 
 	i = -1;
 	if (color != -1)
+	{
+		// Não pode ter ff, nem cc.
 		error_message(7, "Invalid color: duplicated color rgb", data);
+	}
+	// Remove os espaços e as quebras de linha, pegando apenas o rgb.
 	trimmed_line = ft_strtrim(line + 2, " \n\t\r");
 	data->map.splited_line = ft_split(trimmed_line, ',');
 	if (trimmed_line != NULL)
@@ -56,7 +58,9 @@ static int	get_color(char *line, int color, t_data *data)
 	data->map.splited_line = NULL;
 	if (i != 3)
 		error_message(10, "Invalid RGB value: is not a rgb", data);
-	return ((rgb[0] * BYTE * BYTE) + (rgb[1] * BYTE) + rgb[2]);
+	// formula de transformacao para rgb puro
+	// return ((rgb[0] * BYTE * BYTE) + (rgb[1] * BYTE) + rgb[2]);
+	return ((rgb[0] << 16) + (rgb[1] << 8) + (rgb[2] << 0));
 }
 
 static char	*get_tex_file(char *line, char *tex, t_data *data)
@@ -69,6 +73,7 @@ static char	*get_tex_file(char *line, char *tex, t_data *data)
 	close(fd);
 	if (tex != NULL)
 		error_message(5.1, "Invalid texture: duplicated position", data);
+	// Apagando espaço tanto no começo quanto no fim
 	file_name = ft_strtrim(line + 3, " \n");
 	fd = open(file_name, O_RDONLY);
 	if (is_valid_ext(file_name, ".xpm") == FALSE)
@@ -93,6 +98,6 @@ void	check_line(char *line, t_data *data)
 		data->map.color.ceil = get_color(line, data->map.color.ceil, data);
 	else if (check_map_chars(line) == TRUE && data->map.start_line == 0)
 		data->map.start_line = data->map.count_line;
-	else if (check_map_chars(line) == FALSE && data->map.start_line != 0)
+	else if (check_map_chars(line) == FALSE)
 		error_message(11, "Invalid map: imposible characters", data);
 }

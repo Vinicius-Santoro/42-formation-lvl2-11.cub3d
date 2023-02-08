@@ -32,7 +32,7 @@ SRC_PATH		=	./src/
 OBJ_PATH		=	./obj/
 
 SRC_FILES		=	main.c			\
-					validate_map.c	\
+					read_map.c	\
 					validate_error.c\
 					utils.c			\
 					check_line.c    \
