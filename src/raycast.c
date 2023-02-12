@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 03:09:58 by vnazioze          #+#    #+#             */
-/*   Updated: 2023/02/13 00:22:25 by vnazioze         ###   ########.fr       */
+/*   Updated: 2023/02/12 20:49:16 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,10 @@ void	collision_loop(t_data *data)
 
 double	get_distance(t_data *data, double ra)
 {
+	if (ra >= 2 * PI)
+		ra -= 2 * PI;
+	if (ra < 0)
+		ra += 2 * PI;
 	get_deltadist(data, ra);
 	get_sidedist(data, ra);
 	collision_loop(data);
@@ -85,10 +89,6 @@ void	raycast(t_data *data, double ra)
 	double		ca;
 	double		dist;
 
-	if (ra >= 2 * PI)
-		ra -= 2 * PI;
-	if (ra < 0)
-		ra += 2 * PI;
 	data->wall = 0;
 	dist = get_distance(data, ra);
 	ca = data->player.angle - data->ra;
