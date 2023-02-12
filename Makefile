@@ -32,7 +32,7 @@ SRC_PATH		=	./src/
 OBJ_PATH		=	./obj/
 
 SRC_FILES		=	main.c			\
-					read_map.c	\
+					read_map.c		\
 					validate_error.c\
 					utils.c			\
 					check_line.c    \
@@ -77,7 +77,7 @@ play:			all
 				@ echo "$(CUB): was $(GREEN)started$(RE)"
 				@ ./$(NAME) ./assets/maps/map.cub
 
-VAL_FLAGS = --leak-check=full --show-leak-kinds=all
+VAL_FLAGS		= 	--leak-check=full --show-leak-kinds=all
 
 val:			re
 				valgrind $(VAL_FLAGS) ./$(NAME) ./assets/maps/map.cub

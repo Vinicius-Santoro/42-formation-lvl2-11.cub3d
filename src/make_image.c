@@ -6,7 +6,7 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:56:12 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/12 14:56:33 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/12 19:17:11 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,9 @@ void	put_vertical_line(t_data *data, t_img_data *img)
 	while (data->rc.line_o <= data->rc.y_max)
 	{
 		data->rc.x = (data->ray_num * 8);
-		printf("________________\n");
 		while (data->rc.x < (data->ray_num * 8) + 8)
 		{
-			printf("bits: %lu\n", my_img_pixel_get(img, (int)data->rc.tx, (int)data->rc.ty));
+			// printf("bits: %lu\n", my_img_pixel_get(img, (int)data->rc.tx, (int)data->rc.ty));
 			my_img_pixel_put(data->img.game, data->rc.x++, data->rc.line_o, \
 			my_img_pixel_get(img, (int)data->rc.tx, (int)data->rc.ty));
 		}

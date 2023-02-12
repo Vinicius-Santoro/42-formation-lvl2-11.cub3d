@@ -6,7 +6,7 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 03:09:58 by vnazioze          #+#    #+#             */
-/*   Updated: 2023/02/11 15:42:53 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/12 19:00:32 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	collision_loop(t_data *data)
 
 double	get_distance(t_data *data, double ra)
 {
-		
 	get_deltadist(data, ra);
 	get_sidedist(data, ra);
 	collision_loop(data);
