@@ -6,19 +6,12 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:56:12 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/12 19:17:11 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/12 19:30:50 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-/**
- * It draws a vertical line
- * on the screen
- * 
- * @param data the structure containing all the data of the game
- * @param img the image to be drawn
- */
 void	put_vertical_line(t_data *data, t_img_data *img)
 {
 	while (data->rc.y_ceil <= data->rc.line_o)
@@ -33,11 +26,8 @@ void	put_vertical_line(t_data *data, t_img_data *img)
 	{
 		data->rc.x = (data->ray_num * 8);
 		while (data->rc.x < (data->ray_num * 8) + 8)
-		{
-			// printf("bits: %lu\n", my_img_pixel_get(img, (int)data->rc.tx, (int)data->rc.ty));
 			my_img_pixel_put(data->img.game, data->rc.x++, data->rc.line_o, \
 			my_img_pixel_get(img, (int)data->rc.tx, (int)data->rc.ty));
-		}
 		data->rc.line_o++;
 		data->rc.ty += data->rc.ty_step;
 	}
@@ -51,15 +41,6 @@ void	put_vertical_line(t_data *data, t_img_data *img)
 	}
 }
 
-/**
- * It calculates the height of the vertical line to be drawn, and then calls the function that actually
- * draws it
- * 
- * @param data the data structure
- * @param distance the distance from the player to the sprite
- * @param ix the x coordinate of the sprite
- * @param img the image to draw
- */
 void	make_vertical_line(t_data *data, int distance, double ix, t_img_data *img)
 {
 	data->rc.y_ceil = 0;

@@ -89,15 +89,6 @@ typedef struct s_img
 	t_img_data	*ea;
 }	t_img;
 
-// typedef struct s_img
-// {
-// 	void	*img;
-// 	char	*img_addr;
-// 	int		img_bits_per_pixel;
-// 	int		img_line_length;
-// 	int		img_endian;
-// }	t_img;
-
 typedef struct s_raycast
 {
 	int		x;
@@ -118,12 +109,6 @@ typedef struct s_data
 	t_map		map;
 	t_player	player;
 	t_img		img;
-	// t_img		*game_img;
-	// t_img		*n_img;
-	// t_img		*s_img;
-	// t_img		*w_img;
-	// t_img		*e_img;
-	// float		pa;
 	float		ra;
 	int			ray_num;
 	t_raycast	rc;
