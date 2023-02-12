@@ -15,19 +15,6 @@
 #define KEYPRESSMASK 1
 #define KEYPRESS 2
 
-
-int	int_make_image(t_data *data)
-{
-	make_image(data);
-	return 0;
-}
-
-int	arrows_down(t_data *data)
-{
-	make_image(data);
-	return 0;
-}
-
 int	validate_map(char *file_name, t_data *data)
 {
 	int	fd;
@@ -43,6 +30,28 @@ int	validate_map(char *file_name, t_data *data)
 	return (0);
 }
 
+t_img_data	*init_texture( char *file, t_data *data)
+{
+	int		trash;
+	t_img_data	*ret;
+
+	ret = malloc (sizeof(t_img));
+	ret->new_img = mlx_xpm_file_to_image(data->mlx, file, &trash, &trash);
+	ret->address = mlx_get_data_addr(ret->new_img, &ret->bits_per_pixel,
+			&ret->line_length, &ret->endian);
+	return (ret);
+}
+
+void	init_game(t_data *data)
+{
+	data->mlx = mlx_init();
+	data->win = mlx_new_window(data->mlx, 512, 512, "Cub3d");
+	data->img.no = init_texture(data->map.tex.no, data);
+	data->img.so = init_texture(data->map.tex.so, data);
+	data->img.we = init_texture(data->map.tex.we, data);
+	data->img.ea = init_texture(data->map.tex.ea, data);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	*data;
@@ -54,10 +63,13 @@ int	main(int argc, char **argv)
 	data = malloc(sizeof(t_data));
 	if (validate_map(argv[1], data) == TRUE)
 		return (1);
+	init_game(data);
 	make_image(data);
-	mlx_loop_hook(data->win, int_make_image, data);
-	mlx_hook(data->win, 17, 0L, close_game, data);
+	mlx_loop_hook(data->mlx, ft_run, data);
+	mlx_hook(data->win, KEYPRESS, KEYPRESSMASK, arrows_down, data);
+	mlx_hook(data->win, KEYRELEASE, KEYRELEASEMASK, arrows_up, data);
+	mlx_hook(data->win, 17, 0L, exit_click, data);
 	mlx_loop(data->mlx);
-	close_game(data);
+	// close_game(data);
 	return (0);
 }

@@ -39,7 +39,8 @@ SRC_FILES		=	main.c			\
 					parse_map.c		\
 					make_image.c	\
 					raycast.c		\
-					my_img_pixel_put.c
+					my_img_pixel_put.c \
+					commands.c
 
 SRC            	=	$(addprefix $(SRC_PATH),$(SRC_FILES))
 OBJ            	=	$(addprefix $(OBJ_PATH),$(subst .c,.o,$(SRC_FILES)))

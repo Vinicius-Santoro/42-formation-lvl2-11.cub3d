@@ -6,7 +6,7 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:56:12 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/12 19:30:50 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/12 20:00:29 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,31 +63,8 @@ void	make_vertical_line(t_data *data, int distance, double ix, t_img_data *img)
 	put_vertical_line(data, img);
 }
 
-t_img_data	*init_texture( char *file, t_data *data)
-{
-	int		trash;
-	t_img_data	*ret;
-
-	ret = malloc (sizeof(t_img));
-	ret->new_img = mlx_xpm_file_to_image(data->mlx, file, &trash, &trash);
-	ret->address = mlx_get_data_addr(ret->new_img, &ret->bits_per_pixel,
-			&ret->line_length, &ret->endian);
-	return (ret);
-}
-
-void	init_game(t_data *data)
-{
-	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, 512, 512, "Cub3d");
-	data->img.no = init_texture(data->map.tex.no, data);
-	data->img.so = init_texture(data->map.tex.so, data);
-	data->img.we = init_texture(data->map.tex.we, data);
-	data->img.ea = init_texture(data->map.tex.ea, data);
-}
-
 void	make_image(t_data *data)
 {
-	init_game(data);
 	data->img.game = malloc(sizeof(t_img));
 	data->img.game->new_img = mlx_new_image(data->mlx, 512, 512);
 	data->img.game->address = mlx_get_data_addr( \

@@ -27,6 +27,11 @@
 # define PI 3.1415926535
 # define SPRITE_LEN 64
 
+# define KEYPRESS 2
+# define KEYRELEASE 3
+# define KEYPRESSMASK 1
+# define KEYRELEASEMASK 10
+
 # define RED "\033[0;31m"
 # define GREEN "\033[0;32m"
 # define YELLOW "\033[0;33m"
@@ -121,6 +126,12 @@ typedef struct s_data
 	int			step_x;
 	int			step_y;
 	int			wall;
+	int			move_up;
+	int			move_down;
+	int			move_left;
+	int			move_right;
+	int			turn_left;
+	int			turn_right;
 }	t_data;
 
 int		read_map(int fd, t_data *data);
@@ -147,5 +158,9 @@ void	put_vertical_line(t_data *data, t_img_data *img);
 void	make_vertical_line(t_data *data, int distance, double ix, t_img_data *img);
 void	my_img_pixel_put(t_img_data *img, int x, int y, int color);
 int		my_img_pixel_get(t_img_data *img, int x, int y);
+
+int		ft_run(t_data *data);
+int		arrows_up(int keycode, t_data *data);
+int		arrows_down(int keycode, t_data *data);
 
 #endif
