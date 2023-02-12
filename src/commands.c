@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 19:43:59 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/12 19:55:26 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/13 00:23:08 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ int	check_collision(t_data *data, double ra)
 	int	map_y;
 
 	get_distance(data, ra);
-	map_x = data->player.column + (30 * data->step_x);
-	map_y = data->player.line + (30 * data->step_y);
+	map_x = data->player.x + (30 * data->step_x);
+	map_y = data->player.y + (30 * data->step_y);
 	map_x = map_x >> 6;
 	map_y = map_y >> 6;
-	if (data->map.map[map_y][(int)(data->player.column) >> 6] == '1' || \
-	data->map.map[(int)(data->player.line) >> 6][map_x] == '1' || \
+	if (data->map.map[map_y][(int)(data->player.x) >> 6] == '1' || \
+	data->map.map[(int)(data->player.y) >> 6][map_x] == '1' || \
 	data->map.map[map_y][map_x] == '1')
 		return (0);
 	return (1);
@@ -71,23 +71,23 @@ void	movement(t_data *data)
 {
 	if (data->move_up == 1 && check_collision(data, data->player.angle))
 	{
-		data->player.column += 2 * cos(data->player.angle);
-		data->player.line -= 2 * sin(data->player.angle);
+		data->player.x += 2 * cos(data->player.angle);
+		data->player.y -= 2 * sin(data->player.angle);
 	}
 	if (data->move_down == 1 && check_collision(data, data->player.angle + PI))
 	{
-		data->player.column -= 2 * cos(data->player.angle);
-		data->player.line += 2 * sin(data->player.angle);
+		data->player.x -= 2 * cos(data->player.angle);
+		data->player.y += 2 * sin(data->player.angle);
 	}
 	if (data->move_right == 1 && check_collision(data, data->player.angle - PI / 2))
 	{
-		data->player.column += 2 * sin(data->player.angle);
-		data->player.line += 2 * cos(data->player.angle);
+		data->player.x += 2 * sin(data->player.angle);
+		data->player.y += 2 * cos(data->player.angle);
 	}
 	if (data->move_left == 1 && check_collision(data, data->player.angle + PI / 2))
 	{
-		data->player.column -= 2 * sin(data->player.angle);
-		data->player.line -= 2 * cos(data->player.angle);
+		data->player.x -= 2 * sin(data->player.angle);
+		data->player.y -= 2 * cos(data->player.angle);
 	}
 }
 

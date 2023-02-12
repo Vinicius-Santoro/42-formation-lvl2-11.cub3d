@@ -68,7 +68,7 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(data->mlx, ft_run, data);
 	mlx_hook(data->win, KEYPRESS, KEYPRESSMASK, arrows_down, data);
 	mlx_hook(data->win, KEYRELEASE, KEYRELEASEMASK, arrows_up, data);
-	mlx_hook(data->win, 17, 0L, exit_click, data);
+	mlx_hook(data->win, 17, 0L, close_game, data);
 	mlx_loop(data->mlx);
 	// close_game(data);
 	return (0);

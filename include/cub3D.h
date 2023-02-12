@@ -71,8 +71,8 @@ typedef struct s_map
 typedef struct s_player
 {
 	int			count;
-	double		line;
-	double		column;
+	double		y;
+	double		x;
 	float		angle;
 }	t_player;
 
@@ -121,8 +121,8 @@ typedef struct s_data
 	double		deltadist_y;
 	double		sidedist_x;
 	double		sidedist_y;
-	int			map_column;
-	int			map_line;
+	int			map_x;
+	int			map_y;
 	int			step_x;
 	int			step_y;
 	int			wall;

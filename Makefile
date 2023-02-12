@@ -74,7 +74,7 @@ fclean:         clean
 
 re:				fclean all
 
-play:			all
+play:			re
 				@ echo "$(CUB): was $(GREEN)started$(RE)"
 				@ ./$(NAME) ./assets/maps/map.cub
 
