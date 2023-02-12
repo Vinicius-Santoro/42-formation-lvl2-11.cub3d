@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 21:17:20 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/08 02:05:53 by vnazioze         ###   ########.fr       */
+/*   Updated: 2023/02/11 17:05:50 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,14 @@ static char	*get_tex_file(char *line, char *tex, t_data *data)
 	char	*file_name;
 	int		fd;
 
-	if (fd < 0)
-		error_message(5, "Invalid texture: file not exist", data);
-	close(fd);
 	if (tex != NULL)
 		error_message(6, "Invalid texture: duplicated position", data);
 	// Apagando espaço tanto no começo quanto no fim
 	file_name = ft_strtrim(line + 3, " \n");
 	fd = open(file_name, O_RDONLY);
+	if (fd < 0)
+		error_message(5, "Invalid texture: file not exist", data);
+	close(fd);
 	if (is_valid_ext(file_name, ".xpm") == FALSE)
 		error_message(7, "Invalid file extension: not .xpm", data);
 	return (file_name);

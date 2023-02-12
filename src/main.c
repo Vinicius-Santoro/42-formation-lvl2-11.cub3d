@@ -56,8 +56,8 @@ int	main(int argc, char **argv)
 		return (1);
 	make_image(data);
 	mlx_loop_hook(data->win, int_make_image, data);
+	mlx_hook(data->win, 17, 0L, close_game, data);
 	mlx_loop(data->mlx);
-	exit_game(data);
-	free(data);
+	close_game(data);
 	return (0);
 }

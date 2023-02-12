@@ -47,3 +47,49 @@ void	exit_game(t_data *data)
 	free_matrix(data->map.splited_line);
 	free_matrix(data->map.lines);
 }
+
+void	destroy_images(t_data *data)
+{
+	// mlx_destroy_image(data->mlx, data->img.game->new_img);
+	// free(data->img.game);
+
+	// if (data->n_img)
+	// {
+	mlx_destroy_image(data->mlx, data->img.no->new_img);
+	free(data->img.no);
+	// }
+	// if (data->s_img)
+	// {
+	mlx_destroy_image(data->mlx, data->img.so->new_img);
+	free(data->img.so);
+	// }
+	// if (data->w_img)
+	// {
+	mlx_destroy_image(data->mlx, data->img.we->new_img);
+	free(data->img.we);
+	// }
+	// if (data->e_img)
+	// {
+	mlx_destroy_image(data->mlx, data->img.ea->new_img);
+	free(data->img.ea);
+	// }
+	mlx_clear_window(data->mlx, data->win);
+	mlx_loop_end(data->mlx);
+	mlx_destroy_window(data->mlx, data->win);
+	mlx_destroy_display(data->mlx);
+	free(data->mlx);
+}
+
+void	free_img(t_data *data)
+{
+
+}
+
+int	close_game(t_data *data)
+{
+	destroy_images(data);
+	exit_game(data);
+	free(data);
+	printf("%scub%s3%sD%s: was %sclosed.%s\n", MAGENTA, BLUE, RED, RE, BLUE, RE);
+	exit(0);
+}

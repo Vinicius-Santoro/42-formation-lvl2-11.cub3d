@@ -143,6 +143,7 @@ void	check_line(char *line, t_data *data);
 void	parse_map(t_data *data);
 void	make_image(t_data *data);
 
+int		close_game(t_data *data);
 void	error_message(int error_code, char *message_error, t_data *data);
 void	exit_game(t_data *data);
 void	free_matrix(char **matrix);

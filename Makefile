@@ -44,7 +44,7 @@ SRC_FILES		=	main.c			\
 SRC            	=	$(addprefix $(SRC_PATH),$(SRC_FILES))
 OBJ            	=	$(addprefix $(OBJ_PATH),$(subst .c,.o,$(SRC_FILES)))
 
-CUB				=	$(MAGENTA_2)cub$(BLUE)3$(RED)D$(RE)
+CUB				=	$(MAGENTA)cub$(BLUE)3$(RED)D$(RE)
 
 LIBFT			=	./libs/libft/libft.a
 
@@ -73,4 +73,14 @@ fclean:         clean
 
 re:				fclean all
 
-.PHONY:			all, clean, fclean, re
+play:			all
+				@ echo "$(CUB): was $(GREEN)started$(RE)"
+				@ ./$(NAME) ./assets/maps/map.cub
+
+VAL_FLAGS = --leak-check=full --show-leak-kinds=all
+
+val:			re
+				valgrind $(VAL_FLAGS) ./$(NAME) ./assets/maps/map.cub
+
+
+.PHONY:			all, clean, fclean, re, val
