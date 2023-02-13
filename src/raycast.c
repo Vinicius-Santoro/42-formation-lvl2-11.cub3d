@@ -6,7 +6,7 @@
 /*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 03:09:58 by vnazioze          #+#    #+#             */
-/*   Updated: 2023/02/13 02:12:11 by vnazioze         ###   ########.fr       */
+/*   Updated: 2023/02/13 03:02:58 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,11 @@ void	raycast(t_data *data, double ra)
 	ca = data->player.angle - data->ra;
 	dist = dist * cos(ca);
 	if (data->wall == 0 && (ra <= PI / 2 || ra >= 3 * PI / 2))
-		make_vertical_line(data, dist, data->player.x - dist * sin(ra), data->img.ea);
+		make_vertical_line(data, dist, data->player.y - dist * sin(ra), data->img.ea);
 	else if (data->wall == 0)
-		make_vertical_line(data, dist, data->player.x - dist * sin(ra), data->img.we);
+		make_vertical_line(data, dist, data->player.y - dist * sin(ra), data->img.we);
 	else if (data->wall == 1 && ra <= PI)
-		make_vertical_line(data, dist, data->player.y + dist * cos(ra), data->img.no);
+		make_vertical_line(data, dist, data->player.x + dist * cos(ra), data->img.no);
 	else
-		make_vertical_line(data, dist, data->player.y + dist * cos(ra), data->img.so);
+		make_vertical_line(data, dist, data->player.x + dist * cos(ra), data->img.so);
 }
