@@ -50,6 +50,16 @@ void	init_game(t_data *data)
 	data->img.so = init_texture(data->map.tex.so, data);
 	data->img.we = init_texture(data->map.tex.we, data);
 	data->img.ea = init_texture(data->map.tex.ea, data);
+	data->turn_left = 0;
+	data->turn_right = 0;
+	data->move_up = 0;
+	data->move_down = 0;
+	data->move_left = 0;
+	data->move_right = 0;
+	data->last_sec = 0;
+	data->last_fps = 0;
+	data->count_frame = 0;
+	data->str_fps = ft_strdup("");
 }
 
 int	main(int argc, char **argv)
@@ -70,6 +80,5 @@ int	main(int argc, char **argv)
 	mlx_hook(data->win, KEYRELEASE, KEYRELEASEMASK, arrows_up, data);
 	mlx_hook(data->win, 17, 0L, close_game, data);
 	mlx_loop(data->mlx);
-	// close_game(data);
 	return (0);
 }

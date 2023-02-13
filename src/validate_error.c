@@ -89,6 +89,7 @@ int	close_game(t_data *data)
 {
 	destroy_images(data);
 	exit_game(data);
+	free(data->str_fps);
 	free(data);
 	printf("%scub%s3%sD%s: was %sclosed.%s\n", 
 	MAGENTA, BLUE, RED, RE, BLUE, RE);

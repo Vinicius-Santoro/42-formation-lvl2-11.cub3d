@@ -6,7 +6,7 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:56:12 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/12 23:38:29 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/13 20:10:05 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,19 @@ void	get_fps(t_data *data)
 	struct timeval	tv;
 
 	gettimeofday(&tv, 0);
-	if (data->last_sec == tv.tv_sec * 1000)
+	if (data->last_sec == tv.tv_sec)
 		data->count_frame++;
 	else
 	{
-		data->last_sec = tv.tv_sec * 1000;
-		printf("fps: %d\n", data->count_frame);
-		data->count_frame=0;		
+		data->last_fps = data->count_frame;
+		data->last_sec = tv.tv_sec;
+		data->count_frame=0;
+		free(data->str_fps);
+		data->str_fps = ft_itoa(data->last_fps);
 	}
+	mlx_string_put(data->mlx, data->win, \
+	WINDOW_SIZE * 0.05, WINDOW_SIZE * 0.05, \
+	0x00FF00, data->str_fps);
 }
 
 void	make_image(t_data *data)

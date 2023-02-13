@@ -135,7 +135,9 @@ typedef struct s_data
 	int			turn_left;
 	int			turn_right;
 	int			count_frame;
-	long int	last_sec;
+	int			last_sec;
+	int			last_fps;
+	char		*str_fps;
 }	t_data;
 
 int		read_map(int fd, t_data *data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 03:09:58 by vnazioze          #+#    #+#             */
-/*   Updated: 2023/02/13 03:02:58 by vnazioze         ###   ########.fr       */
+/*   Updated: 2023/02/13 20:48:46 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,10 @@ void	raycast(t_data *data, double ra)
 	double		ca;
 	double		dist;
 
+	if (ra >= 2 * PI)
+		ra -= 2 * PI;
+	if (ra < 0)
+		ra += 2 * PI;
 	data->wall = 0;
 	dist = get_distance(data, ra);
 	ca = data->player.angle - data->ra;
