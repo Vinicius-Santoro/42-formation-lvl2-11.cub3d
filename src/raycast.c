@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 03:09:58 by vnazioze          #+#    #+#             */
-/*   Updated: 2023/02/12 20:49:16 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/13 02:06:46 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@ void	get_sidedist(t_data *data, double ra)
 {
 	if (ra < PI)
 	{
-		data->sidedist_y = fabs(((int)(data->player.x) % 64) / sin (ra));
+		data->sidedist_y = fabs(((int)(data->player.y) % 64) / sin (ra));
 		data->step_y = -1;
 	}
 	else
 	{
-		data->sidedist_y = fabs((64 - (int)(data->player.x) % 64) / sin (ra));
+		data->sidedist_y = fabs((64 - (int)(data->player.y) % 64) / sin (ra));
 		data->step_y = 1;
 	}
 	if (ra > PI / 2 && ra < 3 * PI / 2)
 	{
-		data->sidedist_x = fabs(((int)(data->player.y) % 64) / cos (ra));
+		data->sidedist_x = fabs(((int)(data->player.x) % 64) / cos (ra));
 		data->step_x = -1;
 	}
 	else
 	{
-		data->sidedist_x = fabs((64 - (int)(data->player.y) % 64) / cos (ra));
+		data->sidedist_x = fabs((64 - (int)(data->player.x) % 64) / cos (ra));
 		data->step_x = 1;
 	}
 }
