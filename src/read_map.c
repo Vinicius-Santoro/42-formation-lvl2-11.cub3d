@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_map.c                                     :+:      :+:    :+:   */
+/*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 17:01:31 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/01/28 22:48:25 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/08 02:06:04 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 static void	check_is_missing_header(t_data *data)
 {
 	if (data->map.tex.no == NULL)
-		error_message(12, "Invalid texture: missing NO", data);
+		error_message(13, "Invalid texture: missing NO", data);
 	if (data->map.tex.so == NULL)
-		error_message(13, "Invalid texture: missing SO", data);
+		error_message(14, "Invalid texture: missing SO", data);
 	if (data->map.tex.we == NULL)
-		error_message(14, "Invalid texture: missing WE", data);
+		error_message(15, "Invalid texture: missing WE", data);
 	if (data->map.tex.ea == NULL)
-		error_message(15, "Invalid texture: missing EA", data);
+		error_message(16, "Invalid texture: missing EA", data);
 	if (data->map.color.floor == -1)
-		error_message(16, "Invalid RGB: missing floor", data);
+		error_message(17, "Invalid RGB: missing floor", data);
 	if (data->map.color.ceil == -1)
-		error_message(17, "Invalid RGB: missing ceil", data);
+		error_message(18, "Invalid RGB: missing ceil", data);
 }
 
 static void	init_map(t_data *data)
@@ -44,7 +44,7 @@ static void	init_map(t_data *data)
 	data->map.max_column = 0;
 }
 
-static int	read_map(int fd, t_data *data)
+int	read_map(int fd, t_data *data)
 {
 	char	*temp;
 	int		i;
@@ -64,19 +64,4 @@ static int	read_map(int fd, t_data *data)
 	while (data->map.lines[++i])
 		check_line(data->map.lines[i], data);
 	check_is_missing_header(data);
-}
-
-int	validate_map(char *file_name, t_data *data)
-{
-	int	fd;
-
-	fd = open(file_name, O_RDONLY);
-	if (fd < 0)
-		error_message(3, "Invalid file: not exist", data);
-	if (is_valid_ext(file_name, ".cub") == FALSE)
-		error_message(4, "Invalid file extension: not .cub", data);
-	read_map(fd, data);
-	parse_map(data);
-	close(fd);
-	return (0);
 }

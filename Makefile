@@ -32,17 +32,20 @@ SRC_PATH		=	./src/
 OBJ_PATH		=	./obj/
 
 SRC_FILES		=	main.c			\
-					validate_map.c	\
+					read_map.c		\
 					validate_error.c\
 					utils.c			\
 					check_line.c    \
 					parse_map.c		\
-					make_image.c
+					make_image.c	\
+					raycast.c		\
+					my_img_pixel_put.c \
+					commands.c
 
 SRC            	=	$(addprefix $(SRC_PATH),$(SRC_FILES))
 OBJ            	=	$(addprefix $(OBJ_PATH),$(subst .c,.o,$(SRC_FILES)))
 
-CUB				=	$(MAGENTA_2)cub$(BLUE)3$(RED)D$(RE)
+CUB				=	$(MAGENTA)cub$(BLUE)3$(RED)D$(RE)
 
 LIBFT			=	./libs/libft/libft.a
 
@@ -71,4 +74,14 @@ fclean:         clean
 
 re:				fclean all
 
-.PHONY:			all, clean, fclean, re
+play:			re
+				@ echo "$(CUB): was $(GREEN)started$(RE)"
+				@ ./$(NAME) ./assets/maps/map.cub
+
+VAL_FLAGS		= 	--leak-check=full --show-leak-kinds=all
+
+val:			re
+				valgrind $(VAL_FLAGS) ./$(NAME) ./assets/maps/map.cub
+
+
+.PHONY:			all, clean, fclean, re, val
