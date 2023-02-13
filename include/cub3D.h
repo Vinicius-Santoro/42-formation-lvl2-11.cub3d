@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include "../libs/libft/libft.h"
+# include <sys/time.h>
 
 # define FALSE 0
 # define TRUE 1
@@ -133,6 +134,8 @@ typedef struct s_data
 	int			move_right;
 	int			turn_left;
 	int			turn_right;
+	int			count_frame;
+	long int	last_sec;
 }	t_data;
 
 int		read_map(int fd, t_data *data);

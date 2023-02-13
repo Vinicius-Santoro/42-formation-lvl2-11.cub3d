@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:56:12 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/13 02:51:56 by vnazioze         ###   ########.fr       */
+/*   Updated: 2023/02/12 23:38:29 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,24 @@ void	make_vertical_line(t_data *data, int distance, double ix, t_img_data *img)
 	put_vertical_line(data, img);
 }
 
+void	get_fps(t_data *data)
+{	
+	struct timeval	tv;
+
+	gettimeofday(&tv, 0);
+	if (data->last_sec == tv.tv_sec * 1000)
+		data->count_frame++;
+	else
+	{
+		data->last_sec = tv.tv_sec * 1000;
+		printf("fps: %d\n", data->count_frame);
+		data->count_frame=0;		
+	}
+}
+
 void	make_image(t_data *data)
 {
+	get_fps(data);
 	data->img.game = malloc(sizeof(t_img));
 	data->img.game->new_img = mlx_new_image(data->mlx, WINDOW_SIZE, WINDOW_SIZE);
 	data->img.game->address = mlx_get_data_addr( \
