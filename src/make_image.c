@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:56:12 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/12 20:00:29 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/13 02:51:56 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	put_vertical_line(t_data *data, t_img_data *img)
 		data->rc.line_o++;
 		data->rc.ty += data->rc.ty_step;
 	}
-	while (data->rc.y_max <= 512)
+	while (data->rc.y_max <= WINDOW_SIZE)
 	{
 		data->rc.x = (data->ray_num * 8);
 		while (data->rc.x < (data->ray_num * 8) + 8)
@@ -46,13 +46,13 @@ void	make_vertical_line(t_data *data, int distance, double ix, t_img_data *img)
 	data->rc.y_ceil = 0;
 	if (distance == 0)
 		distance = 1;
-	data->rc.line_h = (SPRITE_LEN * 512) / distance;
+	data->rc.line_h = (SPRITE_LEN * WINDOW_SIZE) / distance;
 	data->rc.ty_step = 64.0 / (float)data->rc.line_h;
 	data->rc.ty_off = 0;
-	if (data->rc.line_h > 512)
+	if (data->rc.line_h > WINDOW_SIZE)
 	{
-		data->rc.ty_off = (data->rc.line_h - 512) / 2.0;
-		data->rc.line_h = 512;
+		data->rc.ty_off = (data->rc.line_h - WINDOW_SIZE) / 2.0;
+		data->rc.line_h = WINDOW_SIZE;
 	}
 	data->rc.line_o = 256 - data->rc.line_h / 2;
 	data->rc.y_max = data->rc.line_o + data->rc.line_h;
@@ -66,7 +66,7 @@ void	make_vertical_line(t_data *data, int distance, double ix, t_img_data *img)
 void	make_image(t_data *data)
 {
 	data->img.game = malloc(sizeof(t_img));
-	data->img.game->new_img = mlx_new_image(data->mlx, 512, 512);
+	data->img.game->new_img = mlx_new_image(data->mlx, WINDOW_SIZE, WINDOW_SIZE);
 	data->img.game->address = mlx_get_data_addr( \
 		data->img.game->new_img, &data->img.game->bits_per_pixel, \
 		&data->img.game->line_length, &data->img.game->endian \

@@ -31,6 +31,7 @@
 # define KEYRELEASE 3
 # define KEYPRESSMASK 1
 # define KEYRELEASEMASK 10
+# define WINDOW_SIZE 512
 
 # define RED "\033[0;31m"
 # define GREEN "\033[0;32m"

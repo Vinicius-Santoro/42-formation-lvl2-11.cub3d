@@ -45,7 +45,7 @@ t_img_data	*init_texture( char *file, t_data *data)
 void	init_game(t_data *data)
 {
 	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, 512, 512, "Cub3d");
+	data->win = mlx_new_window(data->mlx, WINDOW_SIZE, WINDOW_SIZE, "Cub3d");
 	data->img.no = init_texture(data->map.tex.no, data);
 	data->img.so = init_texture(data->map.tex.so, data);
 	data->img.we = init_texture(data->map.tex.we, data);
