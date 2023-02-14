@@ -95,3 +95,5 @@ the maze.
 - [makefile](docs/project_details/makefile.md)
 - [main.c](docs/project_details/main.md)
 - [validate_error.c](docs/project_details/validate_error.md)
+- [read_map.c](docs/project_details/read_map.md)
+- [parse_map.c](docs/project_details/parse_map.md)
