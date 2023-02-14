@@ -164,10 +164,20 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(data->mlx, ft_run, data);
 	
 	/* Função chamada quando uma tecla é pressionada
+	data->win: é um ponteiro para a janela MLX que registra o evento.
+	KEYPRESS: é um identificador de pressionar a tecla.
+	KEYPRESSMASK: é um edentificador para caputurar as teclas pressionadas.
+	arrows_down: função calback de quando a tecla é pressioanda.
+	data:   é um ponteiro para os dados que serão passados para a função de callback arrows_down.
 	*/
 	mlx_hook(data->win, KEYPRESS, KEYPRESSMASK, arrows_down, data);
 	
-	/* Função chamada quando uma tecla é solta */
+	/* Função chamada quando uma tecla é solta
+	KEYRELEASE: tipo de evento que será capturado. Neste caso, é o evento de liberação de uma tecla.
+	KEYRELEASEMASK: é uma máscara que especifica o tipo de evento que será capturado.
+	arrows_up: é a função de callback que será chamada quando o evento de liberação de tecla for detectado.
+	data: é um ponteiro para os dados que serão passados para a função de callback arrows_up.
+	*/
 	mlx_hook(data->win, KEYRELEASE, KEYRELEASEMASK, arrows_up, data);
 	
 	/* Função chamada ao fechar a janela */
