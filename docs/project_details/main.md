@@ -95,47 +95,85 @@ t_img_data	*init_texture(char *file, t_data *data)
 }
 ```
 
+- Descrição: iniciliza o jogo.
+- Parâmetro: `t_data *data` - ponteiro para as variáveis do jogo.
 ```c
 void	init_game(t_data *data)
 {
+	/* Inicialização da biblioteca MLX */
 	data->mlx = mlx_init();
+	
+	/* Criação da janela com tamanho 512 x 512 e título "Cub3d" */
 	data->win = mlx_new_window(data->mlx, WINDOW_SIZE, WINDOW_SIZE, "Cub3d");
+	
+	/* Inicialização das texturas "no", "so", "we" e "ea" */
 	data->img.no = init_texture(data->map.tex.no, data);
 	data->img.so = init_texture(data->map.tex.so, data);
 	data->img.we = init_texture(data->map.tex.we, data);
 	data->img.ea = init_texture(data->map.tex.ea, data);
-	data->turn_left = 0;
-	data->turn_right = 0;
+	
+	/* Inicialização das ações do jogador */
 	data->move_up = 0;
 	data->move_down = 0;
 	data->move_left = 0;
 	data->move_right = 0;
+	
+	/* Campo de visão a esquerda e a direita */
+	data->turn_left = 0;
+	data->turn_right = 0;
+	
+	/* Inicialização de variáveis para contagem de tempo */
 	data->last_sec = 0;
 	data->last_fps = 0;
 	data->count_frame = 0;
+	
+	/* Inicialização da string para exibição dos fps */
 	data->str_fps = ft_strdup("");
 }
 ```
 
-
+- Descrição: iniciliza o jogo.
+- Parâmetro: `t_data *data` - ponteiro para as variáveis do jogo.
 ```c
 int	main(int argc, char **argv)
 {
-	t_data	*data;
-
+	/* Verifica se o número de argumentos passados é inválido */
 	if (argc > 2)
 		error_message(1, "Invalid arguments: too many", data);
 	if (argc < 2)
 		error_message(2, "Invalid arguments: not enough", data);
+
+	/* Aloca espaço na memória para o struct de dados */
 	data = malloc(sizeof(t_data));
+
+	/* Verifica se o arquivo do mapa é válido */
 	if (validate_map(argv[1], data) == TRUE)
 		return (1);
+
+	/* Inicializa o jogo */
 	init_game(data);
+
+	/* Cria a imagem */
 	make_image(data);
+	
+	/* Configura a rotina que será executada a cada atualização de tela
+	mlx: ponteiro para o contexto da biblioteca MLX.
+	ft_run: função callback que será chamada sempre que o evento de loop ocorrer
+	data: elementos da struct data que serão passados para a função callback ft_run sempre que ela for chamada.
+	*/
 	mlx_loop_hook(data->mlx, ft_run, data);
+	
+	/* Função chamada quando uma tecla é pressionada
+	*/
 	mlx_hook(data->win, KEYPRESS, KEYPRESSMASK, arrows_down, data);
+	
+	/* Função chamada quando uma tecla é solta */
 	mlx_hook(data->win, KEYRELEASE, KEYRELEASEMASK, arrows_up, data);
+	
+	/* Função chamada ao fechar a janela */
 	mlx_hook(data->win, 17, 0L, close_game, data);
+	
+	/* Loop principal da biblioteca mlx */
 	mlx_loop(data->mlx);
 	return (0);
 }
