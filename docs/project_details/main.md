@@ -95,7 +95,7 @@ t_img_data	*init_texture(char *file, t_data *data)
 }
 ```
 
-- Descrição: iniciliza o jogo.
+- Descrição: inicializa o jogo.
 - Parâmetro: `t_data *data` - ponteiro para as variáveis do jogo.
 ```c
 void	init_game(t_data *data)
