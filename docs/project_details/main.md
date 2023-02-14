@@ -4,8 +4,7 @@
 
 <h1></h1>
 
-
-- Descrição: Essa função valida se a extensão do arquivo do mapa é `.cub`,
+- Descrição: valida se a extensão do arquivo do mapa é `.cub`,
 faz a leitura do mapa e analisa se o conteúdo do mapa é valido ou não.
 - Parâmetro: `char *file_name` - arquivo que será analisado.
 - Parâmetro: `t_data *data` - arquivo que será analisado.
@@ -25,25 +24,73 @@ int	validate_map(char *file_name, t_data *data)
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
 		error_message(3, "Invalid file: not exist", data);
+		
+	/*
+	Verificação da extensão do arquivo.
+	*/
 	if (is_valid_ext(file_name, ".cub") == FALSE)
 		error_message(4, "Invalid file extension: not .cub", data);
+		
+	/*
+	Função para ler o mapa.
+	*/
 	read_map(fd, data);
+	
+	/*
+	Função para analisar o mapa e o conteúdo do arquivo.
+	*/
 	parse_map(data);
+	
+	/*
+	Fechamento do file descriptorç.
+	*/
 	close(fd);
 	return (0);
 }
 ```
 
+- Descrição: inicializa as texturas a partir do arquivo `xpm`. Ela retorna um ponteiro para uma estrutura "t_img_data", que contém informações sobre a imagem, como o endereço dos dados da imagem, o número de bits por pixel, o comprimento da linha e o endianess.
+- Parâmetro: `char *file` - arquivo que contém as texturas (.xpm).
+- Parâmetro: `t_data *data` - utuliza essa variável para comseguir acesso a minilibx.
 ```c
-t_img_data	*init_texture( char *file, t_data *data)
+t_img_data	*init_texture(char *file, t_data *data)
 {
-	int		trash;
-	t_img_data	*ret;
+	/*
+	Variável "trash" para descartar informações desnecessárias.
+	*/
+	int trash;
+	
+	/*
+	Ponteiro para estrutura "t_img_data".
+	t_img_data ret;
+	*/
 
-	ret = malloc (sizeof(t_img));
+	/*
+	Aloca memória para a estrutura "t_img_data".
+	*/
+	ret = malloc(sizeof(t_img));
+
+	/*
+	Carrega a imagem a partir do arquivo fornecido.
+	"mlx": um ponteiro para a estrutura "mlx" que contém informações gerais sobre a janela gráfica.
+	"file": uma string que representa o caminho para o arquivo de imagem.
+	"trash": width - um ponteiro para um inteiro que será preenchido com a largura da imagem.
+	"trash": height - um ponteiro para um inteiro que será preenchido com o comprimento da imagem.
+	*/
 	ret->new_img = mlx_xpm_file_to_image(data->mlx, file, &trash, &trash);
-	ret->address = mlx_get_data_addr(ret->new_img, &ret->bits_per_pixel,
-			&ret->line_length, &ret->endian);
+
+	/*
+	Obtém o endereço dos dados da imagem.
+	"image": um ponteiro para a estrutura "mlx_img" que representa a imagem.
+	"bits_per_pixel": um ponteiro para um inteiro que será preenchido com o número de bits por pixel da imagem.
+	"line_length": um ponteiro para um inteiro que será preenchido com o comprimento da linha da imagem (em bytes).
+	"endian": um ponteiro para um inteiro que será preenchido com o endianess da imagem
+	(0 para little-endian, 1 para big-endian).
+	O endian serve para ler o endereço da imagem.
+	*/
+	ret->address = mlx_get_data_addr(ret->new_img, &ret->bits_per_pixel, &ret->line_length, &ret->endian);
+
+	// Retorna o ponteiro para a estrutura "t_img_data"
 	return (ret);
 }
 ```
