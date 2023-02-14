@@ -93,11 +93,5 @@ the maze.
 #### Details of the entire project
 
 - [makefile](docs/project_details/makefile.md)
-- [main.c](docs/main.md)
-- [utils.c](docs/utils.md)
-- [init_list.c](docs/init_list.md)
-- [thread.c](docs/thread.md)
-- [philo_actions.c](docs/philo_actions.md)
-- [mutex_check.c](docs/thread.md)
-- [death_check.c](docs/death_check.md)
-- [free.c](docs/free.md)
+- [main.c](docs/project_details/main.md)
+
