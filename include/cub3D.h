@@ -28,9 +28,9 @@
 # define PI 3.1415926535
 # define SPRITE_LEN 64
 
+# define KEYPRESSMASK 1
 # define KEYPRESS 2
 # define KEYRELEASE 3
-# define KEYPRESSMASK 1
 # define KEYRELEASEMASK 10
 # define WINDOW_SIZE 512
 

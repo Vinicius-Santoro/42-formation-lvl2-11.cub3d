@@ -12,9 +12,6 @@
 
 #include "cub3D.h"
 
-#define KEYPRESSMASK 1
-#define KEYPRESS 2
-
 int	validate_map(char *file_name, t_data *data)
 {
 	int	fd;
