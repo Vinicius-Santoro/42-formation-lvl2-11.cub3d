@@ -94,4 +94,4 @@ the maze.
 
 - [makefile](docs/project_details/makefile.md)
 - [main.c](docs/project_details/main.md)
-
+- [validate_error.c](docs/project_details/validate_error.md)
