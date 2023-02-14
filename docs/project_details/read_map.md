@@ -80,8 +80,8 @@ static void	init_map(t_data *data)
 <h1></h1>
 
 - Descrição: lê o arquivo de mapa e armazena as informações necessárias para o jogo.
-- Parâmetro: `int fd` - 
-- Parâmetro: `t_data *data` - 
+- Parâmetro: `int fd` - mapa.
+- Parâmetro: `t_data *data` - informações sobre o mapa.
 ```c
 int	read_map(int fd, t_data *data)
 {
@@ -108,7 +108,7 @@ int	read_map(int fd, t_data *data)
 
 	/* Verifica se as informações estão corretas */
 	while (data->map.lines[++i])
-		/* texturas no, so, we, ea, F e C.
+		/* texturas no, so, we, ea, F e C. */
 		check_line(data->map.lines[i], data);
 	check_is_missing_header(data);
 }
