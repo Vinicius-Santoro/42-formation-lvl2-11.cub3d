@@ -5,7 +5,7 @@
 <h1></h1>
 
 - Descrição: libera a memória alocada para uma matriz de strings.
-- Parâmetro: a matriz de strings a ser liberada da memória.
+- Parâmetro: `char **matrix` - a matriz de strings a ser liberada da memória.
 ```c
 void free_matrix(char **matrix)
 {
@@ -32,6 +32,8 @@ void free_matrix(char **matrix)
     }
 }
 ```
+
+<h1></h1>
 
 - Descrição: exibe uma mensagem de erro e encerra o programa com uma determinada saída de código.
 - Parâmetro: `error_code` -  um código de erro inteiro para indicar o tipo de erro ocorrido.
@@ -61,6 +63,8 @@ void error_message(int error_code, char *message_error, t_data *data)
 }
 ```
 
+<h1></h1>
+
 - Descrição: encerra o jogo e libera a memória alocada para as informações do jogo armazenadas em `data`.
 - Parâmetro: `t_data *data` - ponteiro para a estrutura de dados "t_data", que armazena informações sobre o jogo.
 ```c
@@ -79,6 +83,8 @@ void	exit_game(t_data *data)
 	free_matrix(data->map.lines);
 }
 ```
+
+<h1></h1>
 
 - Descrição: destrói as imagens que foram criadas anteriormente usando a biblioteca MLX
 - Parâmetro: `t_data *data` - ponteiro para a estrutura de dados "t_data", que armazena informações sobre o jogo.
@@ -111,6 +117,8 @@ void	destroy_images(t_data *data)
 	free(data->mlx);
 }
 ```
+
+<h1></h1>
 
 - Descrição: fecha o jogo e libera toda a memória alocada durante sua execução
 - Parâmetro: `t_data *data` - ponteiro para a estrutura de dados "t_data", que armazena informações sobre o jogo.
