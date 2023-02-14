@@ -49,6 +49,8 @@ int	validate_map(char *file_name, t_data *data)
 }
 ```
 
+<h1></h1>
+
 - Descrição: inicializa as texturas a partir do arquivo `xpm`. Ela retorna um ponteiro para uma estrutura "t_img_data", que contém informações sobre a imagem, como o endereço dos dados da imagem, o número de bits por pixel, o comprimento da linha e o endianess.
 - Parâmetro: `char *file` - arquivo que contém as texturas (.xpm).
 - Parâmetro: `t_data *data` - utuliza essa variável para comseguir acesso a minilibx.
@@ -95,6 +97,8 @@ t_img_data	*init_texture(char *file, t_data *data)
 }
 ```
 
+<h1></h1>
+
 - Descrição: inicializa o jogo.
 - Parâmetro: `t_data *data` - ponteiro para as variáveis do jogo.
 ```c
@@ -131,6 +135,8 @@ void	init_game(t_data *data)
 	data->str_fps = ft_strdup("");
 }
 ```
+
+<h1></h1>
 
 - Descrição: iniciliza o jogo.
 - Parâmetro: `t_data *data` - ponteiro para as variáveis do jogo.
