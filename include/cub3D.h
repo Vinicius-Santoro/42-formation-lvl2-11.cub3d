@@ -30,12 +30,14 @@
 
 # define PI 3.1415926535
 # define SPRITE_LEN 64
+# define WINDOW_SIZE 512
 
 # define KEYPRESSMASK 1
 # define KEYPRESS 2
 # define KEYRELEASE 3
 # define KEYRELEASEMASK 10
-# define WINDOW_SIZE 512
+# define DESTROYNOTIFY 17
+# define NOEVENTMASK 0L
 
 # define RED "\033[0;31m"
 # define GREEN "\033[0;32m"
