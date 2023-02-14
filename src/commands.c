@@ -6,7 +6,7 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 19:43:59 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/13 19:56:57 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/13 23:29:10 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ int	check_collision(t_data *data, double ra)
 	int	map_y;
 
 	get_distance(data, ra);
-	map_x = data->player.x + (30 * data->step_x);
-	map_y = data->player.y + (30 * data->step_y);
+	map_x = data->player.x + (5 * data->step_x);
+	map_y = data->player.y + (5 * data->step_y);
 	map_x = map_x >> 6;
 	map_y = map_y >> 6;
 	if (data->map.map[map_y][(int)(data->player.x) >> 6] == '1' || \
@@ -69,22 +69,26 @@ int	check_collision(t_data *data, double ra)
 
 void	movement(t_data *data)
 {
-	if (data->move_up == 1 && check_collision(data, data->player.angle))
+	if (data->move_up == 1 \
+	&& check_collision(data, data->player.angle))
 	{
 		data->player.x += 2 * cos(data->player.angle);
 		data->player.y -= 2 * sin(data->player.angle);
 	}
-	if (data->move_down == 1 && check_collision(data, data->player.angle + PI))
+	if (data->move_down == 1 \
+	&& check_collision(data, data->player.angle + PI))
 	{
 		data->player.x -= 2 * cos(data->player.angle);
 		data->player.y += 2 * sin(data->player.angle);
 	}
-	if (data->move_right == 1 && check_collision(data, data->player.angle - PI / 2))
+	if (data->move_right == 1 \
+	&& check_collision(data, data->player.angle - PI / 2))
 	{
 		data->player.x += 2 * sin(data->player.angle);
 		data->player.y += 2 * cos(data->player.angle);
 	}
-	if (data->move_left == 1 && check_collision(data, data->player.angle + PI / 2))
+	if (data->move_left == 1 \
+	&& check_collision(data, data->player.angle + PI / 2))
 	{
 		data->player.x -= 2 * sin(data->player.angle);
 		data->player.y -= 2 * cos(data->player.angle);

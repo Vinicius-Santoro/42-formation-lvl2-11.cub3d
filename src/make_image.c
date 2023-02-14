@@ -6,7 +6,7 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:56:12 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/13 20:10:05 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/13 23:34:04 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ void	put_vertical_line(t_data *data, t_img_data *img)
 	}
 }
 
-void	make_vertical_line(t_data *data, int distance, double ix, t_img_data *img)
+void	make_vertical_line(t_data *data, int dist, double ix, t_img_data *img)
 {
 	data->rc.y_ceil = 0;
-	if (distance == 0)
-		distance = 1;
-	data->rc.line_h = (SPRITE_LEN * WINDOW_SIZE) / distance;
+	if (dist == 0)
+		dist = 1;
+	data->rc.line_h = (SPRITE_LEN * WINDOW_SIZE) / dist;
 	data->rc.ty_step = 64.0 / (float)data->rc.line_h;
 	data->rc.ty_off = 0;
 	if (data->rc.line_h > WINDOW_SIZE)
@@ -74,7 +74,7 @@ void	get_fps(t_data *data)
 	{
 		data->last_fps = data->count_frame;
 		data->last_sec = tv.tv_sec;
-		data->count_frame=0;
+		data->count_frame = 0;
 		free(data->str_fps);
 		data->str_fps = ft_itoa(data->last_fps);
 	}
@@ -87,8 +87,10 @@ void	make_image(t_data *data)
 {
 	get_fps(data);
 	data->img.game = malloc(sizeof(t_img));
-	data->img.game->new_img = mlx_new_image(data->mlx, WINDOW_SIZE, WINDOW_SIZE);
-	data->img.game->address = mlx_get_data_addr( \
+	data->img.game->new_img = mlx_new_image(\
+		data->mlx, WINDOW_SIZE, WINDOW_SIZE \
+		);
+	data->img.game->address = mlx_get_data_addr(\
 		data->img.game->new_img, &data->img.game->bits_per_pixel, \
 		&data->img.game->line_length, &data->img.game->endian \
 		);
@@ -100,7 +102,9 @@ void	make_image(t_data *data)
 		data->ra -= PI / 180;
 		data->ray_num++;
 	}
-	mlx_put_image_to_window(data->mlx, data->win, data->img.game->new_img, 0, 0);
+	mlx_put_image_to_window(
+		data->mlx, data->win, data->img.game->new_img, 0, 0
+		);
 	mlx_destroy_image(data->mlx, data->img.game->new_img);
 	free(data->img.game);
 }

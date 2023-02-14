@@ -6,11 +6,14 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:50:48 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/13 21:50:49 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/13 23:16:11 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#ifndef PROTOTYPES_H
+# define PROTOTYPES_H
+
+# include "cub3D.h"
 
 int		read_map(int fd, t_data *data);
 void	check_line(char *line, t_data *data);
@@ -33,10 +36,12 @@ double	get_distance(t_data *data, double ra);
 void	raycast(t_data *data, double ra);
 
 void	put_vertical_line(t_data *data, t_img_data *img);
-void	make_vertical_line(t_data *data, int distance, double ix, t_img_data *img);
+void	make_vertical_line(t_data *data, int dist, double ix, t_img_data *img);
 void	my_img_pixel_put(t_img_data *img, int x, int y, int color);
 int		my_img_pixel_get(t_img_data *img, int x, int y);
 
 int		ft_run(t_data *data);
 int		arrows_up(int keycode, t_data *data);
 int		arrows_down(int keycode, t_data *data);
+
+#endif

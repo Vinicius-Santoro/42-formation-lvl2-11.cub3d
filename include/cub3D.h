@@ -27,6 +27,7 @@
 
 # define FALSE 0
 # define TRUE 1
+# define MAX_INT 2147483647
 
 # define PI 3.1415926535
 # define SPRITE_LEN 64

@@ -6,7 +6,7 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 21:17:20 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/11 17:05:50 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/13 22:15:35 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,13 @@ static int	check_map_chars(char *line)
 
 static int	get_color(char *line, int color, t_data *data)
 {
-	// linha aparada
 	char	*trimmed_line;
 	int		rgb[3];
 	int		i;
 
 	i = -1;
 	if (color != -1)
-	{
-		// Não pode ter ff, nem cc.
 		error_message(7, "Invalid color: duplicated color rgb", data);
-	}
-	// Remove os espaços e as quebras de linha, pegando apenas o rgb.
 	trimmed_line = ft_strtrim(line + 2, " \n\t\r");
 	data->map.splited_line = ft_split(trimmed_line, ',');
 	if (trimmed_line != NULL)
@@ -58,8 +53,6 @@ static int	get_color(char *line, int color, t_data *data)
 	data->map.splited_line = NULL;
 	if (i != 3)
 		error_message(11, "Invalid RGB value: is not a rgb", data);
-	// formula de transformacao para rgb puro
-	// return ((rgb[0] * BYTE * BYTE) + (rgb[1] * BYTE) + rgb[2]);
 	return ((rgb[0] << 16) + (rgb[1] << 8) + (rgb[2] << 0));
 }
 
@@ -70,7 +63,6 @@ static char	*get_tex_file(char *line, char *tex, t_data *data)
 
 	if (tex != NULL)
 		error_message(6, "Invalid texture: duplicated position", data);
-	// Apagando espaço tanto no começo quanto no fim
 	file_name = ft_strtrim(line + 3, " \n");
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)

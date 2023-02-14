@@ -29,8 +29,8 @@ int	validate_map(char *file_name, t_data *data)
 
 t_img_data	*init_texture( char *file, t_data *data)
 {
-	int		trash;
 	t_img_data	*ret;
+	int			trash;
 
 	ret = malloc (sizeof(t_img));
 	ret->new_img = mlx_xpm_file_to_image(data->mlx, file, &trash, &trash);

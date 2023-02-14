@@ -6,11 +6,14 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:50:50 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/13 21:50:51 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/13 22:09:05 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#ifndef STRUCTS_H
+# define STRUCTS_H
+
+# include "cub3D.h"
 
 typedef struct s_tex
 {
@@ -109,3 +112,5 @@ typedef struct s_data
 	int			last_fps;
 	char		*str_fps;
 }	t_data;
+
+#endif

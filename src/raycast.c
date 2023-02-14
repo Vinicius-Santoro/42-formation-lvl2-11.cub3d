@@ -6,7 +6,7 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 03:09:58 by vnazioze          #+#    #+#             */
-/*   Updated: 2023/02/13 20:48:46 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/13 23:17:56 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ void	get_sidedist(t_data *data, double ra)
 void	get_deltadist(t_data *data, double ra)
 {
 	if (cos(ra) == 0)
-		data->deltadist_x = 2147483647;
+		data->deltadist_x = MAX_INT;
 	else
 		data->deltadist_x = fabs(64 / cos(ra));
 	if (sin(ra) == 0)
-		data->deltadist_y = 2147483647;
+		data->deltadist_y = MAX_INT;
 	else
 		data->deltadist_y = fabs(64 / sin(ra));
 }
@@ -98,11 +98,15 @@ void	raycast(t_data *data, double ra)
 	ca = data->player.angle - data->ra;
 	dist = dist * cos(ca);
 	if (data->wall == 0 && (ra <= PI / 2 || ra >= 3 * PI / 2))
-		make_vertical_line(data, dist, data->player.y - dist * sin(ra), data->img.ea);
+		make_vertical_line(\
+			data, dist, data->player.y - dist * sin(ra), data->img.ea);
 	else if (data->wall == 0)
-		make_vertical_line(data, dist, data->player.y - dist * sin(ra), data->img.we);
+		make_vertical_line(\
+			data, dist, data->player.y - dist * sin(ra), data->img.we);
 	else if (data->wall == 1 && ra <= PI)
-		make_vertical_line(data, dist, data->player.x + dist * cos(ra), data->img.no);
+		make_vertical_line(\
+			data, dist, data->player.x + dist * cos(ra), data->img.no);
 	else
-		make_vertical_line(data, dist, data->player.x + dist * cos(ra), data->img.so);
+		make_vertical_line(\
+			data, dist, data->player.x + dist * cos(ra), data->img.so);
 }

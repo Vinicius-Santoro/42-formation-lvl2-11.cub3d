@@ -6,7 +6,7 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 03:19:39 by vnazioze          #+#    #+#             */
-/*   Updated: 2023/02/12 19:24:06 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/13 22:14:06 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ int	my_img_pixel_get(t_img_data *img, int x, int y)
 
 	byte = img->address + ((y * img->line_length)
 			+ (abs(x * img->bits_per_pixel / 8)));
-	return (*(unsigned int*)byte);
+	return (*(unsigned int *)byte);
 }
