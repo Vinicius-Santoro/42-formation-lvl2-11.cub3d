@@ -6,13 +6,68 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:56:12 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/13 23:34:04 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/14 22:15:58 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	put_vertical_line(t_data *data, t_img_data *img)
+void		make_image(t_data *data);
+void		make_vertical_line(
+				t_data *data, int dist, double ix, t_img_data *img);
+static void	put_vertical_line(t_data *data, t_img_data *img);
+static void	my_img_pixel_put(t_img_data *img, int x, int y, int color);
+static int	my_img_pixel_get(t_img_data *img, int x, int y);
+
+void	make_image(t_data *data)
+{
+	get_fps(data);
+	data->img.game = malloc(sizeof(t_img));
+	data->img.game->new_img = mlx_new_image(\
+		data->mlx, WINDOW_SIZE, WINDOW_SIZE \
+		);
+	data->img.game->address = mlx_get_data_addr(\
+		data->img.game->new_img, &data->img.game->bits_per_pixel, \
+		&data->img.game->line_length, &data->img.game->endian \
+		);
+	data->ra = data->player.angle + (PI / 180 * 32);
+	data->ray_num = 0;
+	while (data->ray_num < 64)
+	{
+		raycast(data, data->ra);
+		data->ra -= PI / 180;
+		data->ray_num++;
+	}
+	mlx_put_image_to_window(
+		data->mlx, data->win, data->img.game->new_img, 0, 0
+		);
+	mlx_destroy_image(data->mlx, data->img.game->new_img);
+	free(data->img.game);
+}
+
+void	make_vertical_line(t_data *data, int dist, double ix, t_img_data *img)
+{
+	data->rc.y_ceil = 0;
+	if (dist == 0)
+		dist = 1;
+	data->rc.line_h = (SPRITE_LEN * WINDOW_SIZE) / dist;
+	data->rc.ty_step = 64.0 / (float)data->rc.line_h;
+	data->rc.ty_off = 0;
+	if (data->rc.line_h > WINDOW_SIZE)
+	{
+		data->rc.ty_off = (data->rc.line_h - WINDOW_SIZE) / 2.0;
+		data->rc.line_h = WINDOW_SIZE;
+	}
+	data->rc.line_o = 256 - data->rc.line_h / 2;
+	data->rc.y_max = data->rc.line_o + data->rc.line_h;
+	data->rc.tx = (int)(ix) % 64;
+	if (img == data->img.so || img == data->img.we)
+		data->rc.tx = 63 - data->rc.tx;
+	data->rc.ty = data->rc.ty_off * data->rc.ty_step;
+	put_vertical_line(data, img);
+}
+
+static void	put_vertical_line(t_data *data, t_img_data *img)
 {
 	while (data->rc.y_ceil <= data->rc.line_o)
 	{
@@ -41,70 +96,20 @@ void	put_vertical_line(t_data *data, t_img_data *img)
 	}
 }
 
-void	make_vertical_line(t_data *data, int dist, double ix, t_img_data *img)
+static void	my_img_pixel_put(t_img_data *img, int x, int y, int color)
 {
-	data->rc.y_ceil = 0;
-	if (dist == 0)
-		dist = 1;
-	data->rc.line_h = (SPRITE_LEN * WINDOW_SIZE) / dist;
-	data->rc.ty_step = 64.0 / (float)data->rc.line_h;
-	data->rc.ty_off = 0;
-	if (data->rc.line_h > WINDOW_SIZE)
-	{
-		data->rc.ty_off = (data->rc.line_h - WINDOW_SIZE) / 2.0;
-		data->rc.line_h = WINDOW_SIZE;
-	}
-	data->rc.line_o = 256 - data->rc.line_h / 2;
-	data->rc.y_max = data->rc.line_o + data->rc.line_h;
-	data->rc.tx = (int)(ix) % 64;
-	if (img == data->img.so || img == data->img.we)
-		data->rc.tx = 63 - data->rc.tx;
-	data->rc.ty = data->rc.ty_off * data->rc.ty_step;
-	put_vertical_line(data, img);
+	char	*byte;
+
+	byte = img->address + ((y * img->line_length)
+			+ (x * img->bits_per_pixel / 8));
+	*(unsigned int *)byte = color;
 }
 
-void	get_fps(t_data *data)
-{	
-	struct timeval	tv;
-
-	gettimeofday(&tv, 0);
-	if (data->last_sec == tv.tv_sec)
-		data->count_frame++;
-	else
-	{
-		data->last_fps = data->count_frame;
-		data->last_sec = tv.tv_sec;
-		data->count_frame = 0;
-		free(data->str_fps);
-		data->str_fps = ft_itoa(data->last_fps);
-	}
-	mlx_string_put(data->mlx, data->win, \
-	WINDOW_SIZE * 0.05, WINDOW_SIZE * 0.05, \
-	0x00FF00, data->str_fps);
-}
-
-void	make_image(t_data *data)
+static int	my_img_pixel_get(t_img_data *img, int x, int y)
 {
-	get_fps(data);
-	data->img.game = malloc(sizeof(t_img));
-	data->img.game->new_img = mlx_new_image(\
-		data->mlx, WINDOW_SIZE, WINDOW_SIZE \
-		);
-	data->img.game->address = mlx_get_data_addr(\
-		data->img.game->new_img, &data->img.game->bits_per_pixel, \
-		&data->img.game->line_length, &data->img.game->endian \
-		);
-	data->ra = data->player.angle + (PI / 180 * 32);
-	data->ray_num = 0;
-	while (data->ray_num < 64)
-	{
-		raycast(data, data->ra);
-		data->ra -= PI / 180;
-		data->ray_num++;
-	}
-	mlx_put_image_to_window(
-		data->mlx, data->win, data->img.game->new_img, 0, 0
-		);
-	mlx_destroy_image(data->mlx, data->img.game->new_img);
-	free(data->img.game);
+	char	*byte;
+
+	byte = img->address + ((y * img->line_length)
+			+ (abs(x * img->bits_per_pixel / 8)));
+	return (*(unsigned int *)byte);
 }

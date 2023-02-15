@@ -6,7 +6,7 @@
 #    By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 20:01:04 by vnazioze          #+#    #+#              #
-#    Updated: 2022/11/21 20:01:04 by vnazioze         ###   ########.fr        #
+#    Updated: 2023/02/15 08:24:54 by ldatilio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,15 +36,14 @@ SRC_PATH		=	./src/
 OBJ_PATH		=	./obj/
 
 SRC_FILES		=	main.c			\
-					read_map.c		\
-					validate_error.c\
-					utils.c			\
-					check_line.c    \
-					parse_map.c		\
+					check_line.c	\
+					commands.c		\
+					end_game.c		\
 					make_image.c	\
+					parse_map.c		\
+					read_map.c		\
 					raycast.c		\
-					my_img_pixel_put.c \
-					commands.c
+					utils.c
 
 SRC            	=	$(addprefix $(SRC_PATH),$(SRC_FILES))
 OBJ            	=	$(addprefix $(OBJ_PATH),$(subst .c,.o,$(SRC_FILES)))

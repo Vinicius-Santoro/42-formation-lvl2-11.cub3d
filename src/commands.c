@@ -6,11 +6,32 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 19:43:59 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/13 23:29:10 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/14 22:34:31 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+int			ft_run(t_data *data);
+int			arrows_down(int keycode, t_data *data);
+int			arrows_up(int keycode, t_data *data);
+static void	movement(t_data *data);
+static int	check_collision(t_data *data, double ra);
+
+int	ft_run(t_data *data)
+{
+	movement(data);
+	if (data->turn_left == 1)
+		data->player.angle += PI / 180;
+	if (data->turn_right == 1)
+		data->player.angle -= PI / 180;
+	if (data->player.angle > PI * 2)
+		data->player.angle -= PI * 2;
+	if (data->player.angle < 0)
+		data->player.angle += PI * 2;
+	make_image(data);
+	return (0);
+}
 
 int	arrows_down(int keycode, t_data *data)
 {
@@ -50,24 +71,7 @@ int	arrows_up(int keycode, t_data *data)
 	return (0);
 }
 
-int	check_collision(t_data *data, double ra)
-{
-	int	map_x;
-	int	map_y;
-
-	get_distance(data, ra);
-	map_x = data->player.x + (5 * data->step_x);
-	map_y = data->player.y + (5 * data->step_y);
-	map_x = map_x >> 6;
-	map_y = map_y >> 6;
-	if (data->map.map[map_y][(int)(data->player.x) >> 6] == '1' || \
-	data->map.map[(int)(data->player.y) >> 6][map_x] == '1' || \
-	data->map.map[map_y][map_x] == '1')
-		return (0);
-	return (1);
-}
-
-void	movement(t_data *data)
+static void	movement(t_data *data)
 {
 	if (data->move_up == 1 \
 	&& check_collision(data, data->player.angle))
@@ -95,17 +99,19 @@ void	movement(t_data *data)
 	}
 }
 
-int	ft_run(t_data *data)
+static int	check_collision(t_data *data, double ra)
 {
-	movement(data);
-	if (data->turn_left == 1)
-		data->player.angle += PI / 180;
-	if (data->turn_right == 1)
-		data->player.angle -= PI / 180;
-	if (data->player.angle > PI * 2)
-		data->player.angle -= PI * 2;
-	if (data->player.angle < 0)
-		data->player.angle += PI * 2;
-	make_image(data);
-	return (0);
+	int	map_x;
+	int	map_y;
+
+	get_distance(data, ra);
+	map_x = data->player.x + (5 * data->step_x);
+	map_y = data->player.y + (5 * data->step_y);
+	map_x = map_x >> 6;
+	map_y = map_y >> 6;
+	if (data->map.map[map_y][(int)(data->player.x) >> 6] == '1' || \
+	data->map.map[(int)(data->player.y) >> 6][map_x] == '1' || \
+	data->map.map[map_y][map_x] == '1')
+		return (0);
+	return (1);
 }
