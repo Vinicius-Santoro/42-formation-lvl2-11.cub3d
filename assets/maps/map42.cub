@@ -1,7 +1,7 @@
-NO ./assets/Images/bookshelf.xpm
+NO ./assets/Images/metal.xpm
 SO ./assets/Images/bricks.xpm  
 WE ./assets/Images/gemov.xpm
-EA ./assets/Images/dirt.xpm  
+EA ./assets/Images/example.xpm  
 
 F 200,200,200
 C 0,0,0
