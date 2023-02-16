@@ -6,7 +6,7 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:50:50 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/13 22:09:05 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/16 00:03:27 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,14 @@ typedef struct s_img
 typedef struct s_raycast
 {
 	int		x;
-	int		line_h;
-	int		line_o;
+	int		line_height;
+	int		line_offset;
 	int		y_max;
 	int		y_ceil;
-	float	ty;
-	float	ty_step;
-	float	ty_off;
-	float	tx;
+	float	y_tex;
+	float	y_tex_step;
+	float	y_tex_offset;
+	float	x_tex;
 }	t_raycast;
 
 typedef struct s_data

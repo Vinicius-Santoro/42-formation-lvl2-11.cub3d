@@ -9,7 +9,7 @@
 ```c
 void	put_vertical_line(t_data *data, t_img_data *img)
 {
-	while (data->rc.y_ceil <= data->rc.line_o)
+	while (data->rc.y_ceil <= data->rc.line_offset)
 	{
 		data->rc.x = (data->ray_num * 8);
 		while (data->rc.x < (data->ray_num * 8) + 8)
@@ -17,14 +17,14 @@ void	put_vertical_line(t_data *data, t_img_data *img)
 			data->map.color.ceil);
 		data->rc.y_ceil++;
 	}
-	while (data->rc.line_o <= data->rc.y_max)
+	while (data->rc.line_offset <= data->rc.y_max)
 	{
 		data->rc.x = (data->ray_num * 8);
 		while (data->rc.x < (data->ray_num * 8) + 8)
-			my_img_pixel_put(data->img.game, data->rc.x++, data->rc.line_o, \
-			my_img_pixel_get(img, (int)data->rc.tx, (int)data->rc.ty));
-		data->rc.line_o++;
-		data->rc.ty += data->rc.ty_step;
+			my_img_pixel_put(data->img.game, data->rc.x++, data->rc.line_offset, \
+			my_img_pixel_get(img, (int)data->rc.x_tex, (int)data->rc.ty));
+		data->rc.line_offset++;
+		data->rc.ty += data->rc.y_tex_step;
 	}
 	while (data->rc.y_max <= WINDOW_SIZE)
 	{
@@ -45,20 +45,20 @@ void	make_vertical_line(t_data *data, int distance, double ix, t_img_data *img)
 	data->rc.y_ceil = 0;
 	if (distance == 0)
 		distance = 1;
-	data->rc.line_h = (SPRITE_LEN * WINDOW_SIZE) / distance;
-	data->rc.ty_step = 64.0 / (float)data->rc.line_h;
-	data->rc.ty_off = 0;
-	if (data->rc.line_h > WINDOW_SIZE)
+	data->rc.line_height = (SPRITE_SIZE * WINDOW_SIZE) / distance;
+	data->rc.y_tex_step = SPRITE_SIZE / (float)data->rc.line_height;
+	data->rc.y_tex_offset = 0;
+	if (data->rc.line_height > WINDOW_SIZE)
 	{
-		data->rc.ty_off = (data->rc.line_h - WINDOW_SIZE) / 2.0;
-		data->rc.line_h = WINDOW_SIZE;
+		data->rc.y_tex_offset = (data->rc.line_height - WINDOW_SIZE) / 2.0;
+		data->rc.line_height = WINDOW_SIZE;
 	}
-	data->rc.line_o = 256 - data->rc.line_h / 2;
-	data->rc.y_max = data->rc.line_o + data->rc.line_h;
-	data->rc.tx = (int)(ix) % 64;
+	data->rc.line_offset = 256 - data->rc.line_height / 2;
+	data->rc.y_max = data->rc.line_offset + data->rc.line_height;
+	data->rc.x_tex = (int)(ix) % 64;
 	if (img == data->img.so || img == data->img.we)
-		data->rc.tx = 63 - data->rc.tx;
-	data->rc.ty = data->rc.ty_off * data->rc.ty_step;
+		data->rc.x_tex = 63 - data->rc.x_tex;
+	data->rc.ty = data->rc.y_tex_offset * data->rc.y_tex_step;
 	put_vertical_line(data, img);
 }
 ```

@@ -30,8 +30,9 @@
 # define MAX_INT 2147483647
 
 # define PI 3.1415926535
-# define SPRITE_LEN 64
 # define WINDOW_SIZE 512
+# define SPRITE_SIZE 64
+# define SPRITE_SCALE (WINDOW_SIZE / SPRITE_SIZE)
 
 # define KEYPRESSMASK 1
 # define KEYPRESS 2

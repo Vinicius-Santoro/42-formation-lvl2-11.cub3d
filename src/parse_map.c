@@ -6,7 +6,7 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 22:58:54 by vnazioze          #+#    #+#             */
-/*   Updated: 2023/02/14 22:40:08 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/15 23:30:51 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ static void	get_player_angle(int y, int x, t_data *data)
 	if (ft_strchr("NSWE", data->map.map[y][x]))
 	{
 		data->player.count++;
-		data->player.y = y * SPRITE_LEN + SPRITE_LEN / 2;
-		data->player.x = x * SPRITE_LEN + SPRITE_LEN / 2;
+		data->player.y = y * SPRITE_SIZE + SPRITE_SIZE / 2;
+		data->player.x = x * SPRITE_SIZE + SPRITE_SIZE / 2;
 		if (data->map.map[y][x] == 'E')
 			data->player.angle = (PI / 2) * 0;
 		if (data->map.map[y][x] == 'N')
