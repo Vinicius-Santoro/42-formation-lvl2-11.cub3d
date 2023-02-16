@@ -1,7 +1,7 @@
-NO ./assets/Images/bookshelf.xpm
-SO ./assets/Images/bricks.xpm  
-WE ./assets/Images/gemov.xpm
-EA ./assets/Images/dirt.xpm  
+NO ./assets/Images/north.xpm
+SO ./assets/Images/north.xpm
+WE ./assets/Images/north.xpm
+EA ./assets/Images/north.xpm
 
 F 200,200,200
 C 0,0,0
