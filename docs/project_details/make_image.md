@@ -4,21 +4,9 @@
 
 <h1></h1>
 
+- Descrição:
+- Parâmetro:
 ```c
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   make_image.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/28 22:56:12 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/06 22:58:53 by ldatilio         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "cub3D.h"
-
 void	put_vertical_line(t_data *data, t_img_data *img)
 {
 	while (data->rc.y_ceil <= data->rc.line_o)
@@ -47,7 +35,11 @@ void	put_vertical_line(t_data *data, t_img_data *img)
 		data->rc.y_max++;
 	}
 }
+```
 
+- Descrição:
+- Parâmetro:
+```c
 void	make_vertical_line(t_data *data, int distance, double ix, t_img_data *img)
 {
 	data->rc.y_ceil = 0;
@@ -69,33 +61,38 @@ void	make_vertical_line(t_data *data, int distance, double ix, t_img_data *img)
 	data->rc.ty = data->rc.ty_off * data->rc.ty_step;
 	put_vertical_line(data, img);
 }
+```
 
-t_img_data	*init_texture( char *file, t_data *data)
-{
-	int		trash;
-	t_img_data	*ret;
+- Descrição:
+- Parâmetro:
+```c
+void	get_fps(t_data *data)
+{	
+	struct timeval	tv;
 
-	ret = malloc (sizeof(t_img));
-	ret->new_img = mlx_xpm_file_to_image(data->mlx, file, &trash, &trash);
-	ret->address = mlx_get_data_addr(ret->new_img, &ret->bits_per_pixel,
-			&ret->line_length, &ret->endian);
-	return (ret);
+	gettimeofday(&tv, 0);
+	if (data->last_sec == tv.tv_sec)
+		data->count_frame++;
+	else
+	{
+		data->last_fps = data->count_frame;
+		data->last_sec = tv.tv_sec;
+		data->count_frame=0;
+		free(data->str_fps);
+		data->str_fps = ft_itoa(data->last_fps);
+	}
+	mlx_string_put(data->mlx, data->win, \
+	WINDOW_SIZE * 0.05, WINDOW_SIZE * 0.05, \
+	0x00FF00, data->str_fps);
 }
+```
 
-// Inicialização das texturas.
-void	init_game(t_data *data)
-{
-	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, WINDOW_SIZE, WINDOW_SIZE, "Cub3d");
-	data->img.no = init_texture(data->map.tex.no, data);
-	data->img.so = init_texture(data->map.tex.so, data);
-	data->img.we = init_texture(data->map.tex.we, data);
-	data->img.ea = init_texture(data->map.tex.ea, data);
-}
-
+- Descrição:
+- Parâmetro:
+```c
 void	make_image(t_data *data)
 {
-	init_game(data);
+	get_fps(data);
 	data->img.game = malloc(sizeof(t_img));
 	data->img.game->new_img = mlx_new_image(data->mlx, WINDOW_SIZE, WINDOW_SIZE);
 	data->img.game->address = mlx_get_data_addr( \
@@ -111,11 +108,8 @@ void	make_image(t_data *data)
 		data->ray_num++;
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->img.game->new_img, 0, 0);
-	printf("aqui?????\n");
-	// mlx_destroy_image(data->mlx, data->img.game->img);
-	printf("aqui6?\n");
+	mlx_destroy_image(data->mlx, data->img.game->new_img);
 	free(data->img.game);
-	// mlx_loop(data->mlx);
-	// mlx_destroy_window(data->mlx, data->win);
 }
 ```
+

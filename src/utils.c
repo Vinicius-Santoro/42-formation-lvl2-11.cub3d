@@ -6,11 +6,31 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:22:28 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/01/25 19:57:07 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/14 22:45:26 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+int		is_valid_ext(char *file, const char *ext);
+char	*ft_strjoin_free(char *s1, char const *s2);
+int		ft_strisdigit(char *str);
+void	get_fps(t_data *data);
+
+int	is_valid_ext(char *file, const char *ext)
+{
+	size_t	file_len;
+	size_t	ext_len;
+
+	file_len = ft_strlen(file);
+	ext_len = ft_strlen(ext);
+	if (file_len > ext_len && \
+		ft_strncmp(file + (file_len - ext_len), ext, ext_len) == 0)
+		return (1);
+	free(file);
+	file = NULL;
+	return (0);
+}
 
 char	*ft_strjoin_free(char *s1, char const *s2)
 {
@@ -47,17 +67,22 @@ int	ft_strisdigit(char *str)
 	return (1);
 }
 
-int	is_valid_ext(char *file, const char *ext)
-{
-	size_t	file_len;
-	size_t	ext_len;
+void	get_fps(t_data *data)
+{	
+	struct timeval	tv;
 
-	file_len = ft_strlen(file);
-	ext_len = ft_strlen(ext);
-	if (file_len > ext_len && \
-		ft_strncmp(file + (file_len - ext_len), ext, ext_len) == 0)
-		return (1);
-	free(file);
-	file = NULL;
-	return (0);
+	gettimeofday(&tv, 0);
+	if (data->last_sec == tv.tv_sec)
+		data->count_frame++;
+	else
+	{
+		data->last_fps = data->count_frame;
+		data->last_sec = tv.tv_sec;
+		data->count_frame = 0;
+		free(data->str_fps);
+		data->str_fps = ft_itoa(data->last_fps);
+	}
+	mlx_string_put(data->mlx, data->win, \
+	WINDOW_SIZE * 0.05, WINDOW_SIZE * 0.05, \
+	0x00FF00, data->str_fps);
 }

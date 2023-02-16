@@ -5,7 +5,7 @@ Project 11: Cub3D - Eleventh project for the formation of software engineers at 
 - This project is inspired by the world-famous Wolfenstein 3D game. Our goal is to create a raycaster.
 
 #### This project was like this:
-![philo](https://user-images.githubusercontent.com/83036509/195736506-28f72fd7-3b88-48f3-8b93-01e2c5648938.gif)
+![cub3D](https://user-images.githubusercontent.com/53800866/219021641-d5f88920-0c3b-45cb-b1ff-33fcf7df9b8d.gif)
 
 #### How to run
 
@@ -93,11 +93,7 @@ the maze.
 #### Details of the entire project
 
 - [makefile](docs/project_details/makefile.md)
-- [main.c](docs/main.md)
-- [utils.c](docs/utils.md)
-- [init_list.c](docs/init_list.md)
-- [thread.c](docs/thread.md)
-- [philo_actions.c](docs/philo_actions.md)
-- [mutex_check.c](docs/thread.md)
-- [death_check.c](docs/death_check.md)
-- [free.c](docs/free.md)
+- [main.c](docs/project_details/main.md)
+- [validate_error.c](docs/project_details/validate_error.md)
+- [read_map.c](docs/project_details/read_map.md)
+- [parse_map.c](docs/project_details/parse_map.md)
