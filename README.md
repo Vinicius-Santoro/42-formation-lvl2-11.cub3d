@@ -5,7 +5,7 @@ Project 11: Cub3D - Eleventh project for the formation of software engineers at 
 - This project is inspired by the world-famous Wolfenstein 3D game. Our goal is to create a raycaster.
 
 #### This project was like this:
-![cub3D](https://user-images.githubusercontent.com/53800866/219021641-d5f88920-0c3b-45cb-b1ff-33fcf7df9b8d.gif)
+![lucas](https://user-images.githubusercontent.com/83036509/219818886-1cb1f06d-862c-473e-a2bd-305c0960e93b.gif)
 
 #### How to run
 
