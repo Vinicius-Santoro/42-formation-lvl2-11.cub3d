@@ -6,7 +6,7 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:22:28 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/14 22:45:26 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/19 00:16:14 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		is_valid_ext(char *file, const char *ext);
 char	*ft_strjoin_free(char *s1, char const *s2);
 int		ft_strisdigit(char *str);
 void	get_fps(t_data *data);
+int		mouse_move(int x, int y, t_data *data);
 
 int	is_valid_ext(char *file, const char *ext)
 {
@@ -69,15 +70,16 @@ int	ft_strisdigit(char *str)
 
 void	get_fps(t_data *data)
 {	
-	struct timeval	tv;
-
-	gettimeofday(&tv, 0);
-	if (data->last_sec == tv.tv_sec)
+	gettimeofday(&data->tv, 0);
+	if (data->last_sec == data->tv.tv_sec)
+	{
+		usleep(3000);
 		data->count_frame++;
+	}
 	else
 	{
 		data->last_fps = data->count_frame;
-		data->last_sec = tv.tv_sec;
+		data->last_sec = data->tv.tv_sec;
 		data->count_frame = 0;
 		free(data->str_fps);
 		data->str_fps = ft_itoa(data->last_fps);
@@ -85,4 +87,19 @@ void	get_fps(t_data *data)
 	mlx_string_put(data->mlx, data->win, \
 	WINDOW_SIZE * 0.05, WINDOW_SIZE * 0.05, \
 	0x00FF00, data->str_fps);
+}
+
+int	mouse_move(int x, int y, t_data *data)
+{
+	static int		last_x;
+
+	(void)y;
+	if (x > 0)
+	{
+		data->player.angle -= (x - WINDOW_SIZE / 2) * 0.0001;
+		last_x = x;
+	}
+	else if (last_x > 0)
+		data->player.angle  -= (last_x - WINDOW_SIZE / 2) * 0.0001;
+	return (0);
 }

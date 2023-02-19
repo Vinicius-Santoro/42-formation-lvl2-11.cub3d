@@ -6,7 +6,7 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:50:50 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/16 00:03:27 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/18 20:08:02 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ typedef struct s_data
 	int			last_sec;
 	int			last_fps;
 	char		*str_fps;
+	struct timeval		tv;
 }	t_data;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:50:48 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/14 22:48:34 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/19 00:19:32 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ char	*ft_strjoin_free(char *s1, char const *s2);
 int		ft_strisdigit(char *str);
 int		is_valid_ext(char *file, const char *ext);
 void	get_fps(t_data *data);
+int     mouse_move(int x, int y, t_data *data);
 
 #endif

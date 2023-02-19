@@ -34,6 +34,7 @@ int	main(int argc, char **argv)
 	mlx_hook(data->win, KEYPRESS, KEYPRESSMASK, arrows_down, data);
 	mlx_hook(data->win, KEYRELEASE, KEYRELEASEMASK, arrows_up, data);
 	mlx_hook(data->win, DESTROYNOTIFY, NOEVENTMASK, close_game, data);
+	mlx_hook(data->win, 6, 64, mouse_move, data);
 	mlx_loop(data->mlx);
 	return (0);
 }
