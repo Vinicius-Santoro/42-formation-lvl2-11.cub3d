@@ -125,21 +125,50 @@ int	main(int argc, char **argv)
 
 <h1></h1>
 
+- Descrição: valida se a extensão do arquivo do mapa é `.cub`,
+faz a leitura do mapa e analisa se o conteúdo do mapa é valido ou não.
+- Parâmetro: `char *file_name` - arquivo que será analisado.
+- Parâmetro: `t_data *data` - ponteiro para o arquivo que será analisado.
+
 ```c
 static int	validate_map(char *file_name, t_data *data)
 {
+	/*
+	Variável para armazenar o retorno que teremos na tentativa de abertura do arquivo.
+	*/
 	int	fd;
 
+	/*
+	Retorno que teremos na tentativa de abertura do arquivo.
+	A função open retorna -1 em caso de erro.
+	*/
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
 		error_message(3, "Invalid file: not exist", data);
+		
+	/*
+	Verificação da extensão do arquivo.
+	*/
 	if (is_valid_ext(file_name, ".cub") == FALSE)
 		error_message(4, "Invalid file extension: not .cub", data);
+		
+	/*
+	Função para ler o mapa.
+	*/
 	read_map(fd, data);
+	
+	/*
+	Função para analisar o mapa e o conteúdo do arquivo.
+	*/
 	parse_map(data);
+	
+	/*
+	Fechamento do file descriptorç.
+	*/
 	close(fd);
 	return (0);
 }
+```
 
 static void	init_game(t_data *data)
 {
