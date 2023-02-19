@@ -170,25 +170,44 @@ static int	validate_map(char *file_name, t_data *data)
 }
 ```
 
-static void	init_game(t_data *data)
+<h1></h1>
+
+- Descrição: inicializa o jogo.
+- Parâmetro: `t_data *data` - ponteiro para as variáveis do jogo.
+```c
+void	init_game(t_data *data)
 {
+	/* Inicialização da biblioteca MLX */
 	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, WINDOW_SIZE, WINDOW_SIZE, "cub3D");
+	
+	/* Criação da janela com tamanho 512 x 512 e título "Cub3d" */
+	data->win = mlx_new_window(data->mlx, WINDOW_SIZE, WINDOW_SIZE, "Cub3d");
+	
+	/* Inicialização das texturas "no", "so", "we" e "ea" */
 	data->img.no = init_texture(data->map.tex.no, data);
 	data->img.so = init_texture(data->map.tex.so, data);
 	data->img.we = init_texture(data->map.tex.we, data);
 	data->img.ea = init_texture(data->map.tex.ea, data);
-	data->turn_left = 0;
-	data->turn_right = 0;
+	
+	/* Inicialização das ações do jogador */
 	data->move_up = 0;
 	data->move_down = 0;
 	data->move_left = 0;
 	data->move_right = 0;
-	data->fps.last_sec = 0;
-	data->fps.last_fps = 0;
-	data->fps.count_frame = 0;
-	data->fps.str_fps = ft_strdup("");
+	
+	/* Campo de visão a esquerda e a direita */
+	data->turn_left = 0;
+	data->turn_right = 0;
+	
+	/* Inicialização de variáveis para contagem de tempo */
+	data->last_sec = 0;
+	data->last_fps = 0;
+	data->count_frame = 0;
+	
+	/* Inicialização da string para exibição dos fps */
+	data->str_fps = ft_strdup("");
 }
+```
 
 static t_img_data	*init_texture(char *file, t_data *data)
 {
