@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:56:12 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/16 00:03:43 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/18 03:04:49 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void		make_image(t_data *data);
 void		make_vertical_line(
 				t_data *data, int dist, double ix, t_img_data *img);
 static void	put_vertical_line(t_data *data, t_img_data *img);
-static void	my_img_pixel_put(t_img_data *img, int x, int y, int color);
-static int	my_img_pixel_get(t_img_data *img, int x, int y);
+static void	put_pixel_img(t_img_data *img, int x, int y, int color);
+static int	get_pixel_img(t_img_data *img, int x, int y);
 
 void	make_image(t_data *data)
 {
@@ -44,18 +44,6 @@ void	make_image(t_data *data)
 	mlx_destroy_image(data->mlx, data->img.game->new_img);
 	free(data->img.game);
 }
-
-/*
-rc.y_ceil	: y_ceil
-rc.line_height	: line_heighteight
-rc.y_tex_step	: y_tex_step
-rc.y_tex_off	: y_tex_offset
-rc.line_offset	: line_offsetffset
-rc.y_max	: y_line_max
-rc.x_tex		: x_tex
-ix			: x_intersection
-*/
-
 
 void	make_vertical_line(t_data *data, int dist, double ix, t_img_data *img)
 {
@@ -85,7 +73,7 @@ static void	put_vertical_line(t_data *data, t_img_data *img)
 	{
 		data->rc.x = (data->ray_num * SPRITE_SCALE);
 		while (data->rc.x < (data->ray_num * SPRITE_SCALE) + SPRITE_SCALE)
-			my_img_pixel_put(data->img.game, data->rc.x++, data->rc.y_ceil, \
+			put_pixel_img(data->img.game, data->rc.x++, data->rc.y_ceil, \
 			data->map.color.ceil);
 		data->rc.y_ceil++;
 	}
@@ -93,8 +81,8 @@ static void	put_vertical_line(t_data *data, t_img_data *img)
 	{
 		data->rc.x = (data->ray_num * SPRITE_SCALE);
 		while (data->rc.x < (data->ray_num * SPRITE_SCALE) + SPRITE_SCALE)
-			my_img_pixel_put(data->img.game, data->rc.x++, data->rc.line_offset, \
-			my_img_pixel_get(img, (int)data->rc.x_tex, (int)data->rc.y_tex));
+			put_pixel_img(data->img.game, data->rc.x++, data->rc.line_offset,
+				get_pixel_img(img, (int)data->rc.x_tex, (int)data->rc.y_tex));
 		data->rc.line_offset++;
 		data->rc.y_tex += data->rc.y_tex_step;
 	}
@@ -102,13 +90,13 @@ static void	put_vertical_line(t_data *data, t_img_data *img)
 	{
 		data->rc.x = (data->ray_num * SPRITE_SCALE);
 		while (data->rc.x < (data->ray_num * SPRITE_SCALE) + SPRITE_SCALE)
-			my_img_pixel_put(data->img.game, data->rc.x++, data->rc.y_max, \
+			put_pixel_img(data->img.game, data->rc.x++, data->rc.y_max, \
 			data->map.color.floor);
 		data->rc.y_max++;
 	}
 }
 
-static void	my_img_pixel_put(t_img_data *img, int x, int y, int color)
+static void	put_pixel_img(t_img_data *img, int x, int y, int color)
 {
 	char	*byte;
 
@@ -117,7 +105,7 @@ static void	my_img_pixel_put(t_img_data *img, int x, int y, int color)
 	*(unsigned int *)byte = color;
 }
 
-static int	my_img_pixel_get(t_img_data *img, int x, int y)
+static int	get_pixel_img(t_img_data *img, int x, int y)
 {
 	char	*byte;
 

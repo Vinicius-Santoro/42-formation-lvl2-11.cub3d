@@ -32,7 +32,7 @@
 # define PI 3.1415926535
 # define WINDOW_SIZE 512
 # define SPRITE_SIZE 64
-# define SPRITE_SCALE (WINDOW_SIZE / SPRITE_SIZE)
+# define SPRITE_SCALE 8
 
 # define KEYPRESSMASK 1
 # define KEYPRESS 2

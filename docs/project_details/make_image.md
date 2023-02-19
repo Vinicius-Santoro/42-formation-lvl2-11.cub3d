@@ -13,7 +13,7 @@ void	put_vertical_line(t_data *data, t_img_data *img)
 	{
 		data->rc.x = (data->ray_num * 8);
 		while (data->rc.x < (data->ray_num * 8) + 8)
-			my_img_pixel_put(data->img.game, data->rc.x++, data->rc.y_ceil, \
+			put_pixel_img(data->img.game, data->rc.x++, data->rc.y_ceil, \
 			data->map.color.ceil);
 		data->rc.y_ceil++;
 	}
@@ -21,8 +21,8 @@ void	put_vertical_line(t_data *data, t_img_data *img)
 	{
 		data->rc.x = (data->ray_num * 8);
 		while (data->rc.x < (data->ray_num * 8) + 8)
-			my_img_pixel_put(data->img.game, data->rc.x++, data->rc.line_offset, \
-			my_img_pixel_get(img, (int)data->rc.x_tex, (int)data->rc.ty));
+			put_pixel_img(data->img.game, data->rc.x++, data->rc.line_offset, \
+			get_pixel_img(img, (int)data->rc.x_tex, (int)data->rc.ty));
 		data->rc.line_offset++;
 		data->rc.ty += data->rc.y_tex_step;
 	}
@@ -30,7 +30,7 @@ void	put_vertical_line(t_data *data, t_img_data *img)
 	{
 		data->rc.x = (data->ray_num * 8);
 		while (data->rc.x < (data->ray_num * 8) + 8)
-			my_img_pixel_put(data->img.game, data->rc.x++, data->rc.y_max, \
+			put_pixel_img(data->img.game, data->rc.x++, data->rc.y_max, \
 			data->map.color.floor);
 		data->rc.y_max++;
 	}
