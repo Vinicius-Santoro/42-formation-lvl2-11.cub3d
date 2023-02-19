@@ -68,10 +68,10 @@ static void	init_game(t_data *data)
 	data->move_down = 0;
 	data->move_left = 0;
 	data->move_right = 0;
-	data->last_sec = 0;
-	data->last_fps = 0;
-	data->count_frame = 0;
-	data->str_fps = ft_strdup("");
+	data->fps.last_sec = 0;
+	data->fps.last_fps = 0;
+	data->fps.count_frame = 0;
+	data->fps.str_fps = ft_strdup("");
 }
 
 static t_img_data	*init_texture(char *file, t_data *data)
