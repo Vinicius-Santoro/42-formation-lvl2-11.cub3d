@@ -93,6 +93,7 @@ int	main(int argc, char **argv)
 	garantir que todos os recursos sejam liberados corretamente.
 	*/
 	mlx_hook(data->win, DESTROYNOTIFY, NOEVENTMASK, close_game, data);
+	
 	/* Função chamada para movimentação pelo mouse
 	- data->win: é um ponteiro para a janela MLX que registra o evento.
 	- 6: Este parâmetro especifica o tipo de evento que o hook deve interceptar.
