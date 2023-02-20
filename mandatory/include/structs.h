@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:50:50 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/19 00:31:34 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:17:39 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,6 @@ typedef struct s_raycast
 	float	x_tex;
 }	t_raycast;
 
-typedef struct s_fps
-{
-	struct timeval	tv;
-	int				count_frame;
-	int				last_sec;
-	int				last_fps;
-	char			*str_fps;
-}	t_fps;
-
 typedef struct s_data
 {
 	void		*mlx;
@@ -116,7 +107,6 @@ typedef struct s_data
 	int			move_right;
 	int			turn_left;
 	int			turn_right;
-	t_fps		fps;
 }	t_data;
 
 #endif

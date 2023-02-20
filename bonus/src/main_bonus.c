@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 int					main(int argc, char **argv);
 static int			validate_map(char *file_name, t_data *data);
@@ -21,11 +21,11 @@ int	main(int argc, char **argv)
 {
 	t_data	*data;
 
+	data = malloc(sizeof(t_data));
 	if (argc > 2)
 		error_message(1, "Invalid arguments: too many", data);
 	if (argc < 2)
 		error_message(2, "Invalid arguments: not enough", data);
-	data = malloc(sizeof(t_data));
 	if (validate_map(argv[1], data) == TRUE)
 		return (1);
 	init_game(data);

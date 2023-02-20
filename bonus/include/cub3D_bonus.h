@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include <mlx.h>
 # include <stdlib.h>
@@ -21,9 +21,9 @@
 # include <fcntl.h>
 # include <sys/time.h>
 
-# include "../libs/libft/libft.h"
-# include "structs.h"
-# include "prototypes.h"
+# include "../../libs/libft/libft.h"
+# include "structs_bonus.h"
+# include "prototypes_bonus.h"
 
 # define FALSE 0
 # define TRUE 1

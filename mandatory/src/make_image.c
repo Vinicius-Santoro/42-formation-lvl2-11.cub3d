@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:56:12 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/19 00:25:30 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/20 15:08:39 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static int	get_pixel_img(t_img_data *img, int x, int y);
 
 void	make_image(t_data *data)
 {
-	mouse_move(0, 0, data);
 	data->img.game = malloc(sizeof(t_img));
 	data->img.game->new_img = mlx_new_image(\
 		data->mlx, WINDOW_SIZE, WINDOW_SIZE \
@@ -43,7 +42,6 @@ void	make_image(t_data *data)
 		);
 	mlx_destroy_image(data->mlx, data->img.game->new_img);
 	free(data->img.game);
-	get_fps(data);
 }
 
 void	make_vertical_line(t_data *data, int dist, double ix, t_img_data *img)

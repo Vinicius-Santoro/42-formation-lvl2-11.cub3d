@@ -22,18 +22,24 @@ RE 				=	\033[0m
 CUB				=	$(MAGENTA)cub$(BLUE)3$(RED)D$(RE)
 
 NAME			=	cub3D
+NAME_BONUS		=	cub3D_bonus
 MAP_NAME		=	./assets/maps/map42.cub
 
 HEADER			=	cub3D.h
-INCLUDE			=	-I ./include
+HEADER_BONUS	=	cub3D_bonus.h
+INCLUDE			=	-I ./mandatory/include/
+INCLUDE_BONUS	=	-I ./bonus/include/
 
-CC				=	gcc -g
 CFLAGS			=	-Wall -Wextra -Werror
+CC				=	gcc -g $(CFLAGS) 
 LIB				=	-lbsd -lmlx -lXext -lX11 -lm -lz
 VAL_FLAGS		= 	--leak-check=full --show-leak-kinds=all
 
-SRC_PATH		=	./src/
-OBJ_PATH		=	./obj/
+SRC_PATH		=	./mandatory/src/
+OBJ_PATH		=	./mandatory/obj/
+
+SRC_PATH_BONUS	=	./bonus/src/
+OBJ_PATH_BONUS	=	./bonus/obj/
 
 SRC_FILES		=	main.c			\
 					check_line.c	\
@@ -45,8 +51,23 @@ SRC_FILES		=	main.c			\
 					raycast.c		\
 					utils.c
 
-SRC            	=	$(addprefix $(SRC_PATH),$(SRC_FILES))
-OBJ            	=	$(addprefix $(OBJ_PATH),$(subst .c,.o,$(SRC_FILES)))
+SRC_FILES_BONUS	=	main_bonus.c		\
+					check_line_bonus.c	\
+					commands_bonus.c	\
+					end_game_bonus.c	\
+					make_image_bonus.c	\
+					parse_map_bonus.c	\
+					read_map_bonus.c	\
+					raycast_bonus.c		\
+					utils_bonus.c
+
+SRC				=	$(addprefix $(SRC_PATH),$(SRC_FILES))
+OBJ				=	$(addprefix $(OBJ_PATH),$(subst .c,.o,$(SRC_FILES)))
+
+SRC_BONUS		=	$(addprefix $(SRC_PATH_BONUS),\
+					$(SRC_FILES_BONUS))
+OBJ_BONUS		=	$(addprefix $(OBJ_PATH_BONUS),\
+					$(subst .c,.o,$(SRC_FILES_BONUS)))
 
 LIBFT			=	./libs/libft/libft.a
 
@@ -57,29 +78,49 @@ $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
 				@ mkdir -p $(OBJ_PATH)
 				@ $(CC) $(INCLUDE) -c $< -o $@
 
-all:            $(NAME)
-				
+$(OBJ_PATH_BONUS)%.o:	$(SRC_PATH_BONUS)%.c
+				@ mkdir -p $(OBJ_PATH_BONUS)
+				@ $(CC) $(INCLUDE_BONUS) -c $< -o $@
 
-$(NAME):        $(OBJ) $(LIBFT)
-				@ $(CC) $(CFLAGS) $(INCLUDE) -o $(NAME) $(OBJ) $(LIB) $(LIBFT)
-				@ echo "$(CUB)$(RE): was $(GREEN)created$(RE)"
+all:			$(NAME)
+				
+$(NAME):		$(OBJ) $(LIBFT)
+				@ $(CC) $(INCLUDE) -o $(NAME) $(OBJ) $(LIB) $(LIBFT)
+				@ echo "$(CUB): was $(GREEN)created$(RE)"
+
+bonus:			$(NAME_BONUS)
+
+$(NAME_BONUS):	$(OBJ_BONUS) $(LIBFT)
+				@ $(CC) $(INCLUDE_BONUS) -o $(NAME_BONUS) \
+				$(OBJ_BONUS) $(LIB) $(LIBFT)
+				@ echo "$(CUB): was $(GREEN)created$(RE)"
 
 clean:
-				@ $(RM) rm -rf $(OBJ_PATH)
+				@ rm -rf $(OBJ_PATH) $(OBJ_PATH_BONUS)
 				@ make clean --no-print-directory -C ./libs/libft
 				@ echo "$(CUB): object files were $(RED)deleted$(RE)"
 
-fclean:         clean
-				@ $(RM) $(NAME) rm -rf  $(LIBFT) $(OBJ_PATH)
+fclean:			clean
+				@ rm -rf $(NAME) $(NAME_BONUS) $(LIBFT)
 				@ echo "$(CUB): was $(RED)deleted$(RE)"
 
 re:				fclean all
 
-play:			re
+rebonus:		fclean bonus
+
+play:			all
 				@ echo "$(CUB): was $(GREEN)started$(RE)"
 				@ ./$(NAME) $(MAP_NAME)
 
-val:			re
+val:			all
 				valgrind $(VAL_FLAGS) ./$(NAME) $(MAP_NAME)
 
-.PHONY:			all, clean, fclean, re, play, val
+play_bonus:		bonus
+				@ echo "$(CUB): was $(GREEN)started$(RE)"
+				@ ./$(NAME_BONUS) $(MAP_NAME)
+
+val_bonus:		bonus
+				valgrind $(VAL_FLAGS) ./$(NAME_BONUS) $(MAP_NAME)
+
+.PHONY:			all, clean, fclean, re, rebonus, \
+				play, val, play_bonus, val_bonus

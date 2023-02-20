@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   read_map_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 17:01:31 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/14 22:41:54 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:24:25 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
-int			read_map(int fd, t_data *data);
+void		read_map(int fd, t_data *data);
 static void	check_is_missing_header(t_data *data);
 static void	init_map(t_data *data);
 
-int	read_map(int fd, t_data *data)
+void	read_map(int fd, t_data *data)
 {
 	char	*temp;
 	int		i;

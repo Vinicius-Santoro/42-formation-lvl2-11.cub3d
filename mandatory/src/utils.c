@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:22:28 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/19 00:30:50 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/20 15:09:18 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,40 +66,4 @@ int	ft_strisdigit(char *str)
 		if (ft_isdigit(*str++) == 0)
 			return (0);
 	return (1);
-}
-
-void	get_fps(t_data *data)
-{	
-	gettimeofday(&data->fps.tv, 0);
-	if (data->fps.last_sec == data->fps.tv.tv_sec)
-	{
-		usleep(3000);
-		data->fps.count_frame++;
-	}
-	else
-	{
-		data->fps.last_fps = data->fps.count_frame;
-		data->fps.last_sec = data->fps.tv.tv_sec;
-		data->fps.count_frame = 0;
-		free(data->fps.str_fps);
-		data->fps.str_fps = ft_itoa(data->fps.last_fps);
-	}
-	mlx_string_put(data->mlx, data->win, \
-	WINDOW_SIZE * 0.05, WINDOW_SIZE * 0.05, \
-	0x00FF00, data->fps.str_fps);
-}
-
-int	mouse_move(int x, int y, t_data *data)
-{
-	static int		last_x;
-
-	(void)y;
-	if (x > 0)
-	{
-		data->player.angle -= (x - WINDOW_SIZE / 2) * 0.0001;
-		last_x = x;
-	}
-	else if (last_x > 0)
-		data->player.angle -= (last_x - WINDOW_SIZE / 2) * 0.0001;
-	return (0);
 }
