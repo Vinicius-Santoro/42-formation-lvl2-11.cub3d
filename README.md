@@ -84,7 +84,7 @@ the maze.
 - You can run holding `'Shift'` key.
 - `'Esc'` key exits the game.
 
-#### Details of the entire project
+#### Necessary concepts
 
 - [O que é RayCasting?](docs/necessary_concepts/raycasting.md)
 - [Interface gráfica utilizando a Linguagem C com MiniLibX](docs/necessary_concepts/interface.md)
