@@ -1,6 +1,6 @@
 ### _Project 11: Cub3D - Eleventh project for the formation of software engineers at school 42 São Paulo._
 
-🏠 [home](https://github.com/Vinicius-Santoro/42-formation-lvl2-11.cub3d)
+🏠 [home](https:/*github.com/Vinicius-Santoro/42-formation-lvl2-11.cub3d)
 
 <h1></h1>
 
@@ -169,30 +169,48 @@ próxima parede nas direções horizontal e vertical. Essas distâncias são
 armazenadas nas variáveis sidedist_x e sidedist_y, respectivamente.
 - Parâmetro: `t_data *data` - um ponteiro para a struct `t_data` que armazena as
 informações do jogo.
-- Parâmetro: `double ra` - ângulo de visão.
+- Parâmetro: `double ra` - ângulo de rotação da câmera em relação ao jogador.
 ```c
-static void	get_sidedist(t_data *data, double ra)
+static void    get_sidedist(t_data *data, double ra)
 {
-	if (ra < PI)
-	{
-		data->sidedist_y = fabs(((int)(data->player.y) % SPRITE_SIZE) / sin (ra));
-		data->step_y = -1;
-	}
-	else
-	{
-		data->sidedist_y = fabs((SPRITE_SIZE - (int)(data->player.y) % SPRITE_SIZE) / sin (ra));
-		data->step_y = 1;
-	}
-	if (ra > PI / 2 && ra < 3 * PI / 2)
-	{
-		data->sidedist_x = fabs(((int)(data->player.x) % SPRITE_SIZE) / cos (ra));
-		data->step_x = -1;
-	}
-	else
-	{
-		data->sidedist_x = fabs((SPRITE_SIZE - (int)(data->player.x) % SPRITE_SIZE) / cos (ra));
-		data->step_x = 1;
-	}
+    /* Verifica se o ângulo de rotação está apontando para a esquerda */
+    if (ra < PI)
+    {
+        /* Calcula a distância da próxima parede na direção y */
+        data->sidedist_y = fabs(((int)(data->player.y) % SPRITE_SIZE) / sin (ra));
+
+        /* Define o sentido do passo como para cima */
+        data->step_y = -1;
+    }
+
+    /* Caso contrário, o ângulo de rotação está apontando para a direita */
+    else
+    {
+        /* Calcula a distância da próxima parede na direção y */
+        data->sidedist_y = fabs((SPRITE_SIZE - (int)(data->player.y) % SPRITE_SIZE) / sin (ra));
+
+        /* Define o sentido do passo como para baixo */
+        data->step_y = 1;
+    }
+
+    /* Verifica se o ângulo de rotação está apontando para cima ou para baixo */
+    if (ra > PI / 2 && ra < 3 * PI / 2)
+    {
+        /* Calcula a distância da próxima parede na direção x */
+        data->sidedist_x = fabs(((int)(data->player.x) % SPRITE_SIZE) / cos (ra));
+
+        /* Define o sentido do passo como para a esquerda */
+        data->step_x = -1;
+    }
+    /* Caso contrário, o ângulo de rotação está apontando para a esquerda ou direita */
+    else
+    {
+        /* Calcula a distância da próxima parede na direção x */
+        data->sidedist_x = fabs((SPRITE_SIZE - (int)(data->player.x) % SPRITE_SIZE) / cos (ra));
+
+        /* Define o sentido do passo como para a direita */
+        data->step_x = 1;
+    }
 }
 ```
 
@@ -202,30 +220,40 @@ static void	get_sidedist(t_data *data, double ra)
 - Parâmetro: `t_data *data` - um ponteiro para a struct `t_data` que armazena as
 informações do jogo.
 ```c
-static void	collision_loop(t_data *data)
+static void collision_loop(t_data *data)
 {
-    /* Dividindo a posição do player por 64 */
-	data->map_x = (int)(data->player.x) >> 6;
-	data->map_y = (int)(data->player.y) >> 6;
-	while (data->map.map[data->map_y][data->map_x] != '1')
-	{
-		if (data->sidedist_x < data->sidedist_y)
-		{
-			data->sidedist_x += data->deltadist_x;
-            /* Avança ou volta 1*/
-			data->map_x += data->step_x;
-			data->wall = 0;
-		}
-		else
-		{
-			data->sidedist_y += data->deltadist_y;
-            /* Avança ou volta 1*/
-			data->map_y += data->step_y;
-			data->wall = 1;
-		}
-	}
+    /* Divide a posição do jogador por 64 para encontrar a posição do jogador no
+    mapa. */
+    data->map_x = (int)(data->player.x) >> 6;
+    data->map_y = (int)(data->player.y) >> 6;
+    
+    /* Enquanto a posição atual do jogador no mapa não for uma parede
+    (representada pelo valor '1'). */
+    while (data->map.map[data->map_y][data->map_x] != '1')
+    {
+        /* Se a distância para a próxima parede na direção x é menor que a
+        distância na direção y. */
+        if (data->sidedist_x < data->sidedist_y)
+        {
+            /* Atualiza a distância para a próxima parede na direção x, a
+            posição do jogador no mapa na direção x e define que o jogador não
+            está mais na parede. */
+            data->sidedist_x += data->deltadist_x;
+            data->map_x += data->step_x;
+            data->wall = 0;
+        }
+        else
+        {
+            /* Atualiza a distância para a próxima parede na direção y, a
+            posição do jogador no mapa na direção y e define que o jogador está na parede. */
+            data->sidedist_y += data->deltadist_y;
+            data->map_y += data->step_y;
+            data->wall = 1;
+        }
+    }
 }
 ```
+- Exemplo do loop de colisão:
 ```
 Mapa:
 11111
