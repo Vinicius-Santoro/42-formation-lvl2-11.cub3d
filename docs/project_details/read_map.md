@@ -45,7 +45,8 @@ static void	init_map(t_data *data)
 	/* Inicializa a contagem de linhas do mapa com 0 */
 	data->map.count_line = 0;
 	
-	/* Inicializa o vetor de strings que representa a linha do mapa dividida em células como NULL */
+	/* Inicializa o vetor de strings que representa a linha do mapa dividida em
+	células como NULL */
 	data->map.splited_line = NULL;
 
 	/* Inicializa o vetor de inteiros que representa o mapa como NULL */
@@ -79,7 +80,8 @@ static void	init_map(t_data *data)
 
 <h1></h1>
 
-- Descrição: lê o arquivo de mapa e armazena as informações necessárias para o jogo.
+- Descrição: lê o arquivo de mapa e armazena as informações necessárias para o
+jogo.
 - Parâmetro: `int fd` - mapa.
 - Parâmetro: `t_data *data` - informações sobre o mapa.
 ```c
@@ -110,6 +112,7 @@ int	read_map(int fd, t_data *data)
 	while (data->map.lines[++i])
 		/* texturas no, so, we, ea, F e C. */
 		check_line(data->map.lines[i], data);
+	/* verifica se falta os caminhos das texturas no início do arquivo */
 	check_is_missing_header(data);
 }
 ```
