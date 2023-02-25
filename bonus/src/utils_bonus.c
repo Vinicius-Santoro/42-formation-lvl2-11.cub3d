@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:22:28 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/20 15:19:20 by vnazioze         ###   ########.fr       */
+/*   Updated: 2023/02/25 18:07:18 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	is_valid_ext(char *file, const char *ext)
 	if (file_len > ext_len && \
 		ft_strncmp(file + (file_len - ext_len), ext, ext_len) == 0)
 		return (1);
+	if (!ft_strncmp(ext, ".cub", 5))
+		return (0);
 	free(file);
 	file = NULL;
 	return (0);
