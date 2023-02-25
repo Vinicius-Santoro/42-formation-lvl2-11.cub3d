@@ -93,7 +93,12 @@ the maze.
 #### Details of the entire project
 
 - [makefile](docs/project_details/makefile.md)
+- [check_line.c](docs/project_details/check_line.md)
+- [commands.c](docs/project_details/commands.md)
+- [end_game.c](docs/project_details/end_game.md)
 - [main.c](docs/project_details/main.md)
-- [validate_error.c](docs/project_details/validate_error.md)
-- [read_map.c](docs/project_details/read_map.md)
+- [make_image.c](docs/project_details/make_image.md)
 - [parse_map.c](docs/project_details/parse_map.md)
+- [raycast.c](docs/project_details/raycast.md)
+- [read_map.c](docs/project_details/read_map.md)
+
