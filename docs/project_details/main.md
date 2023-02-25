@@ -205,9 +205,13 @@ void	init_game(t_data *data)
 
 <h1></h1>
 
-- Descrição: inicializa as texturas a partir do arquivo `xpm`. Ela retorna um ponteiro para uma estrutura "t_img_data", que contém informações sobre a imagem, como o endereço dos dados da imagem, o número de bits por pixel, o comprimento da linha e o endianess.
+- Descrição: inicializa as texturas a partir do arquivo `xpm`. Ela retorna um
+ponteiro para uma estrutura `t_img_data`, que contém informações sobre a imagem,
+como o endereço dos dados da imagem, o número de bits por pixel, o comprimento
+da linha e o endianess.
 - Parâmetro: `char *file` - arquivo que contém as texturas (.xpm).
-- Parâmetro: `t_data *data` - utuliza essa variável para comseguir acesso a minilibx.
+- Parâmetro: `t_data *data` - utuliza essa variável para comseguir acesso a
+minilibx.
 ```c
 t_img_data	*init_texture(char *file, t_data *data)
 {
@@ -226,23 +230,29 @@ t_img_data	*init_texture(char *file, t_data *data)
 
 	/*
 	Carrega a imagem a partir do arquivo fornecido.
-	- mlx: um ponteiro para a estrutura mlx que contém informações gerais sobre a janela gráfica.
+	- mlx: um ponteiro para a estrutura mlx que contém informações gerais sobre
+	a janela gráfica.
 	- file: uma string que representa o caminho para o arquivo de imagem.
-	- trash: width - um ponteiro para um inteiro que será preenchido com a largura da imagem.
-	- trash: height - um ponteiro para um inteiro que será preenchido com o comprimento da imagem.
+	- trash: width - um ponteiro para um inteiro que será preenchido com a
+	largura da imagem.
+	- trash: height - um ponteiro para um inteiro que será preenchido com o
+	comprimento da imagem.
 	*/
 	ret->new_img = mlx_xpm_file_to_image(data->mlx, file, &trash, &trash);
 
 	/*
 	Obtém o endereço dos dados da imagem.
 	- image: um ponteiro para a estrutura mlx_img que representa a imagem.
-	- bits_per_pixel: um ponteiro para um inteiro que será preenchido com o número de bits por pixel da imagem.
-	- line_length: um ponteiro para um inteiro que será preenchido com o comprimento da linha da imagem (em bytes).
-	- endian: um ponteiro para um inteiro que será preenchido com o endianess da imagem
-	(0 para little-endian, 1 para big-endian).
+	- bits_per_pixel: um ponteiro para um inteiro que será preenchido com o
+	número de bits por pixel da imagem.
+	- line_length: um ponteiro para um inteiro que será preenchido com o
+	comprimento da linha da imagem (em bytes).
+	- endian: um ponteiro para um inteiro que será preenchido com o endianess
+	da imagem (0 para little-endian, 1 para big-endian).
 	O endian serve para ler o endereço da imagem.
 	*/
-	ret->address = mlx_get_data_addr(ret->new_img, &ret->bits_per_pixel, &ret->line_length, &ret->endian);
+	ret->address = mlx_get_data_addr(ret->new_img, &ret->bits_per_pixel, \
+	&ret->line_length, &ret->endian);
 
 	/* Retorna o ponteiro para a estrutura "t_img_data" */
 	return (ret);
