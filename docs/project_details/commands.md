@@ -157,12 +157,14 @@ static int	check_collision(t_data *data, double ra)
 	get_distance(data, ra);
 
     /* Calcula a posição no mapa onde o jogador iria caso se movesse mais 5
-    passos */
+    passos
+	*/
 	map_x = data->player.x + (5 * data->step_x);
 	map_y = data->player.y + (5 * data->step_y);
 
     /* Faz um shift para a direita de 6 bits para dividir por 64 e obter a
-    posição no mapa */
+    posição no mapa
+	*/
 	map_x = map_x >> 6;
 	map_y = map_y >> 6;
 
