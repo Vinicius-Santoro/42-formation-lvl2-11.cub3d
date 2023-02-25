@@ -171,5 +171,79 @@ armazenadas nas variáveis sidedist_x e sidedist_y, respectivamente.
 informações do jogo.
 - Parâmetro: `double ra` - ângulo de visão.
 ```c
+static void	get_sidedist(t_data *data, double ra)
+{
+	if (ra < PI)
+	{
+		data->sidedist_y = fabs(((int)(data->player.y) % SPRITE_SIZE) / sin (ra));
+		data->step_y = -1;
+	}
+	else
+	{
+		data->sidedist_y = fabs((SPRITE_SIZE - (int)(data->player.y) % SPRITE_SIZE) / sin (ra));
+		data->step_y = 1;
+	}
+	if (ra > PI / 2 && ra < 3 * PI / 2)
+	{
+		data->sidedist_x = fabs(((int)(data->player.x) % SPRITE_SIZE) / cos (ra));
+		data->step_x = -1;
+	}
+	else
+	{
+		data->sidedist_x = fabs((SPRITE_SIZE - (int)(data->player.x) % SPRITE_SIZE) / cos (ra));
+		data->step_x = 1;
+	}
+}
+```
 
+<h1></h1>
+
+- Descrição: verifica se o player colidirá com uma parede ou não.
+- Parâmetro: `t_data *data` - um ponteiro para a struct `t_data` que armazena as
+informações do jogo.
+```c
+static void	collision_loop(t_data *data)
+{
+    /* Dividindo a posição do player por 64 */
+	data->map_x = (int)(data->player.x) >> 6;
+	data->map_y = (int)(data->player.y) >> 6;
+	while (data->map.map[data->map_y][data->map_x] != '1')
+	{
+		if (data->sidedist_x < data->sidedist_y)
+		{
+			data->sidedist_x += data->deltadist_x;
+            /* Avança ou volta 1*/
+			data->map_x += data->step_x;
+			data->wall = 0;
+		}
+		else
+		{
+			data->sidedist_y += data->deltadist_y;
+            /* Avança ou volta 1*/
+			data->map_y += data->step_y;
+			data->wall = 1;
+		}
+	}
+}
+```
+```
+Mapa:
+11111
+10001
+10N01
+10001
+11111
+
+player.y = 3
+player.x = 3
+sprite 64 
+player.y = y * sprite + (sprite/2)
+player.y = 3 * 64 + (32)
+player.y = 224
+data->map_y = 3
+
+player.x = x * sprite + (sprite/2)
+player.x = 3 * 64 + (32)
+player.x = 224
+data->map_x = 3
 ```
