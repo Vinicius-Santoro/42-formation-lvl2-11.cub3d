@@ -17,8 +17,8 @@ static int	get_pixel_img(t_img_data *img, int x, int y);
 <h1></h1>
 
 - Descrição: é responsável por renderizar a imagem do jogo na janela gráfica.
-- Parâmetro: `t_data *data` - quantidade de argumentos passados na linha de
-comando.
+- Parâmetro: `t_data *data` - um ponteiro para a struct `t_data` que armazena as
+informações do jogo.
 ```c
 void	make_image(t_data *data)
 {
@@ -102,8 +102,8 @@ void	make_image(t_data *data)
 
 - Descrição: desenha uma linha vertical na tela correspondente ao plano 3D. A
 altura da linha é determinada pela distância do sprite em relação ao jogador.
-- Parâmetro: `t_data *data` - quantidade de argumentos passados na linha de
-comando.
+- Parâmetro: `t_data *data` - um ponteiro para a struct `t_data` que armazena as
+informações do jogo.
 - Parâmetro: `int dist` - distância do sprite em relação ao jogador.
 - Parâmetro: `double ix`- posição horizontal da coluna na tela em que a sprite
 será desenhada.
@@ -173,8 +173,8 @@ void	make_vertical_line(t_data *data, int dist, double ix, t_img_data *img)
 
 - Descrição: desenha uma linha vertical na tela correspondente ao plano 3D. A
 altura da linha é determinada pela distância do sprite em relação ao jogador.
-- Parâmetro: `t_data *data` - quantidade de argumentos passados na linha de
-comando.
+- Parâmetro: `t_data *data` - um ponteiro para a struct `t_data` que armazena as
+informações do jogo.
 - Parâmetro: `t_img_data *img` - ponteiro para a estrutura `t_img_data` que
 contém informações sobre a textura da sprite.
 ```c
