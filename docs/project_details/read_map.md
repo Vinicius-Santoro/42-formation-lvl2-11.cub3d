@@ -4,8 +4,57 @@
 
 <h1></h1>
 
+- Funções deste arquivo:
+```c
+int			read_map(int fd, t_data *data);
+static void	check_is_missing_header(t_data *data);
+static void	init_map(t_data *data);
+```
+
+<h1></h1>
+
+- Descrição: lê o arquivo de mapa e armazena as informações necessárias para o
+jogo.
+- Parâmetro: `int fd` - mapa.
+- Parâmetro: `t_data *data` - informações sobre o mapa.
+```c
+int	read_map(int fd, t_data *data)
+{
+	char	*temp;
+	int		i;
+
+	/* Inicialização das variáveis necessárias */
+	init_map(data);
+
+	/* Lê o arquivo linha por linha */
+	while (TRUE)
+	{
+		temp = get_next_line(fd);
+		if (temp == NULL)
+			break ;
+		data->map.line = ft_strjoin_free(data->map.line, temp);
+		free(temp);
+	}
+
+	/* Divide o arquivo inteiro em linhas */
+	data->map.lines = ft_split(data->map.line, '\n');
+	free(data->map.line);
+	i = -1;
+
+	/* Verifica se as informações estão corretas */
+	while (data->map.lines[++i])
+		/* texturas no, so, we, ea, F e C. */
+		check_line(data->map.lines[i], data);
+	/* verifica se falta os caminhos das texturas no início do arquivo */
+	check_is_missing_header(data);
+}
+```
+
+
+<h1></h1> 
 - Descrição: verifica se o cabeçalho do arquivo `.cub` está faltando.
 - Parâmetro: `t_data *data` - informações sobre o mapa e as texturas.
+
 ```c
 static void	check_is_missing_header(t_data *data)
 {
@@ -75,44 +124,5 @@ static void	init_map(t_data *data)
 
 	/* Inicializa a coluna máxima do mapa como 0 */
 	data->map.max_column = 0;
-}
-```
-
-<h1></h1>
-
-- Descrição: lê o arquivo de mapa e armazena as informações necessárias para o
-jogo.
-- Parâmetro: `int fd` - mapa.
-- Parâmetro: `t_data *data` - informações sobre o mapa.
-```c
-int	read_map(int fd, t_data *data)
-{
-	char	*temp;
-	int		i;
-
-	/* Inicialização das variáveis necessárias */
-	init_map(data);
-
-	/* Lê o arquivo linha por linha */
-	while (TRUE)
-	{
-		temp = get_next_line(fd);
-		if (temp == NULL)
-			break ;
-		data->map.line = ft_strjoin_free(data->map.line, temp);
-		free(temp);
-	}
-
-	/* Divide o arquivo inteiro em linhas */
-	data->map.lines = ft_split(data->map.line, '\n');
-	free(data->map.line);
-	i = -1;
-
-	/* Verifica se as informações estão corretas */
-	while (data->map.lines[++i])
-		/* texturas no, so, we, ea, F e C. */
-		check_line(data->map.lines[i], data);
-	/* verifica se falta os caminhos das texturas no início do arquivo */
-	check_is_missing_header(data);
 }
 ```
