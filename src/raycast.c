@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 03:09:58 by vnazioze          #+#    #+#             */
-/*   Updated: 2023/02/19 00:24:09 by ldatilio         ###   ########.fr       */
+/*   Updated: 2023/02/25 14:33:01 by vnazioze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,33 +65,33 @@ static void	get_deltadist(t_data *data, double ra)
 	if (cos(ra) == 0)
 		data->deltadist_x = MAX_INT;
 	else
-		data->deltadist_x = fabs(64 / cos(ra));
+		data->deltadist_x = fabs(SPRITE_SIZE / cos(ra));
 	if (sin(ra) == 0)
 		data->deltadist_y = MAX_INT;
 	else
-		data->deltadist_y = fabs(64 / sin(ra));
+		data->deltadist_y = fabs(SPRITE_SIZE / sin(ra));
 }
 
 static void	get_sidedist(t_data *data, double ra)
 {
 	if (ra < PI)
 	{
-		data->sidedist_y = fabs(((int)(data->player.y) % 64) / sin (ra));
+		data->sidedist_y = fabs(((int)(data->player.y) % SPRITE_SIZE) / sin (ra));
 		data->step_y = -1;
 	}
 	else
 	{
-		data->sidedist_y = fabs((64 - (int)(data->player.y) % 64) / sin (ra));
+		data->sidedist_y = fabs((SPRITE_SIZE - (int)(data->player.y) % SPRITE_SIZE) / sin (ra));
 		data->step_y = 1;
 	}
 	if (ra > PI / 2 && ra < 3 * PI / 2)
 	{
-		data->sidedist_x = fabs(((int)(data->player.x) % 64) / cos (ra));
+		data->sidedist_x = fabs(((int)(data->player.x) % SPRITE_SIZE) / cos (ra));
 		data->step_x = -1;
 	}
 	else
 	{
-		data->sidedist_x = fabs((64 - (int)(data->player.x) % 64) / cos (ra));
+		data->sidedist_x = fabs((SPRITE_SIZE - (int)(data->player.x) % SPRITE_SIZE) / cos (ra));
 		data->step_x = 1;
 	}
 }
