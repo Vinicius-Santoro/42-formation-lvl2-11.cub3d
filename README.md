@@ -101,4 +101,3 @@ the maze.
 - [parse_map.c](docs/project_details/parse_map.md)
 - [raycast.c](docs/project_details/raycast.md)
 - [read_map.c](docs/project_details/read_map.md)
-
