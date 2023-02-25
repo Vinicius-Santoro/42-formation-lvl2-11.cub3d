@@ -55,9 +55,14 @@ SRC_PATH		=	./src/
 OBJ_PATH		=	./obj/
 
 # Organizando arquivos abstratos
-SRC_FILES		=	main.c			\
-				validate_map.c	\
-				validate_error.c\
+SRC_FILES		=	main.c		\
+				check_line.c	\
+				commands.c	\
+				end_game.c	\
+				make_image.c	\
+				parse_map.c	\
+				read_map.c	\
+				raycast.c	\
 				utils.c
 
 # Compilando os arquivos abstratos e transformando-os em arquivos objetos.
