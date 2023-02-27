@@ -43,7 +43,7 @@ static int	validate_map(char *file_name, t_data *data)
 {
 	int	fd;
 
-	fd = open(file_name, RDWR);
+	fd = open(file_name, O_RDWR);
 	if (fd < 0)
 		error_message(3, "Invalid file: not exist", data);
 	if (is_valid_ext(file_name, ".cub") == FALSE)

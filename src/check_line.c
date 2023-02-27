@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vnazioze <vnazioze@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ldatilio <ldatilio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 21:17:20 by ldatilio          #+#    #+#             */
-/*   Updated: 2023/02/26 23:17:28 by vnazioze         ###   ########.fr       */
+/*   Updated: 2023/02/26 23:58:19 by ldatilio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static char	*get_tex_file(char *line, char *tex, t_data *data)
 	if (tex != NULL)
 		error_message(6, "Invalid texture: duplicated position", data);
 	file_name = ft_strtrim(line + 3, " \n");
-	fd = open(file_name, RDWR);
+	fd = open(file_name, O_RDWR);
 	if (fd < 0)
 		error_message(5, "Invalid texture: file not exist", data);
 	close(fd);
