@@ -17,7 +17,7 @@ git clone git@github.com:Vinicius-Santoro/42-formation-lvl2-11.cub3d.git
 - To clean objects files execute: `make clean`
 - To clean executable file and objects: `make fclean`
 - Recompile: `make re`
-- Run `./cub3D` or followed by map path e.g. `./assets/maps/map.cub`
+- Run `./cub3D` or followed by map path e.g. `./assets/maps/map42.cub`
 
 #### File configuration
 
@@ -40,13 +40,13 @@ The file must have 6 element identifiers:
 Example in a .cub file:
 
 ````
-NO ./assets/images/texture_1.xpm
-SO ./assets/images/texture_2.xpm
-WE ./assets/images/texture_3.xpm
-EA ./assets/images/texture_4.xpm
+NO ./assets/Images/north.xpm
+SO ./assets/Images/south.xpm  
+WE ./assets/Images/west.xpm
+EA ./assets/Images/east.xpm  
 
-F 220,100,0
-C 225,30,0
+F 200,200,200
+C 0,0,0
 ````
 
 #### Map configuration
@@ -66,13 +66,20 @@ The map construction is composed by the following characters:
 Map example:
 
 ````
-111111111111111111111
-100001000000000000001
-101000000000000000001
-100S00100100100100101
-100000000000000000001
-100000100000000000001
-111111111111111111111
+1111111111111111111111111111111111111
+1000000000000000000000000000000000001
+1001111000001111000001111111111111001
+1001111000001111000001111111111111001
+1001111000001111000001111111111111001
+1001111000001111000000000000001111001
+1001111111111111000001111111111111001
+1001111111111111000001111111111111001
+1000000000001111000001111111111111001
+1000000000001111000001111000000000001
+1000000000001111000001111111111111001
+1000000000001111000001111111111111001
+100000000000000000N000000000000000001
+1111111111111111111111111111111111111
 ````
 
 #### How to play
@@ -81,7 +88,6 @@ Map example:
 right in the maze.
 - The `'W'`, `'A'`, `'S'` and `'D'` keys allow you to move the point of view through
 the maze.
-- You can run holding `'Shift'` key.
 - `'Esc'` key exits the game.
 
 #### Necessary concepts
