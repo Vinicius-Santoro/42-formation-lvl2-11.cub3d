@@ -144,7 +144,7 @@ static int	validate_map(char *file_name, t_data *data)
 	Retorno que teremos na tentativa de abertura do arquivo.
 	A função open retorna -1 em caso de erro.
 	*/
-	fd = open(file_name, O_RDONLY);
+	fd = open(file_name, RDWR);
 	if (fd < 0)
 		error_message(3, "Invalid file: not exist", data);
 		

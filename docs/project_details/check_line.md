@@ -70,7 +70,7 @@ static char	*get_tex_file(char *line, char *tex, t_data *data)
 	file_name = ft_strtrim(line + 3, " \n");
 
 	/* Abre o arquivo de textura */
-	fd = open(file_name, O_RDONLY);
+	fd = open(file_name, RDWR);
 	if (fd < 0)
 		/* Exibe mensagem de erro caso não seja possível abrir o arquivo */
 		error_message(5, "Invalid texture: file not exist", data);
