@@ -48,7 +48,14 @@ SRC_FILES		=	main.c			\
 SRC            	=	$(addprefix $(SRC_PATH),$(SRC_FILES))
 OBJ            	=	$(addprefix $(OBJ_PATH),$(subst .c,.o,$(SRC_FILES)))
 
+all:            $(NAME)
+				
 LIBFT			=	./libs/libft/libft.a
+
+$(NAME):        $(OBJ) $(LIBFT)
+				@ $(CC) $(CFLAGS) $(INCLUDE) -o $(NAME) $(OBJ) $(LIB) $(LIBFT)
+				@ echo "$(CUB)$(RE): was $(GREEN)created$(RE)"
+				
 
 $(LIBFT): 
 				@ make bonus --no-print-directory -C ./libs/libft
@@ -57,12 +64,6 @@ $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
 				@ mkdir -p $(OBJ_PATH)
 				@ $(CC) $(INCLUDE) -c $< -o $@
 
-all:            $(NAME)
-				
-
-$(NAME):        $(OBJ) $(LIBFT)
-				@ $(CC) $(CFLAGS) $(INCLUDE) -o $(NAME) $(OBJ) $(LIB) $(LIBFT)
-				@ echo "$(CUB)$(RE): was $(GREEN)created$(RE)"
 
 clean:
 				@ $(RM) rm -rf $(OBJ_PATH)
