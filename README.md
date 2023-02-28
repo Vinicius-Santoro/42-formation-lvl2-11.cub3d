@@ -4,8 +4,23 @@ Project 11: Cub3D - Eleventh project for the formation of software engineers at 
 
 - This project is inspired by the world-famous Wolfenstein 3D game. Our goal is to create a raycaster.
 
+
 #### This project was like this:
 ![lucas](https://user-images.githubusercontent.com/83036509/219818886-1cb1f06d-862c-473e-a2bd-305c0960e93b.gif)
+<p align="left">
+	<a href="https://www.linkedin.com/in/viniciusnaziozeno/">
+    	<img alt="Linkedin" src="https://img.shields.io/badge/Vinicius Santoro-blue?style=flat&logo=Linkedin&logoColor=white" />
+  	</a>
+	<a href="https://github.com/Vinicius-Santoro" alt="login intra">
+    	<img src="https://img.shields.io/badge/-vnazioze-gray?style=flat&logo=42&logoColor=white" />
+	</a>
+	<a href="https://www.linkedin.com/in/lucasdatiliocarderelli/">
+		<img alt="Linkedin" src="https://img.shields.io/badge/Lucas Datilio-blue?style=flat&logo=Linkedin&logoColor=white" />
+	</a>
+	<a href="https://github.com/LucasDatilioCarderelli" alt="login intra">
+		<img src="https://img.shields.io/badge/-ldatilio-gray?style=flat&logo=42&logoColor=white" />
+	</a>
+</p>
 
 #### How to run
 
